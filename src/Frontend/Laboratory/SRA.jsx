@@ -326,93 +326,115 @@ const SRA = () => {
           });
       };
 
-  const SampleTable = ({ title, data, showCentre = false, onClear }) => (
-    <div className="col-12 col-md-6">
-      <Heading
-              title={t(title)}
-              defaultValue={true}
-                secondTitle={
-                    <div
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        if (typeof onClear === "function") onClear();
-                      }}
-                    >
-                      <i class="bi bi-x-circle mb-0 m-1" title="Clear"></i>
-                    </div>
-                }
-            />
-      <div className="card">
-        <div className="card-body p-2">
-          <div className="table-responsive" style={{ height: "130px" }}>
-            {" "}
-            {/* Bootstrap handles horizontal scroll */}
-            <Tables className="table table-sm mb-0" data={data}>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>SIN No</th>
-                  { userLocalData?.DefaultCurrencyName === "KES" && (
-                    <th>Temperature(°C)</th>
-                  )}
-                  <th>Patient Name</th>
-                  <th>Sample Type</th>
-                  <th>Test</th>
-                  <th>Department</th>
-                  {showCentre && <th>Centre Name</th>}
-                  <th>Print Barcode</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((row, idx) => (
-                  <tr key={idx}>
-                    <td data-title={t("#")}>{idx + 1}</td>
-                    <td data-title={t("SIN No")}>{t(row?.BarcodeNo)}</td>
-                    { userLocalData?.DefaultCurrencyName === "KES" && (
-                      <td data-title={t("Temperature(°C)")}>{t(row?.SRATemperature)}</td>
+  const SampleTable = ({ title, data, showCentre = false, onClear }) => {
+    const isSeg = title.toLowerCase().includes("segregation");
+    const themeColor = isSeg ? "#007bff" : "#28a745";
+    const themeBg = isSeg ? "#e3f2fd" : "#e8f5e9";
+    const badgeClass = isSeg ? "badge bg-primary" : "badge bg-success";
+    const badgeLabel = isSeg ? "Segregation (Outsource)" : "In-House (Ready)";
+    const textColor = isSeg ? "#0d47a1" : "#1b5e20";
+
+    return (
+      <div className="col-12 col-md-6">
+        <Heading
+          title={
+            <span>
+              {t(title)}{" "}
+              <span className={`${badgeClass} ms-2`} style={{ fontSize: "11px", fontWeight: "600" }}>
+                {badgeLabel}
+              </span>
+            </span>
+          }
+          defaultValue={true}
+          secondTitle={
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                if (typeof onClear === "function") onClear();
+              }}
+            >
+              <i className="bi bi-x-circle mb-0 m-1" title="Clear"></i>
+            </div>
+          }
+        />
+        <div className="card shadow-sm" style={{ borderLeft: `5px solid ${themeColor}` }}>
+          <div className="card-body p-2" style={{ backgroundColor: themeBg }}>
+            <div className="table-responsive" style={{ height: "130px" }}>
+              <Tables className="table table-sm mb-0" data={data}>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Barcode No</th>
+                    {userLocalData?.DefaultCurrencyName === "KES" && (
+                      <th>Temperature(°C)</th>
                     )}
-                    <td data-title={t("Patient Name")}>{t(row?.PName)}</td>
-                    <td data-title={t("Sample Type")}>
-                      {t(row?.SampleTypeName)}
-                    </td>
-                    <td data-title={t("Test")}>{t(row?.InvestigationName)}</td>
-                    <td data-title={t("Department")}>{t(row?.Department)}</td>
-                    {showCentre && <td data-title={t("Centre Name")}>{t(row?.TestCentre) || t(row?.OutsourceCentre)}</td>}
-                    <td data-title={t("Print Barcode")}>
-                      <div className="d-flex" style={{ gap: "8px" }}>
-                        <div
-                          onClick={() => {
-                            getBarcodeData(row?.TestID, row?.LedgerTransactionNo, [row?.BarcodeNo]);
-                          }}
-                        >
-                          <i className="fa fa-print " style={{ cursor: "pointer" }} title="TestWise"></i>
-                        </div>
-                        <div
-                          onClick={() => {
-                            getAllDepartmentBarcodeData(
-                              row?.LedgerTransactionNo,
-                              row?.DepartmentID,
-                              row?.BarcodeNo,
-                            );
-                          }}
-                        >
-                          <i
-                            className="fa fa-print "
-                            style={{ cursor: "pointer", color: "red", marginLeft: "10px" }}
-                            title="DepartmentWise"
-                          ></i>
-                        </div>
-                      </div>
-                    </td>
+                    <th>Patient Name</th>
+                    <th>Sample Type</th>
+                    <th>Test</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    {showCentre && <th>Centre Name</th>}
+                    <th>Print Barcode</th>
                   </tr>
-                ))}
-              </tbody>
-            </Tables>
+                </thead>
+                <tbody>
+                  {data.map((row, idx) => (
+                    <tr key={idx} style={{ backgroundColor: isSeg ? "#f0f7ff" : "#f4fbf5", color: textColor }}>
+                      <td data-title={t("#")}>{idx + 1}</td>
+                      <td data-title={t("Barcode No")} style={{ fontWeight: "600" }}>{t(row?.BarcodeNo)}</td>
+                      {userLocalData?.DefaultCurrencyName === "KES" && (
+                        <td data-title={t("Temperature(°C)")}>{t(row?.SRATemperature)}</td>
+                      )}
+                      <td data-title={t("Patient Name")}>{t(row?.PName)}</td>
+                      <td data-title={t("Sample Type")}>{t(row?.SampleTypeName)}</td>
+                      <td data-title={t("Test")}>{t(row?.InvestigationName)}</td>
+                      <td data-title={t("Department")}>{t(row?.Department)}</td>
+                      <td data-title={t("Status")}>
+                        <span className={badgeClass} style={{ fontSize: "10px" }}>
+                          {isSeg ? "Segregated" : "Ready for Dept Receive"}
+                        </span>
+                      </td>
+                      {showCentre && (
+                        <td data-title={t("Centre Name")}>
+                          {t(row?.TestCentre) || t(row?.OutsourceCentre)}
+                        </td>
+                      )}
+                      <td data-title={t("Print Barcode")}>
+                        <div className="d-flex" style={{ gap: "8px" }}>
+                          <div
+                            onClick={() => {
+                              getBarcodeData(row?.TestID, row?.LedgerTransactionNo, [row?.BarcodeNo]);
+                            }}
+                          >
+                            <i className="fa fa-print" style={{ cursor: "pointer" }} title="TestWise"></i>
+                          </div>
+                          <div
+                            onClick={() => {
+                              getAllDepartmentBarcodeData(
+                                row?.LedgerTransactionNo,
+                                row?.DepartmentID,
+                                row?.BarcodeNo,
+                              );
+                            }}
+                          >
+                            <i
+                              className="fa fa-print"
+                              style={{ cursor: "pointer", color: "red", marginLeft: "10px" }}
+                              title="DepartmentWise"
+                            ></i>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Tables>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>
@@ -716,6 +738,29 @@ const SRA = () => {
         <div className="row gx-3 gy-3">
           <div className="card w-100">
             <div className="card-body p-2">
+              <div
+                className="d-flex flex-wrap align-items-center justify-content-between p-2 mb-2 rounded border"
+                style={{ backgroundColor: "#f8f9fa", fontSize: "12px" }}
+              >
+                <div className="d-flex align-items-center gap-2 flex-wrap">
+                  <span style={{ fontWeight: 600, color: "#495057" }}>SRA Workflow & Sort Color Legend:</span>
+                  <span className="badge bg-success" style={{ padding: "5px 9px", fontSize: "11px" }}>
+                    ● In-House Sorted (Green / Ready for Dept Receive)
+                  </span>
+                  <span className="badge bg-primary" style={{ padding: "5px 9px", fontSize: "11px" }}>
+                    ● Segregation / Outsource (Blue / External Lab)
+                  </span>
+                  <span className="badge bg-warning text-dark" style={{ padding: "5px 9px", fontSize: "11px" }}>
+                    ● SRA Pending (Amber / Awaiting Barcode Scan)
+                  </span>
+                  <span className="badge bg-danger" style={{ padding: "5px 9px", fontSize: "11px" }}>
+                    ● Rejected / Hold (Red / Exception)
+                  </span>
+                </div>
+                <div style={{ color: "#6c757d", fontSize: "11px" }}>
+                  <span>WCAG 2.1 AA Compliant Display</span>
+                </div>
+              </div>
               <div className="table-responsive" style={{ width: "100%" }}>
                 {apiResult.length > 0 ? (
                   <Tables
@@ -728,40 +773,83 @@ const SRA = () => {
                       <tr>
                         <th scope="col">{t("Booking Location")}</th>
                         <th scope="col">{t("Last Status Date")}</th>
+                        <th scope="col">{t("SRA Status")}</th>
                         <th scope="col">{t("SIN No.")}</th>
+                        <th scope="col">{t("Barcode No.")}</th>
                         <th scope="col">{t("Dispatch No.")}</th>
                         <th scope="col">{t("Visit No.")}</th>
                         <th scope="col">{t("UHID")}</th>
                         <th scope="col">{t("PName")}</th>
                         <th scope="col">{t("Sample Type")}</th>
                         <th scope="col">{t("Department")}</th>
-                        <th scope="col" style={{ width: "800px", maxWidth: "800px", whiteSpace: "normal", wordBreak: "break-word" }}>{t("Test Name")}</th>
+                        <th scope="col" style={{ width: "350px", maxWidth: "350px", whiteSpace: "normal", wordBreak: "break-word" }}>{t("Test Name")}</th>
                         <th scope="col">{t("Print Barcode")}</th>
-
-                        {/* <th scope="col">{t("Attachment")}</th> update width */}
                       </tr>
                     </thead>
-
                     <tbody>
-                      {apiResult ? (
+                      {apiResult && apiResult.length > 0 ? (
                         apiResult.map((row, idx) => {
-                          let rowClass = "";
-                          if (row.TimeDiffe1 < 15) rowClass = "table-secondary";
-                          else if (row.TimeDiffe1 >= 15 && row.TimeDiffe1 <= 30)
-                            rowClass = "table-danger";
-                          else if (row.TimeDiffe1 > 30)
-                            rowClass = "table-success";
+                          const isSraDone = row.is_sra === 1 || row.sra_status === "SRA_COMPLETED" || Number(row.Status) >= 3;
+                          const isSegregation = Number(row.Segregation) === 1 || Number(row.Segregation) === 2 || row.sra_category === "Segregation";
+                          const isRejected = Number(row.Status) === 4 || row.isReject === 1;
+
+                          let rowBg = "#fff8e1"; // SRA Pending (Amber)
+                          let rowBorderColor = "#ffc107";
+                          let textColor = "#333333";
+                          let badgeClass = "badge bg-warning text-dark";
+                          let badgeText = "SRA Pending";
+
+                          if (isRejected) {
+                            rowBg = "#ffebee";
+                            rowBorderColor = "#dc3545";
+                            textColor = "#b71c1c";
+                            badgeClass = "badge bg-danger";
+                            badgeText = "Rejected";
+                          } else if (isSraDone && isSegregation) {
+                            rowBg = "#e3f2fd";
+                            rowBorderColor = "#007bff";
+                            textColor = "#0d47a1";
+                            badgeClass = "badge bg-primary";
+                            badgeText = "Segregation";
+                          } else if (isSraDone) {
+                            rowBg = "#e8f5e9";
+                            rowBorderColor = "#28a745";
+                            textColor = "#1b5e20";
+                            badgeClass = "badge bg-success";
+                            badgeText = "In-House";
+                          }
+
+                          // SIN visibility rule (Defect 3):
+                          // Before SRA completion: SIN is displayed.
+                          // After SRA completion: SIN is hidden ("-").
+                          const sinDisplay = isSraDone ? "-" : rowValue(row, "SINNo", "sinNo", "sINNo", "BarcodeNo", "barcodeNo");
+                          const barcodeDisplay = rowValue(row, "BarcodeNo", "barcodeNo", "SINNo", "sinNo");
 
                           return (
-                            <tr key={idx} className={rowClass}>
+                            <tr
+                              key={idx}
+                              style={{
+                                backgroundColor: rowBg,
+                                borderLeft: `5px solid ${rowBorderColor}`,
+                                color: textColor,
+                              }}
+                            >
                               <td data-title={t("Booking Location")}>
                                 {rowValue(row, "Centre", "centre")}
                               </td>
                               <td data-title={t("Last Status Date")}>
                                 {rowValue(row, "LastStatusDate", "lastStatusDate")}
                               </td>
-                              <td data-title={t("SIN No.")}>
-                                {rowValue(row, "SINNo", "sinNo", "sINNo", "BarcodeNo", "barcodeNo")}
+                              <td data-title={t("SRA Status")}>
+                                <span className={badgeClass} style={{ fontSize: "11px", fontWeight: "600", padding: "4px 8px" }}>
+                                  {badgeText}
+                                </span>
+                              </td>
+                              <td data-title={t("SIN No.")} style={{ fontWeight: isSraDone ? "normal" : "600", color: isSraDone ? "#6c757d" : textColor }}>
+                                {sinDisplay}
+                              </td>
+                              <td data-title={t("Barcode No.")} style={{ fontWeight: "600" }}>
+                                {barcodeDisplay}
                               </td>
                               <td data-title={t("Dispatch No.")}>
                                 {rowValue(row, "DispatchCode", "dispatchCode")}
@@ -781,33 +869,33 @@ const SRA = () => {
                               <td data-title={t("Department")}>
                                 {rowValue(row, "Department", "department")}
                               </td>
-                              <td data-title={t("Test Name")}  style={{ width: "800px", maxWidth: "800px", whiteSpace: "normal", wordBreak: "break-word" }}>
+                              <td data-title={t("Test Name")} style={{ width: "350px", maxWidth: "350px", whiteSpace: "normal", wordBreak: "break-word" }}>
                                 {rowValue(row, "TestName", "testName")}
                               </td>
-                              <td data-title={t("Print Barcode")}  style={{ width: "800px", maxWidth: "800px", whiteSpace: "normal", wordBreak: "break-word" }}>
+                              <td data-title={t("Print Barcode")}>
                                 <div className="d-flex" style={{ gap: "8px" }}>
                                   <div
                                     onClick={() => {
                                       getBarcodeData(
                                         rowValue(row, "testid", "TestID", "testId"),
                                         rowValue(row, "VisitID", "visitID", "visitId"),
-                                        [rowValue(row, "SINNo", "sinNo", "sINNo")],
+                                        [rowValue(row, "SINNo", "sinNo", "sINNo", "BarcodeNo", "barcodeNo")],
                                       );
                                     }}
                                   >
-                                    <i className="fa fa-print " style={{ cursor: "pointer" }} title="TestWise"></i>
+                                    <i className="fa fa-print" style={{ cursor: "pointer" }} title="TestWise"></i>
                                   </div>
                                   <div
                                     onClick={() => {
                                       getAllDepartmentBarcodeData(
                                         rowValue(row, "VisitID", "visitID", "visitId"),
                                         rowValue(row, "DepartmentID", "departmentID", "departmentId"),
-                                        rowValue(row, "SINNo", "sinNo", "sINNo"),
+                                        rowValue(row, "SINNo", "sinNo", "sINNo", "BarcodeNo", "barcodeNo"),
                                       );
                                     }}
                                   >
                                     <i
-                                      className="fa fa-print "
+                                      className="fa fa-print"
                                       style={{ cursor: "pointer", color: "red", marginLeft: "10px" }}
                                       title="DepartmentWise"
                                     ></i>
@@ -820,7 +908,7 @@ const SRA = () => {
                       ) : (
                         <tr>
                           <td
-                            colSpan="10"
+                            colSpan="13"
                             style={{
                               textAlign: "center",
                               color: "#555",

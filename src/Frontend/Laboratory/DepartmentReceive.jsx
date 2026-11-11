@@ -467,7 +467,13 @@ const DepartmentReceive = () => {
             toast.error(res?.data?.message || "This Barcode already receive");
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.error("DirectReceivedByBarcode error:", err);
+          setState((prev) => ({ ...prev, BarcodeNo: "" }));
+          setLoad(false);
+          const errMsg = err?.response?.data?.message || err?.message || "Sample must complete SRA before Department Receive.";
+          toast.error(errMsg);
+        })
         .finally(() => {
           setLoading(false);
         });
@@ -566,8 +572,11 @@ const DepartmentReceive = () => {
           if (err.response?.status === 504) {
             toast.error(t("Something Went Wrong"));
           }
-          if (err.response?.status === 401) {
+          else if (err.response?.status === 401) {
             toast.error(err.response.data.message);
+          } else {
+            const errMsg = err?.response?.data?.message || err?.message || "Sample must complete SRA before Department Receive.";
+            toast.error(errMsg);
           }
         })
         .finally(() => {
