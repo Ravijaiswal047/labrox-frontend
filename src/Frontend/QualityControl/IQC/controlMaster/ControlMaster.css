@@ -1,0 +1,23 @@
+.header-input {
+  width: 50px;    /* width of the input */
+}
+
+@media (max-width: 992px) {
+  .header-input {
+    width: 100%;  /* smaller width for tablets & mobiles */
+  }
+}
+
+@media (max-width: 1200px) {
+
+  .mainTable {
+    width: 100% !important;
+    table-layout: fixed;
+  }
+
+  .mainTable th,
+  .mainTable td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

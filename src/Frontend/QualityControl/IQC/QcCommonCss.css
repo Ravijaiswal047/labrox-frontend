@@ -1,0 +1,14 @@
+
+@media (max-width: 1200px) {
+
+  .mainTable {
+    width: 100% !important;
+    table-layout: fixed;
+  }
+
+  .mainTable th,
+  .mainTable td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,8 @@
+.main_annoyingtable .mainTable tbody tr td {
+  text-align: left;
+  white-space: normal;     /* allow wrapping */
+  word-wrap: break-word;   /* break long words */
+  word-break: break-word;  /* fallback for long words without spaces */
+  font-size: 12px !important;
+  width: 200px;
+}

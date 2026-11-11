@@ -1,0 +1,22 @@
+.select-wrapper {
+    min-width: 120px;
+    max-width: 180px; /* optional max width */
+    flex: 1;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    .select-wrapper {
+        min-width: 100%;
+        max-width: 100%;
+        margin-bottom: 8px; /* spacing between stacked selects */
+    }
+}
+
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .select-wrapper {
+        min-width: 120px;
+        max-width: 150px;
+    }
+}

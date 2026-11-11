@@ -1,0 +1,112 @@
+.add_row_btn svg{
+    font-size: 22px !important;
+    color: #3131af;
+    cursor: pointer;
+}
+
+.p-divider{
+    display: none !important;
+}
+
+.eqas_checkList_main h1{
+    font-weight: 600;
+}
+
+.eqas_checkList_main {
+  /* padding: 20px; */
+  font-family: Arial, sans-serif;
+}
+
+.eqas_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.pr_id_36_content{
+    padding: 6px 12px !important;
+}
+
+.eqas_header h1 {
+  font-size: 12px !important;
+  font-weight: 700;
+  /* margin: 5px 0; */
+}
+
+.eqas_status {
+  display: flex;
+  gap: 10px;
+}
+
+.eqas_section {
+  margin-bottom: 25px;
+}
+
+.eqas_questions {
+  margin-top: 10px;
+}
+
+.eqas_question_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fffbe6;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.eqas_question_text {
+  flex: 1;
+  min-width: 250px;
+  font-size: 14px;
+}
+
+.eqas_radio_group {
+  display: flex;
+  gap: 15px;
+  min-width: 180px;
+  justify-content: flex-end;
+}
+
+.eqas_radio input {
+  margin-right: 4px;
+}
+
+.eqas_footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.save_btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save_btn:hover {
+  background: #0056b3;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .eqas_question_row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .eqas_radio_group {
+    justify-content: flex-start;
+    margin-top: 8px;
+  }
+  .eqas_footer {
+    text-align: center;
+  }
+}

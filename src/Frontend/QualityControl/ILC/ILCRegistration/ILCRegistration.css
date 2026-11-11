@@ -1,0 +1,27 @@
+.patient-tables-wrapper {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  /* background-color: white; */
+}
+
+/* Desktop */
+.patient-table-left {
+  width: 60%;
+}
+
+.patient-table-right {
+  width: 40%;
+}
+
+/* Tablet & below */
+@media (max-width: 991px) {
+  .patient-tables-wrapper {
+    flex-direction: column;
+  }
+
+  .patient-table-left,
+  .patient-table-right {
+    width: 100%;
+  }
+}
