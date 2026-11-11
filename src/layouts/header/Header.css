@@ -1,0 +1,202 @@
+.balance_box .dropdown-menu {
+  /* background-color: rgb(66, 66, 66); */
+  color: #000;
+  font-weight: 600;
+}
+.balance_box .dropdown-menu .dropdown-item-text {
+  /* color: #fff; */
+  font-weight: 400 !important;
+  min-width: 160px !important;
+  max-width: fit-content !important;
+}
+
+.balance_box .dropdown-menu .dropdown-item-text:hover {
+  /* background-color: #1a1919; */
+}
+.balance_box button.dropdown-toggle {
+  min-width: 120px !important;
+  max-width: fit-content;
+}
+.balance_box .dropdown-toggle {
+  background: #fff !important;
+  border: 1px solid #c2bfbf;
+  border-radius: 3px !important;
+  color: #000 !important;
+}
+
+.main-header.navbar {
+  --header-bar-height: 50px;
+  height: var(--header-bar-height);
+  min-height: var(--header-bar-height);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
+.main-header.navbar > .navbar-nav:first-child,
+.main-header.navbar > .navbar-nav:first-child > .nav-item {
+  align-self: stretch;
+  align-items: stretch;
+  min-width: 180px;
+  height: var(--header-bar-height);
+  margin: 0;
+  padding: 0;
+}
+
+.main-header.navbar > .navbar-nav:first-child > .nav-item {
+  display: flex;
+}
+
+.header-company-logo-wrap {
+  height: var(--header-bar-height);
+  width: auto;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.header-company-logo {
+  display: block;
+  height: var(--header-bar-height);
+  max-height: var(--header-bar-height);
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.header-company-logo-wrap--mobile {
+  max-width: 110px;
+  min-width: 0;
+  background: #fff;
+  height: var(--header-bar-height, 50px);
+  padding: 0 6px;
+  border-bottom-right-radius: 12px;
+}
+
+.header-company-logo--mobile {
+  height: 32px;
+  max-height: 32px;
+  max-width: 96px;
+}
+
+.payment_icon{
+  background-color: #fff;
+  padding: 2px 3px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.payment_icon svg{
+  margin: 0 !important;
+  font-size: 18px !important;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+.header-mobile-actions-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background: var(--main-header-bg, #b51515);
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-action-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.center-selection-mobile .form-group {
+  margin-bottom: 0 !important;
+}
+
+.mobile-action-container .paymentImage {
+  background: #fff;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-header-centre-select {
+  min-width: 110px;
+  max-width: 160px;
+  height: 28px;
+  font-size: 12px;
+  padding: 0 4px;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+
+.ng-mobile-chrome {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .ng-mobile-chrome {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--ng-navy-900, #0f172a);
+    border-bottom: 1px solid var(--ng-border, rgba(255, 255, 255, 0.12));
+  }
+
+  .ng-mobile-chrome__logo {
+    height: 28px;
+    width: 28px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 6px;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+
+  .ng-mobile-chrome .mobile-header-centre-select {
+    flex: 1;
+    max-width: none;
+    min-width: 0;
+    margin-left: 0;
+    height: 32px;
+  }
+
+  .ng-mobile-chrome__profile {
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}

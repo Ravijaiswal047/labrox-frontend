@@ -1,0 +1,13 @@
+{
+   "LedgerStatementReport": "LedgerStatementReport",
+   "Load Data": "Bulk Import Utility",
+    "Bulk Import Utility": "Bulk Import Utility",
+    "Import Data": "Import Data",
+    "Doctor": "Doctor",
+    "Test": "Test",
+    "Cannot send unapproved report. Test result is not approved yet.": "Cannot send unapproved report. Test result is not approved yet.",
+    "Cannot send unapproved report": "Cannot send unapproved report",
+    "Scan Barcode to Receive": "Scan Barcode to Receive",
+    "Scan Barcode to Recieve": "Scan Barcode to Receive",
+    "SampleType": "Sample Type"
+}

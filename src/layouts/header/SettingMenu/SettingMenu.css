@@ -1,0 +1,80 @@
+.settingmenu-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.settings-btn {
+  color: var(--primary-color);
+  transition: transform 0.2s ease;
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none;
+}
+
+.settings-btn:focus,
+.settings-btn:active {
+  border: none;
+  box-shadow: none;
+}
+
+.settings-btn:hover {
+  transform: rotate(30deg);
+  color: var(--primary-color-text);
+}
+
+.settingmenu-panel {
+  border-radius: 10px;
+  width: 220px;
+  background-color: var(--surface-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.settingmenu-item {
+  border-bottom: 1px solid #949292;
+  padding-bottom: 0.5rem;
+  padding: 5px;
+}
+
+.settingmenu-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.settingmenu-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.p-overlaypanel-content {
+  padding: 0 4px;
+  background-color: rgb(46, 46, 46);
+  border: 1px solid #949292;
+  border-radius: 6px;
+  color: #fff;
+}
+
+button .p-button-icon {
+  font-size: 16px !important;
+  color: #fff;
+}
+
+div .cwTbGA {
+  width: fit-content;
+}
+div .cwTbGA .nav-link {
+  padding: 0;
+}
+.settingmenu-item svg {
+  font-size: 18px !important;
+}
+
+.p-overlaypanel:after,
+.p-overlaypanel:before {
+}

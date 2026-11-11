@@ -1,0 +1,73 @@
+/*
+  Self-hosted (no CDN/runtime fetch) web fonts for the NextGen font-family
+  picker's "Modern" and "Classy" groups — see utils/ngFontFamilies.js. Files
+  live in assets/fonts/nextgen/, latin subset only, Regular (400) weight
+  only (the picker only ever switches font-family, never weight), matching
+  the original OS-fonts list's zero-network-dependency guarantee: these are
+  bundled into the build like any other asset, so there's no Google Fonts
+  CDN call and no flash-of-unstyled-text while a request is in flight.
+*/
+
+@font-face {
+  font-family: "NG Inter";
+  src: url("../../assets/fonts/nextgen/inter-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG Poppins";
+  src: url("../../assets/fonts/nextgen/poppins-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG Montserrat";
+  src: url("../../assets/fonts/nextgen/montserrat-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG DM Sans";
+  src: url("../../assets/fonts/nextgen/dm-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG Space Grotesk";
+  src: url("../../assets/fonts/nextgen/space-grotesk-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG Playfair Display";
+  src: url("../../assets/fonts/nextgen/playfair-display-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG Merriweather";
+  src: url("../../assets/fonts/nextgen/merriweather-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NG JetBrains Mono";
+  src: url("../../assets/fonts/nextgen/jetbrains-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

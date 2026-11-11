@@ -1,0 +1,755 @@
+/*
+  NextGen "shell" reskin — dark navy, applied app-wide the moment
+  `.nextgen-mode` lands on #root. Targets the persistent layout chrome
+  (single shared files: layouts/index.jsx, Header.jsx, MenuSidebar.jsx,
+  DesktopMenuItem.jsx) plus the most common Bootstrap/PrimeReact/AdminLTE
+  surface classes reused across Classic pages (.card, .form-control, .table,
+  .modal-content, .p-inputtext, .dropdown-menu, ...), so switching modes
+  removes white backgrounds everywhere without editing individual pages.
+
+  Loaded after theme.css/variables.css so it wins over the Classic 30-color
+  theme system (both can be applied as classes on #root at the same time).
+*/
+
+.nextgen-mode,
+.nextgen-mode.wrapper,
+.nextgen-mode .wrapper,
+.nextgen-mode body {
+  background: var(--ng-bg) !important;
+  color: var(--ng-text);
+}
+
+/* Sticky-footer layout for NextGen. index.css hardcodes
+   `.wrapper .content-wrapper { min-height: calc(100vh - calc(1rem + 60px) -
+   calc(3.9rem + 1px)) !important; }`, sized to assume the Classic header +
+   sub-nav rows are occupying that space — both of which are hidden entirely
+   in NextGen, so that calc leaves content-wrapper too short and the footer
+   ends up stranded mid-page on short pages instead of pinned to the bottom.
+   Overriding with a real flex-grow (not another guessed calc) is robust
+   regardless of how tall the footer itself ends up being. */
+.nextgen-mode .wrapper {
+  display: flex !important;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nextgen-mode .wrapper .content-wrapper {
+  min-height: 0 !important;
+  flex: 1 0 auto;
+}
+
+.nextgen-mode .main-footer {
+  flex-shrink: 0;
+  background: var(--ng-surface-alt, #0c1526) !important;
+  color: var(--ng-text-muted, #8b96ad) !important;
+  border-top: 1px solid var(--ng-border, rgba(255, 255, 255, 0.09));
+}
+
+.nextgen-mode .main-footer a {
+  color: var(--ng-primary-500, #3b82f6) !important;
+}
+
+/* Top navbar */
+.nextgen-mode .main-header.navbar {
+  background: linear-gradient(90deg, var(--ng-navy-900), var(--ng-navy-600)) !important;
+  background-image: linear-gradient(90deg, var(--ng-navy-900), var(--ng-navy-600)) !important;
+  border-bottom: 1px solid var(--ng-border);
+}
+
+/* Favourites / quick-menu bar under the navbar */
+.nextgen-mode .bg-color-container {
+  background: var(--ng-navy-800) !important;
+  background-image: none !important;
+}
+
+/* Horizontal page-nav row (DesktopMenuItem) + vertical sidebar */
+.nextgen-mode .desktop-sidebar,
+.nextgen-mode aside.main-sidebar {
+  background: var(--ng-navy-800) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .desktop-sidebar .nav-link,
+.nextgen-mode .desktop-sidebar a,
+.nextgen-mode aside.main-sidebar a,
+.nextgen-mode aside.main-sidebar .nav-link {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .desktop-sidebar .nav-link:hover,
+.nextgen-mode .desktop-sidebar a:hover,
+.nextgen-mode aside.main-sidebar a:hover {
+  color: var(--ng-primary-500) !important;
+}
+
+/* Page content area */
+.nextgen-mode .content-wrapper {
+  background: var(--ng-bg) !important;
+  color: var(--ng-text);
+}
+
+/* Generic cards used throughout Classic pages (Heading/Accordion/panels) */
+.nextgen-mode .card,
+.nextgen-mode .card_background,
+.nextgen-mode .patient_registration_card {
+  background: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border) !important;
+  border-radius: var(--ng-radius-md);
+  color: var(--ng-text);
+  box-shadow: none !important;
+}
+
+/* Only .card_background (Heading.jsx's own wrapper, which contains nothing
+   but .card-header) gets clipped to round its tinted background to match —
+   `.patient_registration_card` (Accordion.jsx's OUTER wrapper) must NOT get
+   this, since the accordion's actual body (search forms, dropdowns,
+   tooltips, react-multi-select-component's own panel, etc.) lives inside
+   it too. That used to also carry `overflow: hidden`, which silently
+   clipped any of that content the moment it needed to overflow past the
+   card's bottom edge — making a dropdown panel look like it rendered
+   "underneath" whatever page content came after the card, instead of
+   floating above it as it should. */
+.nextgen-mode .card_background {
+  overflow: hidden;
+}
+
+/* Accordion/Heading title bar. Went through two heavier attempts before
+   this — a left-right gradient wash (looked smudgy), then a flat tint plus
+   a solid left accent bar (the accent bar itself read as an extra "line"
+   stacked on top of the card's own border, plus whatever box-shadow was
+   still leaking in from Bootstrap's base .card — the "blue line and
+   another shadow line" look). This is deliberately the plainest version:
+   one flat full-width tint, one thin bottom border, nothing else. Built
+   from --ng-primary-500 mixed into --ng-surface/--ng-border — since
+   --ng-primary-* is identical between .ng-light and dark (only the
+   surface/border/navy tokens change, see variables.css), one rule renders
+   correctly in both: a quiet navy-blue tint in dark mode, a pale sky-blue
+   tint in light mode.
+   index.css also hardcodes `.card-header { padding: 1px !important }` for
+   Classic's own tight layout, which was carrying over here and made any
+   background treatment look cramped regardless of color — re-establishing
+   real padding is part of the actual fix, not just the color. */
+.nextgen-mode .card-header {
+  background: color-mix(in srgb, var(--ng-primary-500) 10%, var(--ng-surface)) !important;
+  box-shadow: none !important;
+  padding: 4px 10px !important;
+  color: var(--ng-text) !important;
+}
+
+/* Only draw the separator once there's actually body content below it to
+   separate from — Accordion.jsx wraps Heading's own already-bordered
+   .card in a second, outer .card (.patient_registration_card), so on a
+   collapsed accordion (0-height body) the outer card's own bottom border
+   sits directly under this one otherwise, reading as a doubled line.
+   Scoped to the `.open` class Accordion.jsx already toggles. */
+.nextgen-mode .open .card-header {
+  border-bottom: 1px solid var(--ng-border) !important;
+}
+
+.nextgen-mode .card-title {
+  background: transparent !important;
+  margin: 0 !important;
+  color: var(--ng-text) !important;
+}
+
+/* Heading.jsx's secondTitle wrapper carries a hardcoded `mr-3` (Bootstrap
+   margin-right) meant for Classic's denser header — combined with
+   card-header's own padding above, it left a visible gap between the
+   Total Patient/Total Test Count block (or any other secondTitle content)
+   and the accordion's true right edge instead of sitting flush against it. */
+.nextgen-mode h4.card-title > div.mr-3 {
+  margin-right: 0 !important;
+}
+
+/* The empty-.main-heading-link fix now lives in index.css (unscoped) since
+   the same bug affects Classic, not just NextGen — see the comment there. */
+
+.nextgen-mode .card-header .fa-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--ng-primary-500);
+  color: #fff !important;
+  font-size: 11px;
+}
+
+.nextgen-mode .card-header .back_breadcrub {
+  color: var(--ng-primary-500) !important;
+}
+
+.nextgen-mode .card-footer {
+  background: transparent !important;
+  border-color: var(--ng-border) !important;
+  color: var(--ng-text) !important;
+}
+
+/* pages/Dashboard.jsx (Front Office dashboard: Sample Collection Status,
+   Payment Mode Chart, Booking Trends, Upcoming Birthday/Holidays) builds
+   its cards with its own one-off classnames instead of .card/.card_background,
+   so none of the rules above ever reached them — plus several stat tiles
+   hardcode `style={{ color: "rgb(0,0,0)" }}` inline, which needs !important
+   here specifically to win (external !important does beat inline). Colored
+   accent text (red/blue section headers, colored icons) is left alone. */
+.nextgen-mode .mainDashboardwrp .mainBox1,
+.nextgen-mode .birthDay-Box {
+  background: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .mainDashboardwrp .mainHeader h4 {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .mainDashboardwrp .mainHeader p {
+  color: var(--ng-text-muted) !important;
+}
+
+.nextgen-mode .mainDashboardwrp .box1 h4 {
+  color: var(--ng-text) !important;
+}
+
+/* MainDashboard.jsx's own top tab bar (Dashboard/Sample Storage/Front
+   Office/...) — .tab-item hardcodes a near-black `color: #292929` for the
+   inactive state (mainDashboard.css), unreadable against NextGen's dark
+   background. .tab-item.active/:hover already use blue (#007bff), which
+   reads fine on dark too, so only the inactive state needs a fix. */
+.nextgen-mode .tab-item {
+  color: var(--ng-text-muted) !important;
+}
+
+.nextgen-mode .tab-item:hover {
+  color: var(--ng-primary-500) !important;
+  background-color: var(--ng-primary-soft) !important;
+}
+
+/* pages/Dashboard.jsx's "thread" badges (Upcoming Holidays' holiday name,
+   Upcoming Birthdays' designation) — backgroundColor is
+   generateRandomColor(), a random hue at only 0.2 alpha, so the badge's
+   actual background stays close to whatever's behind it regardless of the
+   random color (near-black in NextGen dark). Paired with a hardcoded
+   `color: "black"` inline, that reads as black-on-near-black. */
+.nextgen-mode .thread {
+  color: var(--ng-text) !important;
+}
+
+/* Bootstrap form controls (native <input class="form-control"> etc.) */
+.nextgen-mode .form-control,
+.nextgen-mode select.form-control,
+.nextgen-mode textarea.form-control,
+.nextgen-mode .custominputbox,
+.nextgen-mode .p-inputtext,
+.nextgen-mode .p-dropdown,
+.nextgen-mode .p-multiselect {
+  background: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .form-control::placeholder {
+  color: var(--ng-text-muted);
+}
+
+/* Frontend/Laboratory/MultiBackGroundReactSelect.jsx (and any other
+   page-local react-select variant using classNamePrefix="form-control")
+   renders raw react-select through its own inline `styles` prop rather than
+   NextGenSelect, so it needs its own dark override for the generated
+   `form-control__*` BEM classes. `.form-control__option` is deliberately
+   left untouched — that component colors each option by status (bgColor
+   prop), and forcing a background there would erase that entirely. */
+.nextgen-mode .form-control__control {
+  background: var(--ng-surface) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .form-control__single-value,
+.nextgen-mode .form-control__input-container,
+.nextgen-mode .form-control__input,
+.nextgen-mode .form-control__placeholder {
+  color: var(--ng-text) !important;
+}
+
+/* MultiBackGroundReactSelect.jsx's own inline `styles.placeholder` (its
+   floating-label stand-in — this component has no separate label element)
+   hardcodes `backgroundColor: "white"` for the floated state, same bug
+   class as NextGenInput/DatePicker/MultiSelect's labels had. */
+.nextgen-mode .form-control__placeholder {
+  background-color: var(--ng-surface) !important;
+}
+
+.nextgen-mode .form-control__menu {
+  background: var(--ng-surface) !important;
+}
+
+.nextgen-mode .form-control__indicator {
+  color: var(--ng-text-muted) !important;
+}
+
+/* Bootstrap tables (widely used in reports/grids) */
+.nextgen-mode .table {
+  background: var(--ng-surface) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .table thead th,
+.nextgen-mode .table td,
+.nextgen-mode .table th {
+  border-color: var(--ng-border) !important;
+  background: transparent !important;
+  color: var(--ng-text) !important;
+}
+
+/* Bootstrap dropdown menus (UserDropdown, LanguageDropdown, etc.) */
+.nextgen-mode .dropdown-menu {
+  background: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .dropdown-item {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .dropdown-item:hover {
+  background: var(--ng-surface-alt) !important;
+}
+
+/* Bootstrap modals (distinct from PrimeReact Dialog, still used in places) */
+.nextgen-mode .modal-content {
+  background: var(--ng-surface) !important;
+  color: var(--ng-text) !important;
+}
+
+/* PrimeReact panels/menus that render via portal to document.body still
+   need the token scope, since they land outside #root. Frosted-glass
+   backdrop-filter on every popup surface, not just the new NextGen
+   components, per explicit request. */
+.nextgen-mode .p-multiselect-panel,
+.nextgen-mode .p-dropdown-panel,
+.nextgen-mode .p-overlaypanel,
+.nextgen-mode .p-dialog {
+  background: color-mix(in srgb, var(--ng-surface) 88%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--ng-text) !important;
+  border: 1px solid var(--ng-border) !important;
+}
+
+/* Dialog's own dimmed backdrop — blur what's behind the modal too. */
+.nextgen-mode .p-dialog-mask {
+  background: rgba(4, 8, 18, 0.55) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* `.p-dialog` above only covers the outer wrapper — PrimeReact's own base
+   theme sets `.p-dialog-content` (the actual body area) to its own white
+   background separately, which is why dialogs looked dark-framed but
+   white-bodied. Transparent so the glass background on `.p-dialog` itself
+   shows through, consistent with the rest of the NextGen popups. */
+.nextgen-mode .p-dialog-content {
+  background: transparent !important;
+  color: var(--ng-text) !important;
+}
+
+/* Bootstrap dropdown menus and modals get the same glass treatment. */
+.nextgen-mode .dropdown-menu {
+  background: color-mix(in srgb, var(--ng-surface) 88%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  /* Bootstrap dropdowns (Theme/Language/etc.) render in-place rather than
+     via a portal, so when embedded inside the profile panel's scrollable
+     list they need to out-rank both the panel's overlay (z-index 2000) and
+     its own overflow-y:auto clipping — paired with `popperConfig.strategy:
+     "fixed"` on the Dropdown.Menu so position is viewport-relative. */
+  z-index: 3000 !important;
+}
+
+.nextgen-mode .modal-backdrop {
+  background: rgba(4, 8, 18, 0.55) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 1 !important;
+}
+
+.nextgen-mode .p-multiselect-header,
+.nextgen-mode .p-dialog-header,
+.nextgen-mode .p-dialog-footer {
+  background: var(--ng-surface-alt) !important;
+  color: var(--ng-text) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .p-multiselect-filter-container input,
+.nextgen-mode .p-dropdown-filter {
+  background: var(--ng-surface) !important;
+  color: var(--ng-text) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .p-dialog-header-icon,
+.nextgen-mode .p-dialog-title {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .p-multiselect-item,
+.nextgen-mode .p-dropdown-item {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .p-multiselect-item:hover,
+.nextgen-mode .p-dropdown-item:hover {
+  background: var(--ng-primary-soft) !important;
+}
+
+/* react-multi-select-component (SelectBoxWithCheckbox / MultiSelectBox.jsx)
+   is a third, separate multi-select implementation used across ~65 pages
+   (Department filters, etc.) — not part of the self-delegation mechanism
+   (ReactSelect/MultiSelectComp/...), so it never picked up any NextGen
+   theming and rendered with its own library-default light styling
+   regardless of mode. Same glass-panel treatment as the PrimeReact panels
+   above, applied to its actual class names (.rmsc, .dropdown-container,
+   .select-item, .item-renderer — no naming overlap with PrimeReact's p-*
+   classes, so these are unambiguous). */
+.nextgen-mode .rmsc {
+  --rmsc-main: var(--ng-primary-500);
+  --rmsc-hover: var(--ng-primary-soft);
+  --rmsc-selected: var(--ng-primary-soft);
+  --rmsc-border: var(--ng-border);
+  --rmsc-gray: var(--ng-text-muted);
+  --rmsc-bg: var(--ng-surface);
+  color: var(--ng-text);
+}
+
+.nextgen-mode .rmsc .dropdown-container {
+  background: var(--ng-surface) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .rmsc .dropdown-heading-value,
+.nextgen-mode .rmsc .dropdown-heading-value span {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .rmsc .dropdown-content {
+  z-index: 3000 !important;
+}
+
+.nextgen-mode .rmsc .dropdown-content .panel-content {
+  background: color-mix(in srgb, var(--ng-surface) 96%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ng-border) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .rmsc .search input {
+  background: var(--ng-surface) !important;
+  color: var(--ng-text) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .rmsc .select-item {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .rmsc .select-item:hover,
+.nextgen-mode .rmsc .select-item.selected {
+  background: var(--ng-primary-soft) !important;
+}
+
+/* NextGenSidebar (fixed, left, 260px) replaces the Classic horizontal nav
+   rows entirely on desktop — shift the rest of the app right and hide the
+   rows it supersedes. Both hide behind the same >900px breakpoint that
+   NextGenSidebar.css uses to hide itself on small screens. */
+@media (min-width: 901px) {
+  /* !important because AdminLTE's own layout CSS sets margin-left on
+     .content-wrapper (varying by its sidebar-collapse/open body classes),
+     which was winning the cascade and leaving content tucked behind the
+     fixed NextGenSidebar. Uses the same --ng-sidebar-width the sidebar
+     itself is sized with, so collapsing it reflows the content live. */
+  .nextgen-mode #main-header,
+  .nextgen-mode .content-wrapper,
+  .nextgen-mode .main-footer {
+    margin-left: var(--ng-sidebar-width, 260px) !important;
+    transition: margin-left 180ms ease;
+  }
+
+  /* DesktopMenuItem's favourites/quick-menu row and page-tab row — both
+     superseded by NextGenSidebar's own nav + search. `.bg-color-container`
+     alone is reused by ~9 unrelated components (dropdown panels, modals),
+     so only the specific combo used for that row is hidden here. */
+  .nextgen-mode .menubar-main-container.bg-color-container,
+  .nextgen-mode .desktop-sidebar {
+    display: none !important;
+  }
+}
+
+/* Vertical Classic sidebar (mobile/vertical submenu mode) — also
+   superseded by NextGenSidebar regardless of breakpoint. */
+.nextgen-mode aside.main-sidebar {
+  display: none !important;
+}
+
+/* Frosted-glass treatment for the identifiable icon-button chrome in the
+   top navbar (gear/settings trigger, designation badge, env badge). */
+.nextgen-mode .settings-btn,
+.nextgen-mode #designation,
+.nextgen-mode .badge-disco {
+  background: rgba(var(--ng-ink), 0.08) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(var(--ng-ink), 0.14) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .settings-btn:hover {
+  background: rgba(var(--ng-ink), 0.14) !important;
+}
+
+/* ---- Fixes for concrete contrast bugs found on real pages ---- */
+
+/* components/Table/CustomTable.jsx (.mainTable) — the shared data-grid used
+   across most list/report pages. index.css hardcodes `color: #000` and
+   `background-color: white` on `.mainTable tbody tr` with no !important,
+   but our generic `.table` rule above targets Bootstrap's own `table` class,
+   not these custom classnames — so it needs its own explicit override. */
+.nextgen-mode .mainTable {
+  background-color: var(--ng-surface) !important;
+  color: var(--ng-text) !important;
+  border-color: var(--ng-border) !important;
+}
+
+/* Rows on pages like ReceiptReprintTable.jsx carry their own per-row status
+   color as inline --row-bg/--row-text (Full Paid/Partial Paid/Unpaid/etc,
+   the same colors Classic has always shown) — this used to force every row
+   to a flat --ng-surface, which is why NextGen mode showed every row as
+   the same dark color regardless of status, with no way to tell them
+   apart. var(--row-bg, ...) only kicks in the flat fallback for tables
+   that never set that property (every other .mainTable page keeps its
+   previous look, unaffected). Cells themselves go fully transparent so
+   the row's own background is what's actually visible instead of getting
+   painted over by an opaque per-cell background. */
+.nextgen-mode .mainTable tbody tr {
+  background-color: var(--row-bg, var(--ng-surface)) !important;
+  color: var(--row-text, var(--ng-text)) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .mainTable tbody tr td {
+  background-color: transparent !important;
+  color: var(--row-text, var(--ng-text)) !important;
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .mainTable thead th {
+  background-color: var(--ng-surface-alt) !important;
+  color: var(--ng-text) !important;
+}
+
+/* Status-colored rows shouldn't alternate/stripe — the color itself is the
+   signal, consistently, regardless of row parity. Tables without a
+   per-row status (no --row-bg set) keep the original striping. */
+.nextgen-mode .mainTable tbody tr:nth-child(even) {
+  background-color: var(--row-bg, var(--ng-navy-800)) !important;
+}
+
+/* Same idea on hover — keep showing the status color (Classic's own
+   .receipt-reprint-row:hover does this too, but this rule's higher
+   specificity was winning over it and flattening every row to the same
+   generic hover tint). */
+.nextgen-mode .mainTable tbody tr:hover {
+  background-color: var(--row-bg, var(--ng-primary-soft)) !important;
+}
+
+/* DispatchReportTableNew.jsx (.dispatch-report-new-table) has its own,
+   older, already-working per-test status coloring — CustomeColor.css's
+   .Status-N classes (6 explicit colors: Approved green, Printed cyan,
+   Rejected gray, Hold yellow, red, pink), applied directly as row/cell
+   classNames, no --row-bg involved at all. Those rules ARE !important, but
+   at only 2 classes of specificity they still lost to the .mainTable rules
+   above (2 classes + 2-3 elements — element count is a real tiebreaker
+   once class count ties), so every row flattened to the same --ng-surface
+   regardless of its actual status. Reasserting the exact same colors here
+   at 3 classes / 0 elements wins unconditionally, and doesn't touch any
+   status without an explicit color here — those already correctly fall
+   through to the .mainTable defaults above (var(--ng-surface)/var(--ng-text),
+   since no --row-bg is set on this table's rows either way). */
+.nextgen-mode .dispatch-report-new-table .Status-5 {
+  background-color: #9df09d !important;
+  color: #000 !important;
+}
+.nextgen-mode .dispatch-report-new-table .Status-6 {
+  background-color: #97e5e5 !important;
+  color: #000 !important;
+}
+.nextgen-mode .dispatch-report-new-table .Status-4 {
+  background-color: #cbd3da !important;
+  color: #000 !important;
+}
+.nextgen-mode .dispatch-report-new-table .Status-11 {
+  background-color: #ffff99 !important;
+  color: #000 !important;
+}
+.nextgen-mode .dispatch-report-new-table .Status-20 {
+  background-color: #ffa1a1 !important;
+  color: #000 !important;
+}
+.nextgen-mode .dispatch-report-new-table .Status-10 {
+  background-color: #f7a9af !important;
+  color: #000 !important;
+}
+
+/* Bootstrap's `.text-black` utility is used (e.g. DesktopMenuItem inactive
+   page tabs) specifically to force dark text — the opposite of what a dark
+   theme needs. */
+.nextgen-mode .text-black,
+.nextgen-mode .text-black a,
+.nextgen-mode .text-dark {
+  color: var(--ng-text) !important;
+}
+
+/* DispatchReport.jsx's "Sample Status :" legend strip (.sampleStatusClass)
+   hardcodes `bg-white` on the whole row, and each individual status chip
+   (TableFilterDot) gets its own hardcoded light `bgColor="#e9e2e1"` inline
+   — neither adapts to theme, and the label text has no explicit color at
+   all so it just inherits whatever's ambient. In dark mode that meant
+   near-white text sitting on a background that was ALSO near-white/light,
+   reading as washed out or fully invisible depending on the exact chip. */
+.nextgen-mode .bg-white {
+  background-color: var(--ng-surface-alt) !important;
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .sampleStatusClass {
+  border: 1px solid var(--ng-border) !important;
+  border-radius: var(--ng-radius-sm, 6px);
+}
+
+.nextgen-mode .tf-dot-chip {
+  background-color: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border);
+}
+
+.nextgen-mode .tf-dot-label {
+  color: var(--ng-text) !important;
+}
+
+/* Heading.jsx's secondTitle slot (Total Patient/Total Test Count on
+   DispatchReport and others) — no explicit color anywhere in this shared
+   class, so make sure it's readable regardless of which ancestor chain it
+   ends up under. */
+.nextgen-mode .link-title-container,
+.nextgen-mode .link-title-item {
+  color: var(--ng-text) !important;
+}
+
+/* DesktopMenuItem.jsx wraps its page-tab <ul> in a div with an inline
+   `style={{ backgroundColor: "white" }}` — inline styles beat ordinary
+   stylesheet rules, so only an !important rule can override it. */
+.nextgen-mode .desktop-sidebar .w-100.mr-0 {
+  background-color: var(--ng-navy-800) !important;
+}
+
+/* PatientRegistration.jsx/ResearchRegistration.jsx's header refresh button
+   (bi-arrow-clockwise) hardcodes `style={{ backgroundColor: "#fff" }}` — a
+   white circle whose icon glyph then inherits the page's light NextGen
+   text color, so on a dark page it rendered as a blank white circle with
+   no visible icon at all (the icon was there, just white-on-white). */
+.nextgen-mode .reload-icon-mobile {
+  background-color: var(--ng-surface-alt) !important;
+  border: 1px solid var(--ng-border);
+  color: var(--ng-primary-500, #3b82f6) !important;
+}
+
+/* react-bootstrap <Nav variant="tabs">/<Tabs> — used throughout the app for
+   in-page sub-tab strips (e.g. Company/Centre/RateType Flags tabs). */
+.nextgen-mode .nav-tabs,
+.nextgen-mode .nav-pills {
+  border-color: var(--ng-border) !important;
+}
+
+.nextgen-mode .nav-link {
+  color: var(--ng-text) !important;
+}
+
+.nextgen-mode .nav-link:hover {
+  color: var(--ng-primary-500) !important;
+}
+
+.nextgen-mode .nav-tabs .nav-link.active,
+.nextgen-mode .nav-pills .nav-link.active {
+  background: var(--ng-primary) !important;
+  color: #fff !important;
+  border-color: var(--ng-primary) !important;
+}
+
+/* Floating labels used by Input.jsx/SelectBox.jsx/MultiSelectComp.jsx
+   (`.lable`, `.floating-labelxx`) had no explicit color, so they inherited
+   whatever was nearby instead of a guaranteed-readable tone. */
+.nextgen-mode .lable,
+.nextgen-mode .floating-labelxx,
+.nextgen-mode .customINputLabel,
+.nextgen-mode label {
+  color: var(--ng-text-muted) !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* ...except when the label has actually floated up onto the field's own
+   border line (index.css's `.form-control:not(:placeholder-shown) + label`
+   family — used by TimePicker.jsx and any other Classic field still on the
+   plain notched-label pattern, not yet delegated to a NextGen sibling).
+   That state NEEDS an opaque backdrop to mask the border segment behind
+   the text — index.css already gives it one (`background-color: #fff`),
+   but the blanket transparent rule above was clobbering it, so the
+   field's own top border rendered straight through the label text instead
+   of being hidden behind it. Higher specificity than the rule above wins
+   this once both are !important. */
+.nextgen-mode .form-control:not(:placeholder-shown) + label,
+.nextgen-mode .form-control:focus + label {
+  background: var(--ng-surface) !important;
+  /* index.css's `label.customeFont`/`label.customINputLabel` variants of
+     this same floated state also set their own font-size (0.916rem =
+     14.66px) and font-weight (600) — different from the 12.5px/400
+     baseline every NextGen component (Input/Select/MultiSelect/DatePicker)
+     uses, which is why fields still on this plain Classic pattern
+     (TimePicker.jsx, and anything else not yet delegated) read as a
+     different, heavier font size next to them. Matches
+     .form-control:not(:placeholder-shown) + label.customeFont's own
+     specificity (3 classes/pseudo + 1 element) so this isn't a load-order
+     coin flip. */
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+}
+
+/* TimePicker.jsx (type="time") never got a NextGen sibling — it renders
+   through the same generic `.form-control` override above, which doesn't
+   set a height, so it kept Classic's own 2rem/32px while NextGenDatePicker
+   (its usual neighbour in From/To date-time row groups) is 30px — close
+   enough to read as visibly mismatched side by side. */
+.nextgen-mode input[type="time"].form-control {
+  height: 30px !important;
+}
+
+/* PrimeReact <Tooltip target={`#${id}`} content={lable}> is rendered by
+   nearly every Input/ReactSelect/SelectBox/DatePicker field (shows the
+   field's label text on focus/hover) — this was never styled for dark mode
+   at all, so it was showing PrimeReact's own light default theme as a
+   white popup. Portals to document.body, which carries the nextgen-mode
+   class same as everywhere else. */
+.nextgen-mode .p-tooltip .p-tooltip-text {
+  background: var(--ng-navy-700, #121f38) !important;
+  color: var(--ng-text, #e8ecf5) !important;
+  box-shadow: var(--ng-shadow-md);
+}
+
+.nextgen-mode .p-tooltip-arrow {
+  border-top-color: var(--ng-navy-700, #121f38) !important;
+  border-bottom-color: var(--ng-navy-700, #121f38) !important;
+  border-left-color: var(--ng-navy-700, #121f38) !important;
+  border-right-color: var(--ng-navy-700, #121f38) !important;
+}

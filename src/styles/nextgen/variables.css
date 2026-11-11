@@ -1,0 +1,129 @@
+/*
+  NextGen design tokens — light (default) and dark color modes.
+
+  Every component should reference the SEMANTIC tokens below (--ng-bg,
+  --ng-surface, --ng-surface-alt, --ng-text, --ng-text-muted, --ng-border,
+  --ng-ink) rather than hardcoding a literal color or reaching for the raw
+  --ng-navy-* palette directly — the whole point of the semantic layer is
+  that redefining it once here (in the .ng-dark block) is what makes every
+  component that uses it correct in both modes automatically, with zero
+  changes needed in that component's own CSS.
+
+  --ng-ink exists specifically for translucent "glass" overlays (subtle
+  borders/hover tints layered over a surface via rgba alpha) — dark mode
+  blends white into the surface, light mode blends near-black. Use it as
+  `rgba(var(--ng-ink), 0.08)` etc. instead of hardcoding
+  `rgba(255, 255, 255, 0.08)`, so the same overlay reads correctly on a
+  white surface too.
+*/
+
+/* Header.jsx sets --ng-font-family via an inline style on <html> (same
+   element :root addresses) so the user's picked font survives a page
+   reload regardless of which component mounts first — matching how
+   --ng-sidebar-width already works in NextGenSidebar.css. Its default MUST
+   live here at :root, not inside .nextgen-mode below: .nextgen-mode is
+   applied to #root/body, which are DESCENDANTS of <html>, so declaring a
+   fixed value there would shadow/override whatever <html> resolves to —
+   that was the actual bug (picking a font in the dropdown did nothing,
+   because .nextgen-mode's own hardcoded default was re-winning on every
+   element closer to the content than <html>). */
+:root {
+  --ng-font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.nextgen-mode {
+  --ng-primary-50: #1a2744;
+  --ng-primary-100: #203157;
+  --ng-primary-200: #2a4374;
+  --ng-primary-300: #3b5998;
+  --ng-primary-400: #4f7cd1;
+  --ng-primary-500: #3b82f6;
+  --ng-primary-600: #2563eb;
+  --ng-primary-700: #1d4ed8;
+  --ng-primary: var(--ng-primary-600);
+  --ng-primary-hover: var(--ng-primary-700);
+  --ng-primary-soft: rgba(59, 130, 246, 0.16);
+
+  /* Light mode (default) — the base .nextgen-mode rule itself now IS the
+     light palette, not an override on top of it. Any element that applies
+     the bare "nextgen-mode" class (forgetting to also add the color-mode
+     class - a real recurring bug, see useNgModeClass.js's doc comment)
+     used to silently fall back to dark; now it falls back to light, which
+     is what should happen by default. Dark becomes the opt-in variant via
+     .ng-dark below instead. */
+  --ng-navy-900: #ffffff;
+  --ng-navy-800: #f7f9fc;
+  --ng-navy-700: #eef2f7;
+  --ng-navy-600: #e2e8f0;
+
+  --ng-bg: var(--ng-navy-900);
+  --ng-surface: var(--ng-navy-800);
+  --ng-surface-alt: var(--ng-navy-700);
+  --ng-surface-strong: var(--ng-navy-600);
+  --ng-border: rgba(15, 23, 42, 0.1);
+  --ng-border-strong: rgba(15, 23, 42, 0.18);
+  --ng-ink: 15, 23, 42;
+
+  --ng-text: #0f172a;
+  /* Was #64748b (Tailwind slate-500) — most visible text in light mode
+     actually renders through this token (sidebar menu items, floated
+     field labels, muted captions), not --ng-text, so a fairly light gray
+     here read as washed out/dull across the whole page. Darkened one step
+     to slate-600 for real contrast against the near-white surfaces, short
+     of full black/--ng-text. */
+  --ng-text-muted: #475569;
+  --ng-text-inverse: #f8fafc;
+
+  --ng-success: #22c55e;
+  --ng-danger: #f87171;
+  --ng-warning: #fbbf24;
+
+  --ng-radius-sm: 6px;
+  --ng-radius-md: 10px;
+  --ng-radius-lg: 16px;
+  --ng-radius-pill: 999px;
+
+  --ng-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --ng-shadow-md: 0 4px 20px rgba(15, 23, 42, 0.08);
+  --ng-shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+
+  --ng-space-1: 4px;
+  --ng-space-2: 8px;
+  --ng-space-3: 12px;
+  --ng-space-4: 16px;
+  --ng-space-5: 24px;
+  --ng-space-6: 32px;
+
+  --ng-font-sm: 12.5px;
+  --ng-font-base: 14px;
+  --ng-font-md: 16px;
+  --ng-font-lg: 20px;
+
+  --ng-transition: 160ms ease;
+
+  background: var(--ng-bg);
+  color: var(--ng-text);
+  font-family: var(--ng-font-family);
+}
+
+/* Dark mode — same component CSS everywhere, only the token values change.
+   Applied via an additional `.ng-dark` class alongside `.nextgen-mode`
+   (see components/nextgen/NgColorModeToggle.jsx / Header.jsx's sync effect). */
+.nextgen-mode.ng-dark {
+  --ng-navy-900: #070d1c;
+  --ng-navy-800: #0c1526;
+  --ng-navy-700: #121f38;
+  --ng-navy-600: #1a2b4a;
+
+  --ng-border: rgba(255, 255, 255, 0.09);
+  --ng-border-strong: rgba(255, 255, 255, 0.18);
+  --ng-ink: 255, 255, 255;
+
+  --ng-text: #e8ecf5;
+  --ng-text-muted: #8b96ad;
+  --ng-text-inverse: #0b1220;
+
+  --ng-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --ng-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --ng-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+}

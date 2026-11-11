@@ -1,0 +1,267 @@
+
+.designation-modal .p-dialog-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px 12px 0 0;
+  padding: 1.5rem;
+}
+
+.designation-modal .p-dialog-content {
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.designation-modal-header h5 {
+  color: white;
+  font-weight: 600;
+  margin: 0;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100% !important;
+}
+
+.search-input {
+  width: 100%;
+  padding: 5px 0px 5px 40px;
+  height: 30px !important;
+  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 17px !important;
+  transition: all 0.3s ease;
+  background-color: rgb(219, 219, 219);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.designation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.designation-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.designation-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.designation-grid::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.designation-grid::-webkit-scrollbar-thumb:hover {
+  background: #5568d3;
+}
+
+.designation-card {
+  border-radius: 12px;
+  padding: 10px 5px !important;
+  margin: 0px 0px !important;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+}
+
+.designation-card:hover {
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  border-color: #667eea;
+}
+
+.active-focus {
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  border-color: #667eea;
+}
+.active-focus .designation-icon {
+    transform: scale(1.2);
+}
+
+.designation-card:hover .designation-icon {
+  transform: scale(1.2);
+}
+
+
+.designation-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  background: color-mix(in srgb, var(--designation-icon-color, #667eea) 18%, transparent);
+}
+.designation-icon > img {
+  width: 30px;
+  transition: transform 0.3s ease;
+}
+
+.designation-label {
+  font-size: 12px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  color: black;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+}
+
+.no-results i {
+  color: #ccc;
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.hint-text {
+  text-align: center;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 8px;
+  color: #1976d2;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hint-text i {
+  font-size: 1rem;
+}
+
+.hint-text strong {
+  color: #0d47a1;
+}
+
+@media (max-width: 768px) {
+  .designation-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .designation-card {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .designation-icon {
+    font-size: 2.5rem;
+  }
+
+  .designation-label {
+    font-size: 0.85rem;
+  }
+
+  .search-input {
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .search-icon {
+    left: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.designation-card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* This modal's own CSS (search box, cards, "no results" state) hardcodes
+   light colors with no theme awareness at all — none of it goes through
+   shell.css's generic overrides since these classnames are specific to
+   this component. */
+.nextgen-mode .search-input {
+  background-color: var(--ng-surface, #0c1526) !important;
+  border-color: var(--ng-border, rgba(255, 255, 255, 0.1)) !important;
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+/* Cards were reading as near-invisible: --ng-surface (their background) is
+   almost the same navy as the dialog body behind them, with no border/
+   shadow to separate the two — so the grid looked like bare icons+text
+   floating on the dialog rather than distinct clickable tiles. A lighter
+   surface + a real border + a soft primary-tinted gradient gives each card
+   a visible edge in both color modes (same --ng-primary-mixed-into-token
+   approach as the accordion header, so it self-adjusts light/dark). */
+.nextgen-mode .designation-card {
+  background: linear-gradient(
+    160deg,
+    var(--ng-surface-alt, #121f38) 0%,
+    color-mix(in srgb, var(--ng-primary-500) 10%, var(--ng-surface, #0c1526)) 100%
+  ) !important;
+  border: 1px solid var(--ng-border, rgba(255, 255, 255, 0.09)) !important;
+  box-shadow: var(--ng-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.35));
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+.nextgen-mode .designation-card:hover,
+.nextgen-mode .designation-card.active-focus {
+  border-color: var(--ng-primary-500, #3b82f6) !important;
+  box-shadow: 0 0 0 3px var(--ng-primary-soft, rgba(59, 130, 246, 0.16)) !important;
+}
+
+.nextgen-mode .designation-label {
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+.nextgen-mode .no-results {
+  color: var(--ng-text-muted, #8b96ad) !important;
+}
+
+.nextgen-mode .hint-text {
+  background: var(--ng-primary-soft, rgba(59, 130, 246, 0.16)) !important;
+  color: var(--ng-primary-500, #3b82f6) !important;
+}
+
+.nextgen-mode .hint-text strong {
+  color: var(--ng-primary-500, #3b82f6) !important;
+}

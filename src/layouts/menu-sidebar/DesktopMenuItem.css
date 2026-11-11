@@ -1,0 +1,9 @@
+.peach_theme a.active.remove_theme_bg {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+li a.active.remove_theme_bg{
+  background-color: transparent !important;
+  background: transparent !important;
+}
