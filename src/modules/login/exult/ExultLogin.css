@@ -1,0 +1,235 @@
+:root {
+  --exl-navy: #393185;
+  --exl-navy-dark: #2a2563;
+  --exl-red: #e31e24;
+  --exl-teal: #01475a;
+  --exl-ink: #232043;
+}
+
+/* Real lab photo (blue-tinted hallway, sample tubes, DNA/wave brand
+   graphics - matches Exult's navy palette) instead of CSS blobs. Mostly
+   light/white already, so the white card stays readable sitting on it. */
+.exl_page {
+  position: relative;
+  /* height (not min-height) + overflow:hidden caps the page at exactly the
+     viewport, so the card + Footer below it can never push the box (and
+     the whole page) taller than the viewport and force a scrollbar. */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #eef0fb url('/img/exult.png') center center / cover no-repeat;
+}
+
+/* The card used to be centered together WITH the shared <Footer/> as one
+   flex group, which pulled the footer up to sit right under the card
+   instead of at the bottom of the screen. This wrapper takes all the
+   leftover vertical space (flex:1) and centers the card within just that
+   space, so Footer - a sibling after it, not inside it - always lands
+   flush at the bottom of the viewport regardless of card height. */
+.exl_content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vh, 3rem) 1.5rem;
+  overflow: hidden;
+}
+
+.exl_card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2.25rem 2rem;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 30px 70px rgba(35, 32, 67, 0.16),
+    0 2px 8px rgba(35, 32, 67, 0.06);
+  border-top: 4px solid var(--exl-navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: exlFadeUp 0.5s ease;
+}
+
+@keyframes exlFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exl_logo {
+  display: block;
+  width: 220px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 1.2rem;
+}
+
+.exl_title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--exl-ink);
+  margin-bottom: 0.3rem;
+}
+
+.exl_subtitle {
+  text-align: center;
+  color: #6d6a85;
+  font-size: 0.88rem;
+  margin-bottom: 1.6rem;
+}
+
+.exl_form_group {
+  margin-bottom: 1.1rem;
+}
+
+.exl_form_group label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #6d6a85;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.exl_required {
+  color: var(--exl-red);
+}
+
+.exl_form_group input {
+  width: 100%;
+  padding: 0.8rem 2.6rem 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #e4e2f0;
+  background: #f8f8fc;
+  font-size: 0.95rem;
+  color: var(--exl-ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.exl_form_group input::placeholder {
+  color: #a5a2ba;
+}
+
+.exl_form_group input:focus {
+  border-color: var(--exl-navy);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(57, 49, 133, 0.14);
+}
+
+.exl_input_icon_wrap,
+.exl_password_wrap {
+  position: relative;
+}
+
+.exl_input_icon_wrap .exl_field_icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a5a2ba;
+  font-size: 16px;
+  display: flex;
+  pointer-events: none;
+}
+
+.exl_password_wrap button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #a5a2ba;
+  display: flex;
+}
+
+.exl_form_meta {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.exl_form_meta.end {
+  justify-content: flex-end;
+}
+
+.exl_link {
+  color: var(--exl-red);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.exl_link:hover {
+  text-decoration: underline;
+}
+
+.exl_btn {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--exl-navy), var(--exl-navy-dark));
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(57, 49, 133, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exl_btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(57, 49, 133, 0.36);
+}
+
+.exl_btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.exl_powered_footer {
+  margin-top: 1.4rem;
+  width: 100%;
+  background: #f8f8fc;
+  padding: 8px 20px 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #6d6a85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Logo is a wide icon+wordmark lockup (150x67) - constrain by height so it
+   scales proportionally instead of being crushed by a width cap. */
+.exl_powered_footer img {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+
+.exl_powered_footer strong {
+  color: var(--exl-navy);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .exl_card {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+  .exl_logo {
+    width: 180px;
+  }
+}

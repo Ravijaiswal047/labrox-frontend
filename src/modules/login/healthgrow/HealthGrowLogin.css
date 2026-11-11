@@ -1,0 +1,474 @@
+:root {
+  --hg-blue: #16247a;
+  --hg-blue-light: #2a3ea8;
+  --hg-blue-dark: #0d1850;
+  --hg-red: #c81429;
+  --hg-red-light: #ff5f6d;
+  --hg-red-dark: #97101f;
+  --hg-ink: #101a3d;
+}
+
+.hg_login_main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(22, 36, 122, 0.10), transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(200, 20, 41, 0.08), transparent 42%),
+    linear-gradient(180deg, #f7f8fd 0%, #eef1fb 45%, #f9f6f7 100%);
+}
+
+.hg_login_main > div:first-child {
+  width: 100vw;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* flex:1 + min-height:0 (not min-height:100vh) so this row shares the
+   fixed 100vh with the footer below it instead of forcing 100vh on its
+   own and pushing the page taller than the viewport - that's what was
+   causing the whole page to scroll. */
+.hg_login_row {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ---------- Form side: its own solid panel (right), so it never has to
+   fight the banner photo for contrast - that's what made the old
+   "glass card floating on the photo" version hard to read/awkward to
+   position no matter how opaque the card was. ---------- */
+.hg_login_form_section {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 42%;
+  min-width: 340px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 4vh, 3rem) 3rem clamp(1rem, 3vh, 2rem);
+  background: linear-gradient(160deg, #ffffff 0%, #f3f5fc 100%);
+  box-shadow: -18px 0 40px rgba(16, 26, 61, 0.06);
+  overflow: hidden;
+}
+
+.hg_login_form {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem 2rem 2.25rem;
+  border: 1px solid #eceffb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 20px 45px rgba(16, 26, 61, 0.1);
+  animation: hgFadeUp .55s ease;
+}
+
+@keyframes hgFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Page heading (top of the form panel, not on the photo anymore) ---------- */
+.hg_page_heading {
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 1.6rem;
+  animation: hgFadeUp .55s ease;
+}
+
+.hg_login_heading {
+  text-align: left;
+  font-weight: 800;
+  font-size: 1.85rem;
+  color: var(--hg-ink);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.2px;
+}
+
+.hg_login_subheading {
+  text-align: left;
+  color: #5c6584;
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.hg_form_group {
+  margin-bottom: 1.1rem;
+}
+
+.hg_form_label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--hg-ink);
+  letter-spacing: 0.2px;
+}
+
+.hg_text_danger {
+  color: var(--hg-red);
+}
+
+.hg_form_control {
+  width: 100%;
+  padding: 0.85rem 2.7rem 0.85rem 1.2rem;
+  border: 1.5px solid #dde1f5;
+  border-radius: 999px;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--hg-ink);
+  background: #f7f8fc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.hg_form_control::placeholder {
+  color: rgba(16, 26, 61, 0.6);
+  opacity: 1;
+}
+
+.hg_form_control:focus {
+  background: #ffffff;
+  border-color: var(--hg-blue-light);
+  box-shadow: 0 0 0 3px rgba(42, 62, 168, 0.16);
+}
+
+.hg_form_control:disabled {
+  opacity: 0.65;
+}
+
+.hg_position_relative {
+  position: relative;
+}
+
+.hg_toggle_password,
+.hg_field_icon {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: var(--hg-blue);
+  opacity: 0.75;
+  display: flex;
+}
+
+.hg_field_icon {
+  pointer-events: none;
+  cursor: default;
+}
+
+.hg_form_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.9rem 0 1.6rem;
+  font-size: 0.85rem;
+}
+
+.hg_remember_me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hg_remember_me label {
+  margin-bottom: 0;
+  color: var(--hg-ink);
+}
+
+.hg_forgot_link {
+  color: var(--hg-red);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hg_forgot_link:hover {
+  text-decoration: underline;
+}
+
+.hg_btn_primary {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--hg-blue);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(6, 10, 28, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.hg_btn_primary:hover {
+  transform: translateY(-2px);
+  background: var(--hg-blue-light);
+  box-shadow: 0 18px 36px rgba(6, 10, 28, 0.4);
+}
+
+.hg_btn_primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Banner / illustration side: its own panel (left), full height,
+   no longer absolutely positioned behind the form - the two sides just sit
+   next to each other so neither ever overlaps or clips the other. ---------- */
+.hg_banner_section {
+  position: relative;
+  flex: 1 1 58%;
+  min-width: 0;
+  z-index: 1;
+}
+
+.hg_banner_panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 40px;
+  background: linear-gradient(155deg, #eef1fb 0%, #e4e9f8 100%);
+}
+
+.hg_banner_panel::before,
+.hg_banner_panel::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hg_banner_panel::before {
+  width: 300px;
+  height: 300px;
+  top: -110px;
+  right: -110px;
+  background: rgba(22, 36, 122, 0.18);
+}
+
+.hg_banner_panel::after {
+  width: 260px;
+  height: 260px;
+  bottom: -100px;
+  left: -90px;
+  background: rgba(200, 20, 41, 0.16);
+}
+
+.hg_banner_image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* "contain" so the whole banner (text, pin, photo, address) shows at
+     once instead of being cropped/zoomed in */
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(1.08) contrast(1.03);
+}
+
+/* ---------- Footer ---------- */
+.hg_login_powered_footer {
+  width: 100vw;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 clamp(0.5rem, 2vh, 1.2rem);
+}
+
+.hg_powered_badge {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  padding: 6px 18px 6px 12px;
+  font-size: 0.92rem;
+  color: #384250;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 20px rgba(16, 26, 61, 0.12);
+}
+
+/* Logo is a wide icon+wordmark lockup (150x67) - constraining it by width
+   crushes it down to a sliver and makes the "itDose" text in it illegible.
+   Constrain by height instead so it scales proportionally and stays crisp. */
+.hg_powered_badge img {
+  height: 20px;
+  width: auto;
+  margin-right: 10px;
+  display: block;
+}
+
+.hg_powered_badge strong {
+  color: var(--hg-blue);
+  font-weight: 700;
+  margin-left: 3px;
+}
+
+@media screen and (max-width: 992px) {
+  /* Below this width the two side-by-side panels stack instead: banner on
+     top with a fixed height, form panel underneath at full width - so on
+     mobile the photo and the form each get their own clean space rather
+     than being squeezed into two thin columns. */
+  .hg_login_row {
+    flex-direction: column;
+  }
+  .hg_banner_section {
+    flex: 0 0 min(260px, 26vh);
+  }
+  .hg_login_form_section {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: clamp(1rem, 3vh, 2rem) 1.25rem clamp(1.5rem, 4vh, 3.5rem);
+    box-shadow: 0 -12px 30px rgba(16, 26, 61, 0.06);
+  }
+  .hg_page_heading,
+  .hg_login_heading,
+  .hg_login_subheading {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hg_banner_section {
+    flex-basis: min(200px, 22vh);
+  }
+  .hg_login_heading {
+    font-size: 1.5rem;
+  }
+  .hg_login_subheading {
+    font-size: 0.85rem;
+  }
+  .hg_login_form_section {
+    padding: clamp(0.75rem, 3vh, 1.5rem) 1rem clamp(1.25rem, 4vh, 3rem);
+  }
+  .hg_login_form {
+    padding: 1.5rem 1.4rem 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   Forgot Password page — this screen has no banner photo behind it (the
+   background is the plain page gradient), so it needs its own proper card
+   instead of the "glass on photo" styling used on the main login screen.
+   Everything below is scoped under .hg_forgot_page so the main login
+   screen's look stays exactly as it is.
+   ========================================================================== */
+.hg_forgot_page {
+  /* This screen renders .hg_login_form_section on its own (no banner
+     sibling) - undo the split-layout panel styling (white gradient fill,
+     side shadow, fixed flex-basis) added above so it stays the original
+     plain-background, full-width, centered card. */
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  padding-bottom: 2.5rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hg_forgot_page .hg_login_heading,
+.hg_forgot_page .hg_login_subheading {
+  text-align: center;
+}
+
+.hg_forgot_page .hg_login_form {
+  max-width: 440px;
+  padding: 2.75rem 2.5rem;
+  background: #ffffff;
+  border-radius: 18px;
+  border: none;
+  border-top: 4px solid var(--hg-red);
+  box-shadow:
+    0 24px 60px rgba(16, 26, 61, 0.14),
+    0 2px 8px rgba(16, 26, 61, 0.06);
+  animation: hgFadeUp .55s ease;
+}
+
+.hg_forgot_page .hg_login_logo_link {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.hg_forgot_page .hg_login_logo {
+  width: 210px;
+  height: auto;
+}
+
+.hg_forgot_page .hg_login_subheading {
+  margin-bottom: 1.8rem;
+}
+
+.hg_forgot_page .hg_form_group {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+.hg_forgot_page .hg_form_label {
+  text-shadow: none;
+}
+
+.hg_forgot_page .hg_form_control {
+  background: #fbfbff;
+  border: 1px solid #dbdff0;
+  box-shadow: none;
+}
+
+.hg_forgot_page .hg_form_control::placeholder {
+  color: #9aa0bd;
+}
+
+.hg_forgot_page .hg_form_control:focus {
+  background: #ffffff;
+  border-color: var(--hg-blue-light);
+  box-shadow: 0 0 0 3px rgba(42, 62, 168, 0.16);
+}
+
+.hg_forgot_page .hg_toggle_password,
+.hg_forgot_page .hg_field_icon {
+  color: #6a7291;
+  opacity: 1;
+}
+
+.hg_forgot_page .hg_btn_primary {
+  background: linear-gradient(135deg, var(--hg-blue-light), var(--hg-blue));
+  color: #ffffff;
+  box-shadow: 0 14px 28px rgba(22, 36, 122, 0.28);
+}
+
+.hg_forgot_page .hg_btn_primary:hover {
+  background: linear-gradient(135deg, var(--hg-red-light), var(--hg-red));
+  box-shadow: 0 18px 32px rgba(200, 20, 41, 0.3);
+}
+
+@media screen and (max-width: 480px) {
+  .hg_forgot_page .hg_login_form {
+    padding: 2rem 1.4rem;
+  }
+  .hg_forgot_page .hg_login_logo {
+    width: 180px;
+  }
+}

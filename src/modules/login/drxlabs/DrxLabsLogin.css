@@ -1,0 +1,416 @@
+:root {
+  --drx-red: #e03427;
+  --drx-red-light: #ff5c4d;
+  --drx-red-dark: #b82a1f;
+  --drx-ink: #2b2a28;
+}
+
+.drx_main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(224, 52, 39, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(43, 42, 40, 0.06), transparent 42%),
+    linear-gradient(180deg, #fdfaf9 0%, #fdf2f1 45%, #f9f6f7 100%);
+}
+
+.drx_main > div:first-child {
+  width: 100vw;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* flex:1 + min-height:0 (not min-height:100vh) so this row shares the
+   fixed 100vh with the footer below it instead of forcing 100vh on its
+   own and pushing the page taller than the viewport. */
+.drx_row {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ---------- Form side: its own solid panel (right) ---------- */
+.drx_form_section {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 42%;
+  min-width: 340px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 4vh, 3rem) 3rem clamp(1rem, 3vh, 2rem);
+  background: linear-gradient(160deg, #ffffff 0%, #fdf5f4 100%);
+  box-shadow: -18px 0 40px rgba(43, 42, 40, 0.05);
+  overflow: hidden;
+}
+
+.drx_form_card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem 2rem 2.25rem;
+  border: 1px solid #f3ebea;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 20px 45px rgba(43, 42, 40, 0.09);
+  animation: drxFadeUp .55s ease;
+}
+
+@keyframes drxFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drx_page_heading {
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 1.6rem;
+  animation: drxFadeUp .55s ease;
+}
+
+.drx_heading {
+  text-align: left;
+  font-weight: 800;
+  font-size: 1.85rem;
+  color: var(--drx-ink);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.2px;
+}
+
+.drx_subheading {
+  text-align: left;
+  color: #7a756f;
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.drx_form_group {
+  margin-bottom: 1.1rem;
+}
+
+.drx_form_label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--drx-ink);
+  letter-spacing: 0.2px;
+}
+
+.drx_text_danger {
+  color: var(--drx-red);
+}
+
+.drx_form_control {
+  width: 100%;
+  padding: 0.85rem 2.7rem 0.85rem 1.2rem;
+  border: 1.5px solid #ece5e3;
+  border-radius: 999px;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--drx-ink);
+  background: #faf8f7;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.drx_form_control::placeholder {
+  color: rgba(43, 42, 40, 0.5);
+}
+
+.drx_form_control:focus {
+  background: #ffffff;
+  border-color: var(--drx-red);
+  box-shadow: 0 0 0 3px rgba(224, 52, 39, 0.14);
+}
+
+.drx_form_control:disabled {
+  opacity: 0.65;
+}
+
+.drx_position_relative {
+  position: relative;
+}
+
+.drx_toggle_password,
+.drx_field_icon {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: var(--drx-red);
+  opacity: 0.75;
+  display: flex;
+}
+
+.drx_field_icon {
+  pointer-events: none;
+  cursor: default;
+}
+
+.drx_form_footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0.9rem 0 1.6rem;
+  font-size: 0.85rem;
+  min-height: 1px;
+}
+
+.drx_forgot_link {
+  color: var(--drx-red);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.drx_forgot_link:hover {
+  text-decoration: underline;
+}
+
+.drx_btn_primary {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--drx-red), var(--drx-red-dark));
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(224, 52, 39, 0.32);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.drx_btn_primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(224, 52, 39, 0.38);
+}
+
+.drx_btn_primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Banner / illustration side (left) ---------- */
+.drx_banner_section {
+  position: relative;
+  flex: 1 1 58%;
+  min-width: 0;
+  z-index: 1;
+}
+
+.drx_banner_panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 40px;
+  background: linear-gradient(155deg, #fdf2f1 0%, #fbe6e4 100%);
+}
+
+.drx_banner_panel::before,
+.drx_banner_panel::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.drx_banner_panel::before {
+  width: 300px;
+  height: 300px;
+  top: -110px;
+  right: -110px;
+  background: rgba(224, 52, 39, 0.12);
+}
+
+.drx_banner_panel::after {
+  width: 260px;
+  height: 260px;
+  bottom: -100px;
+  left: -90px;
+  background: rgba(43, 42, 40, 0.08);
+}
+
+.drx_banner_logo {
+  position: relative;
+  z-index: 1;
+  width: 190px;
+  height: auto;
+  margin-bottom: 28px;
+}
+
+.drx_banner_image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  /* "contain" so the whole banner (text + illustration) always shows in
+     full, never cropped, regardless of panel size. */
+  object-fit: contain;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* ---------- Footer ---------- */
+.drx_powered_footer {
+  width: 100vw;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 clamp(0.5rem, 2vh, 1.2rem);
+}
+
+.drx_powered_badge {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  padding: 6px 18px 6px 12px;
+  font-size: 0.92rem;
+  color: #5c564f;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 20px rgba(43, 42, 40, 0.1);
+}
+
+.drx_powered_badge img {
+  height: 20px;
+  width: auto;
+  margin-right: 10px;
+  display: block;
+}
+
+.drx_powered_badge strong {
+  color: var(--drx-red);
+  font-weight: 700;
+  margin-left: 3px;
+}
+
+@media screen and (max-width: 992px) {
+  .drx_row {
+    flex-direction: column;
+  }
+  .drx_banner_section {
+    flex: 0 0 min(260px, 26vh);
+  }
+  .drx_form_section {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: clamp(1rem, 3vh, 2rem) 1.25rem clamp(1.5rem, 4vh, 3.5rem);
+    box-shadow: 0 -12px 30px rgba(43, 42, 40, 0.05);
+  }
+  .drx_page_heading,
+  .drx_heading,
+  .drx_subheading {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .drx_banner_section {
+    flex-basis: min(200px, 22vh);
+  }
+  .drx_heading {
+    font-size: 1.5rem;
+  }
+  .drx_subheading {
+    font-size: 0.85rem;
+  }
+  .drx_form_section {
+    padding: clamp(0.75rem, 3vh, 1.5rem) 1rem clamp(1.25rem, 4vh, 3rem);
+  }
+  .drx_form_card {
+    padding: 1.5rem 1.4rem 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   Forgot Password page - no banner photo behind it, so it gets its own
+   proper centered card on the plain page gradient.
+   ========================================================================== */
+.drx_forgot_page {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  padding-bottom: 2.5rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.drx_forgot_page .drx_heading,
+.drx_forgot_page .drx_subheading {
+  text-align: center;
+}
+
+.drx_forgot_page .drx_form_card {
+  max-width: 440px;
+  padding: 2.75rem 2.5rem;
+  background: #ffffff;
+  border-radius: 18px;
+  border: none;
+  border-top: 4px solid var(--drx-red);
+  box-shadow:
+    0 24px 60px rgba(43, 42, 40, 0.12),
+    0 2px 8px rgba(43, 42, 40, 0.05);
+  animation: drxFadeUp .55s ease;
+  text-align: center;
+}
+
+.drx_forgot_logo {
+  display: block;
+  width: 210px;
+  height: auto;
+  margin: 0 auto 1.4rem;
+}
+
+.drx_forgot_page .drx_subheading {
+  margin-bottom: 1.8rem;
+}
+
+.drx_forgot_page .drx_form_group {
+  text-align: left;
+}
+
+.drx_forgot_page .drx_form_control {
+  background: #faf8f7;
+  border: 1px solid #ece5e3;
+  box-shadow: none;
+}
+
+.drx_forgot_page .drx_form_control:focus {
+  background: #ffffff;
+  border-color: var(--drx-red);
+  box-shadow: 0 0 0 3px rgba(224, 52, 39, 0.14);
+}
+
+@media screen and (max-width: 480px) {
+  .drx_forgot_page .drx_form_card {
+    padding: 2rem 1.4rem;
+  }
+  .drx_forgot_logo {
+    width: 180px;
+  }
+}

@@ -1,0 +1,266 @@
+.pathcare_login_page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(107, 33, 243, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(72, 33, 243, 0.1), transparent 45%),
+    linear-gradient(135deg,#f2efff,#ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pathcare_login_card_wrapper {
+  width: 100%;
+  max-width: 980px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pathcare_login_card {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(33, 72, 243, 0.12);
+  animation: fadeUp .6s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pathcare_login_card_inner {
+  position: relative;
+  width: 58%;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.pathcare_login_view,
+.pathcare_forgot_view {
+  position: absolute;
+  inset: 0;
+  padding: 3rem;
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.pathcare_show-login .pathcare_login_view {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.pathcare_show-login .pathcare_forgot_view {
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+}
+
+.pathcare_show-forgot .pathcare_forgot_view {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.pathcare_show-forgot .pathcare_login_view {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+}
+
+.pathcare_login_card_right {
+  width: 42%;
+  background: linear-gradient(160deg,#2a2b6a,#2a2b6a);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.pathcare_brand_content {
+  max-width: 300px;
+  text-align: center;
+}
+
+.pathcare_brand_content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.pathcare_brand_content p {
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.pathcare_login_logo {
+  width: 200px;
+  margin-bottom: 1.4rem;
+}
+
+.pathcare_login_title {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.pathcare_login_subtitle {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.pathcare_form_group {
+  margin-bottom: 1.2rem;
+}
+
+.pathcare_form_group label {
+  display: block;
+  font-size: .9rem;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.pathcare_form_group input {
+  width: 100%;
+  padding: .8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #f1c6ab;
+  font-size: .95rem;
+}
+
+.pathcare_form_group input:focus {
+  outline: none;
+  border-color: #2a2b6a;
+  box-shadow: 0 0 0 3px rgba(33, 72, 243, 0.25);
+}
+
+.pathcare_password_wrap {
+  position: relative;
+}
+
+.pathcare_password_wrap button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.pathcare_form_meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 1.6rem;
+  font-size: .85rem;
+}
+
+.pathcare_form_meta.end {
+  justify-content: flex-end;
+}
+
+.pathcare_remember {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.pathcare_forgot {
+  color: #2a2b6a;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.pathcare_login_btn {
+  width: 100%;
+  padding: .9rem;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg,#2a2b6a,#2a2b6a);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(33, 72, 243, 0.35);
+  transition: transform .25s ease;
+}
+.pathcare_google_btn {
+  width: 100%;
+  padding: .9rem;
+  border-radius: 14px;
+  border: 1px solid #a0a0a0;
+  font-size: 1rem !important;
+  font-weight: 600;
+  background: white;
+  /* color: black; */
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(102, 102, 102, 0.35);
+  transition: transform .25s ease;
+  margin-top: 10px;
+}
+
+.pathcare_login_btn:hover {
+  transform: translateY(-2px);
+}
+
+.pathcare_powered_footer {
+  margin-top: 1.4rem;
+  background: #fff;
+  padding: 6px 18px;
+  border-radius: 22px;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.18),
+    inset 0 0 0 1px rgba(33,72,243,.12);
+}
+
+.pathcare_powered_footer img {
+  width: 26px;
+}
+
+@media (max-width: 768px) {
+  .pathcare_login_card {
+    flex-direction: column;
+  }
+
+  .pathcare_login_card_right {
+    display: none;
+  }
+
+  .pathcare_login_card_inner {
+    width: 100%;
+  }
+
+  .pathcare_login_view,
+  .pathcare_forgot_view {
+    position: relative;
+    padding: 2rem;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .pathcare_show-login .pathcare_login_view {
+     display: block;
+     }
+  .pathcare_show-login .pathcare_forgot_view {
+     display: none !important; 
+    }
+  .pathcare_show-forgot .pathcare_forgot_view { display: block; }
+  .pathcare_show-forgot .pathcare_login_view {
+     display: none !important;
+     }
+}

@@ -1,0 +1,242 @@
+/* Global reset and background */
+.welcomemain-div {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 78vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Main container styling */
+.welcome-maincontainercls {
+  width: 80%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 0px 20px;
+  /* background-color: #FFFFFF; */
+  /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Welcome content styling */
+.welcome-content {
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main heading styling */
+.welcome-heading {
+  font-size: 2.5rem !important;
+  font-weight: bold !important;
+  /* color: #58C7C7; */
+  margin: 0;
+}
+
+/* Subheading styling */
+.welcome-subheading {
+  font-size: 1.6rem !important;
+  color: #58c7c7;
+  font-weight: 600;
+  margin: 10px 0 20px 0;
+}
+
+/* Text heading for additional details */
+.welcome-textHeading {
+  font-size: 1.6rem !important;
+  color: #555555;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* Styling for highlighted text in spans */
+.welcome-textdisplay {
+  font-weight: bold;
+  font-size: 1.3rem !important;
+  color: #58c7c7;
+}
+
+/* Image container styling */
+.welcome-img {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.welcome-img img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* TRF Upload Container - Default (Desktop) */
+/* Integrated TRF Upload Styling */
+.trf-upload-container-integrated {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef2f6;
+  max-width: 500px;
+  transition: transform 0.3s ease;
+}
+
+.trf-upload-container-integrated:hover {
+  transform: translateY(-5px);
+}
+
+.trf-upload-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #6c5ce7;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.trf-upload-header i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.trf-upload-row {
+  margin-bottom: 15px;
+}
+
+.trf-label {
+  font-size: 0.9rem !important;
+  color: #777;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+}
+
+.trf-select {
+  border-radius: 8px !important;
+  border: 1px solid #ddd !important;
+  height: 40px !important;
+  font-size: 0.95rem !important;
+  background-color: #f8f9fa !important;
+}
+
+.trf-upload-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trf-upload-btn:hover {
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+  filter: brightness(1.1);
+}
+
+/* Responsive styling for larger screens */
+@media (min-width: 1200px) {
+  .welcome-heading {
+    font-size: 2.8rem;
+  }
+
+  .welcome-subheading {
+    font-size: 1.5rem;
+  }
+
+  .welcome-textHeading {
+    margin: 2px 0;
+    font-size: 16px !important;
+  }
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 750px) {
+  .welcomemain-div {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .welcome-maincontainercls {
+    width: 95%;
+    margin-top: 20px;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+  }
+
+  .welcome-content {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome-heading {
+    font-size: 1.8rem !important;
+  }
+
+  .welcome-subheading {
+    font-size: 1.2rem !important;
+    margin: 15px 0 10px 0;
+  }
+
+  .welcome-textHeading {
+    text-align: center;
+    font-size: 14px !important;
+  }
+
+  .trf-upload-container-integrated {
+    width: 95%;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px 15px;
+    text-align: left;
+  }
+
+  .trf-label {
+    text-align: left;
+    margin-top: 5px;
+  }
+
+  .trf-upload-btn {
+    font-size: 0.7rem !important;
+    padding: 12px 5px !important;
+    white-space: nowrap;
+    margin-top: 10px;
+  }
+
+  .welcome-img {
+    display: none;
+  }
+}

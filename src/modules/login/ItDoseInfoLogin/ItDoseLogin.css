@@ -1,0 +1,626 @@
+/* .login_page {
+  min-height: 96vh;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(243, 108, 33, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(243, 108, 33, 0.1),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #fff6ef, #ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_card_wrapper {
+  width: 100%;
+  max-width: 980px;
+  padding: 1.5rem;
+}
+
+.login_card {
+  display: flex;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(243, 108, 33, 0.12);
+  animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login_card_left {
+  flex: 1;
+  padding: 3rem;
+}
+
+.login_logo {
+  width: 150px;
+  margin-bottom: 1.4rem;
+}
+
+.login_title {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.login_subtitle {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.form_group {
+  margin-bottom: 1.2rem;
+}
+
+.form_group label {
+  display: block;
+  font-size: 0.9rem !important;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.form_group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #f1c6ab;
+  font-size: 0.95rem !important;
+  transition: 0.2s ease;
+}
+
+.form_group input:focus {
+  outline: none;
+  border-color: #f36c21 !important;
+  box-shadow: 0 0 0 3px rgba(243, 108, 33, 0.25);
+}
+
+.password_wrap {
+  position: relative;
+}
+
+.password_wrap button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.form_meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 1.6rem;
+  font-size: 0.85rem !important;
+}
+
+.remember {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.forgot {
+  color: #f36c21;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login_btn {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem !important;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f36c21, #d85a14) !important;
+  color: #fff !important;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(243, 108, 33, 0.35);
+  transition: 0.25s;
+}
+
+.login_btn:hover {
+  transform: translateY(-2px);
+}
+
+.login_card_right {
+  width: 42%;
+  background: linear-gradient(160deg, #f36c21, #c94e10) !important;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.brand_content h3 {
+  font-size: 1.6rem !important;
+  margin-bottom: 1rem;
+}
+
+.brand_content p {
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.powered_footer {
+  margin-top: 1.4rem;
+  background: #fff !important;
+  padding: 6px 18px;
+  border-radius: 22px;
+  font-size: 0.85rem !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(243, 108, 33, 0.12);
+}
+
+.powered_footer img {
+  width: 26px;
+}
+
+@media (max-width: 768px) {
+  .login_card {
+    flex-direction: column;
+  }
+
+  .login_card_right {
+    display: none;
+  }
+
+  .login_card_left {
+    padding: 2rem;
+  }
+}
+ */
+/* Different direction entirely: instead of a hard two-color split panel
+   (which kept reading as "one empty half + one busy half" no matter how the
+   ratio or fills were tuned), this is one elegant centered card floating on
+   a rich decorative background - the page itself carries the color/depth
+   via a gradient mesh + soft blurred blobs, so the card can stay a clean,
+   focused white surface. */
+.login_page {
+  position: relative;
+  /* height (not min-height) + overflow:hidden caps the page at exactly the
+     viewport - min-height only set a floor, so on shorter screens the
+     card + trust row + footer could push the box taller than the viewport
+     and the whole page would scroll. */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* No bottom padding - the copyright bar should sit flush against the
+     very bottom edge, not float with a gap under it. */
+  padding: clamp(0.5rem, 2vh, 1.5rem) 1.5rem 0;
+  /* Real lab photo (blurred hallway, sample tubes, DNA/wave brand graphics)
+     instead of a purely CSS gradient+blobs backdrop - already has the
+     orange brand accents baked in, so no extra decorative shapes needed. */
+  background: #fff8f3 url('/img/uat.png') center center / cover no-repeat;
+}
+
+/* Badge + card + trust row + powered-by badge are centered together in
+   here (flex:1, its own space) - the copyright Footer is a sibling AFTER
+   this wrapper (not inside it), so it always lands flush at the bottom
+   regardless of how tall this centered group is. */
+.login_center_wrap {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.login_page > .main-footer {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* Environment badge (e.g. "Production") - only rendered when the matched
+   Clients.js entry sets envBadge, so plain UAT keeps no badge at all. Sits
+   right above the logo (in normal flow, not floating in a page corner) so
+   it reads as part of the card's own header instead of a separate overlay. */
+.env_badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+  background: #eafff2;
+  border: 1.5px solid #16a34a;
+  padding: 5px 14px 5px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f7a34;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.22);
+}
+
+.env_dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #16a34a;
+  flex-shrink: 0;
+}
+
+/* A pulsing halo makes the dot read as "live", not just a small colored
+   circle that can get lost against the white pill. */
+.env_dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: #22c55e;
+  opacity: 0.55;
+  animation: envDotPulse 1.8s ease-out infinite;
+}
+
+@keyframes envDotPulse {
+  0% { transform: scale(0.6); opacity: 0.55; }
+  70% { transform: scale(2.1); opacity: 0; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .env_badge {
+    padding: 6px 12px 6px 10px;
+    font-size: 0.72rem;
+  }
+}
+
+.login_card_wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login_card {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow:
+    0 30px 70px rgba(120, 53, 15, .18),
+    0 2px 8px rgba(120, 53, 15, .06);
+  animation: fadeUp .6s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* login_view and forgot_view are placed in the SAME grid cell (both
+   grid-row/grid-column:1) instead of position:absolute - a grid cell
+   auto-sizes to the taller of its (overlapping) items, so the card always
+   fits whichever view is showing with no fixed/min height guess and no
+   clipping, while opacity/transform below still cross-fades between them. */
+.login_card_inner {
+  display: grid;
+  width: 100%;
+}
+
+.login_view,
+.forgot_view {
+  grid-row: 1;
+  grid-column: 1;
+  padding: clamp(1rem, 3vh, 1.75rem) 2.5rem;
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.show-login .login_view {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.show-login .forgot_view {
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+}
+
+.show-forgot .forgot_view {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.show-forgot .login_view {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+}
+
+/* Slim trust row under the card - carries the same "Healthcare Secured"
+   message the old orange panel did, as three quiet inline chips instead of
+   a whole separate colored half of the page. */
+.trust_row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(0.4rem, 1.5vh, 0.9rem);
+  flex-shrink: 0;
+  max-width: 460px;
+}
+
+.trust_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #7c2d12;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(217, 90, 20, 0.14);
+}
+
+.trust_icon {
+  display: flex;
+  color: #f36c21;
+  font-size: 15px;
+}
+
+.login_logo {
+  width: 118px;
+  margin-bottom: 0.9rem;
+}
+
+.login_title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.login_subtitle {
+  color: #6b7280;
+  margin-bottom: 1.1rem;
+}
+
+.form_group {
+  margin-bottom: 0.8rem;
+}
+
+.form_group label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  margin-bottom: 7px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.form_group input {
+  width: 100%;
+  padding: .85rem 2.6rem .85rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background: #fafafa;
+  font-size: .95rem;
+  color: #111827;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.form_group input::placeholder {
+  color: #9ca3af;
+}
+
+.form_group input:focus {
+  outline: none;
+  border-color: #f36c21;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(243,108,33,.16);
+}
+
+.input_icon_wrap {
+  position: relative;
+}
+
+.input_icon_wrap .field_icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 16px;
+  display: flex;
+  pointer-events: none;
+}
+
+.password_wrap {
+  position: relative;
+}
+
+.password_wrap input {
+  padding-right: 2.6rem;
+}
+
+.password_wrap button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+}
+
+.form_meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0 0.9rem;
+  font-size: .85rem;
+}
+
+.form_meta.end {
+  justify-content: flex-end;
+}
+
+.remember {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.forgot {
+  color: #f36c21;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+.login_btn {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: .9rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  background: linear-gradient(135deg,#f36c21,#d85a14);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(243,108,33,.3);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.login_btn:hover:not(:disabled) {
+  box-shadow: 0 18px 36px rgba(243,108,33,.38);
+}
+.google_btn {
+  width: 100%;
+  padding: .9rem;
+  border-radius: 14px;
+  border: 1px solid #a0a0a0;
+  font-size: 1rem !important;
+  font-weight: 600;
+  background: white;
+  /* color: black; */
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(102, 102, 102, 0.35);
+  transition: transform .25s ease;
+  margin-top: 10px;
+}
+
+.login_btn:hover {
+  transform: translateY(-2px);
+}
+
+/* align-self:center - .login_page is a column flex container now (full-height
+   split layout above), so without this the badge stretches/left-aligns
+   instead of floating centered like before. */
+.powered_footer {
+  align-self: center;
+  flex-shrink: 0;
+  margin: clamp(0.4rem, 1.5vh, 0.8rem) 0;
+  background: #fff;
+  padding: 6px 18px 6px 12px;
+  border-radius: 999px;
+  font-size: .85rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.08),
+    inset 0 0 0 1px rgba(243,108,33,.14);
+}
+
+/* Logo is a wide icon+wordmark lockup (150x67) - constraining it by width
+   (the old "width:26px") crushed it down to ~11px tall and made the
+   "itDose" text in it illegible. Constrain by height instead so it scales
+   proportionally and stays crisp. */
+.powered_footer img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.powered_footer strong {
+  color: #d85a14;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .login_card {
+    flex-direction: column;
+  }
+
+  .login_card_right {
+    display: none;
+  }
+
+  .login_card_inner {
+    width: 100%;
+  }
+
+  .login_view,
+  .forgot_view {
+    position: relative;
+    padding: 2rem;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .show-login .login_view {
+     display: block;
+     }
+  .show-login .forgot_view {
+     display: none !important; 
+    }
+  .show-forgot .forgot_view { display: block; }
+  .show-forgot .login_view {
+     display: none !important;
+     }
+}

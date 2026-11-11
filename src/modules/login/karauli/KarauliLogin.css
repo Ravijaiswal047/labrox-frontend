@@ -1,0 +1,302 @@
+:root {
+  --karauli-teal: #0fa89f;
+  --karauli-teal-light: #14c2b8;
+  --karauli-teal-dark: #0a7d76;
+  --karauli-teal-darker: #075853;
+  --karauli-orange: #f5921e;
+  --karauli-orange-dark: #e07d0a;
+  --karauli-ink: #0b3733;
+}
+
+.karauli_login_main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(15, 168, 159, 0.14), transparent 38%),
+    radial-gradient(circle at 92% 88%, rgba(245, 146, 30, 0.10), transparent 42%),
+    linear-gradient(180deg, #f4fdfc 0%, #eefbfa 45%, #f7fbfa 100%);
+}
+
+.karauli_login_main > div:first-child {
+  width: 100vw;
+  display: flex;
+  flex: 1;
+}
+
+.karauli_login_row {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ---------- Form side ---------- */
+.karauli_login_form_section {
+  width: 54%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.karauli_login_form {
+  width: 100%;
+  max-width: 440px;
+  padding: 2.75rem 2.5rem;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px rgba(7, 88, 83, 0.14),
+    0 2px 8px rgba(7, 88, 83, 0.06);
+  border-top: 4px solid var(--karauli-teal);
+  animation: karauliFadeUp .55s ease;
+}
+
+@keyframes karauliFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.karauli_login_logo_link {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.karauli_login_logo {
+  width: 180px;
+  height: auto;
+}
+
+.karauli_login_heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: var(--karauli-ink);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.2px;
+}
+
+.karauli_login_subheading {
+  text-align: center;
+  color: #6b8481;
+  font-size: 0.92rem;
+  margin-bottom: 1.8rem;
+}
+
+.karauli_form_group {
+  margin-bottom: 1.1rem;
+}
+
+.karauli_form_label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--karauli-ink);
+  letter-spacing: 0.2px;
+}
+
+.karauli_text_danger {
+  color: #e64545;
+}
+
+.karauli_form_control {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  border: 1px solid #d3e9e7;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.92rem;
+  color: var(--karauli-ink);
+  background: #fbfffe;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.karauli_form_control::placeholder {
+  color: #9caeac;
+  opacity: 1;
+}
+
+.karauli_form_control:focus {
+  border-color: var(--karauli-teal);
+  box-shadow: 0 0 0 3px rgba(15, 168, 159, 0.16);
+}
+
+.karauli_position_relative {
+  position: relative;
+}
+
+.karauli_toggle_password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: #6b8481;
+  display: flex;
+}
+
+.karauli_form_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.9rem 0 1.5rem;
+  font-size: 0.85rem;
+}
+
+.karauli_remember_me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.karauli_remember_me label {
+  margin-bottom: 0;
+  color: #5a706e;
+}
+
+.karauli_forgot_link {
+  color: var(--karauli-orange-dark);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.karauli_forgot_link:hover {
+  text-decoration: underline;
+}
+
+.karauli_btn_primary {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--karauli-teal-light), var(--karauli-teal-dark));
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(15, 168, 159, 0.32);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.karauli_btn_primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px rgba(15, 168, 159, 0.4);
+}
+
+.karauli_btn_primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Banner / brand side ---------- */
+.karauli_banner_section {
+  width: 46%;
+  align-self: stretch;
+}
+
+.karauli_banner_panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, #eefbfa 0%, #e2f5f3 100%);
+}
+
+.karauli_banner_panel::before,
+.karauli_banner_panel::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.karauli_banner_panel::before {
+  width: 300px;
+  height: 300px;
+  top: -110px;
+  right: -110px;
+  background: rgba(15, 168, 159, 0.22);
+}
+
+.karauli_banner_panel::after {
+  width: 260px;
+  height: 260px;
+  bottom: -100px;
+  left: -90px;
+  background: rgba(245, 146, 30, 0.18);
+}
+
+.karauli_banner_image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 60%;
+  height: 60%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- Footer ---------- */
+.karauli_login_powered_footer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 1.2rem;
+}
+
+.karauli_powered_badge {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  padding: 6px 18px 6px 12px;
+  font-size: 0.92rem;
+  color: #384846;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 20px rgba(7, 88, 83, 0.12);
+}
+
+.karauli_powered_badge img {
+  width: 24px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.karauli_powered_badge strong {
+  color: var(--karauli-teal-dark);
+  font-weight: 700;
+  margin-left: 3px;
+}
+
+@media screen and (max-width: 992px) {
+  .karauli_login_row {
+    padding: 1.5rem 1rem;
+  }
+  .karauli_banner_section {
+    display: none;
+  }
+  .karauli_login_form_section {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .karauli_login_form {
+    padding: 2rem 1.4rem;
+  }
+}
