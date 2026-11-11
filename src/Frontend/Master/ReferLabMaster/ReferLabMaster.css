@@ -1,0 +1,32 @@
+table thead th.theaderThPadding {
+  padding: 3px 4px !important;
+}
+
+tr.tref_rable_row td {
+  padding: 2px 6px !important;
+}
+
+/* Force heading row flex on mobile: Search Details + Search Bar in same row */
+.ReferLabMaster .patient_registration_card .card-title {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+/* secondTitle takes remaining space, right-aligned, no overflow */
+.ReferLabMaster .color-code-search-resp {
+  flex: 1 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  justify-content: flex-end !important;
+}
+
+/* seconTitle content wraps so mobile dots fall below search bar */
+.rlm-secontitle {
+  width: 100%;
+  min-width: 0;
+}
+

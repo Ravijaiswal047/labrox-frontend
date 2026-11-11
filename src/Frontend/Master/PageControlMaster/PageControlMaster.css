@@ -1,0 +1,47 @@
+.save_btn i.bi-plus{
+    font-size: 18px !important;
+}
+
+.save_btn{
+    border-radius: 50%;
+    width: 27px;
+}
+
+.alert_master{
+    position: relative;
+    padding: 8px 6px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.modal_height{
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.title_header{
+    color: #000;
+    font-weight: 600;
+    font-size: 16px !important;
+}
+
+.close span:first-child{
+    font-size: 24px !important;
+    line-height: 10px;
+}
+
+.modal_overflow{
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.tabing_btn{
+    display: flex;
+    align-items: center;
+    /* gap: 4px; */
+    flex-wrap: wrap;
+}
+.mainTable thead {
+    z-index: 2;
+}

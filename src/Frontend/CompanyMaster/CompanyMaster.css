@@ -1,0 +1,101 @@
+.remove_element {
+  display: none !important;
+}
+
+
+.nav-tabs .nav-link {
+  color: #000000;
+  border: 1px solid transparent;
+  border-radius: 0.25rem 0.25rem 0 0;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: "2px"
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: #e9ecef #e9ecef #dee2e6;
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+.nav-tabs .nav-link.active {
+  color: #ffffff !important;
+  background-color: #007bff;
+  border-color: #007bff #007bff #007bff;
+  font-weight: 600;
+}
+
+.nav-tabs .nav-link.active i {
+  color: #ffffff !important;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.tab-content {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.company-logo-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #f8f9fa;
+  min-height: 88px;
+}
+
+.company-logo-preview-box {
+  width: 160px;
+  height: 64px;
+  border: 1px dashed #c5c9d0;
+  border-radius: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.company-logo-preview-img {
+  max-width: 150px;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.company-logo-placeholder {
+  font-size: 11px;
+  color: #6c757d;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.company-logo-label {
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.company-logo-hint {
+  font-size: 11px;
+  color: #6c757d;
+  margin-bottom: 8px;
+}

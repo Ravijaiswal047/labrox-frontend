@@ -1,0 +1,18 @@
+.controller_card > h6{
+    font-size: 12px !important;
+    font-weight: 500;
+}
+
+.controller_card label{
+    font-weight: 400 !important;
+}
+
+.form-group{
+    margin-bottom: 0 !important;
+}
+
+.card_box{
+    display: flex;
+    min-width: 300px;
+    width: fit-content;
+}

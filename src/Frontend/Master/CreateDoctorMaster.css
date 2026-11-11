@@ -1,0 +1,82 @@
+/* CreateDoctorMaster.css - Mobile Responsiveness and Alignment Overrides */
+
+/* Global row and column adjustments on mobile */
+@media (max-width: 768px) {
+  /* Add consistent spacing between vertically stacked form fields */
+  .row > [class*="col-"] {
+    margin-bottom: 15px !important;
+  }
+
+  /* Normalize heights and padding of inputs and selects */
+  select.form-control,
+  input.form-control {
+    height: 33px !important;
+    padding: 4px 8px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+  }
+
+  /* ReactSelect components mobile styling */
+  .form-control__control {
+    height: 33px !important;
+    min-height: 33px !important;
+    border-radius: 6px !important;
+  }
+
+  .form-control__value-container {
+    height: 33px !important;
+    padding: 0 8px !important;
+  }
+
+  .form-control__single-value {
+    font-size: 13px !important;
+  }
+
+  /* Align switch controls nicely on mobile without left indent */
+  .row > .col-sm-auto {
+    margin-left: 0 !important;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Form check inline alignment on mobile */
+  .form-check {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .form-check-input {
+    margin-top: 0 !important;
+  }
+}
+
+/* Floating labels for SelectBox components (which lack :placeholder-shown support) */
+select.form-control + label.lable {
+  font-size: 0.83rem !important;
+  height: fit-content !important;
+  position: absolute;
+  top: -8px !important;
+  left: 7px !important;
+  background-color: #fff !important;
+  padding: 0px 5px !important;
+  font-weight: 600 !important;
+  z-index: 2;
+  opacity: 1 !important;
+  color: #555 !important;
+}
+
+/* ReactSelect floating label style to match standard floaters */
+.form-control__placeholder {
+  position: absolute !important;
+  top: -10px !important;
+  left: 10px !important;
+  background-color: #fff !important;
+  padding: 0 4px !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  z-index: 10 !important;
+  display: block !important;
+  height: fit-content !important;
+}

@@ -1,0 +1,89 @@
+/* Input with Icon Wrapper */
+.input-with-icon {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 8px;
+  position: relative;
+}
+
+/* Input takes most of the space */
+.input-with-icon > div {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Eye Button Styling */
+.eye-button {
+  padding: 6px 10px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  max-width: 38px;
+  height: calc(1.5em + 0.75rem + 2px);
+  transition: all 0.15s ease-in-out;
+  align-self: flex-end;
+  margin-bottom: 1px;
+}
+
+
+.eye-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.eye-button:active {
+  transform: scale(0.95);
+}
+
+/* Ensure input doesn't overflow */
+.input-with-icon .form-control {
+  width: 100%;
+}
+
+/* Error message handling */
+.input-with-icon + .error-message {
+  margin-top: 4px;
+}
+
+/* Disabled Audit Log date pickers should show a blocked cursor */
+.audit-log-datepicker.p-calendar-disabled,
+.audit-log-datepicker.p-calendar-disabled * {
+  cursor: not-allowed !important;
+  pointer-events: auto !important;
+}
+
+/* Allow Zero Rate Booking toggle — bold red label + red track (both on/off states) */
+/* NOTE: this app uses react-bootstrap v1 (Bootstrap 4 "custom-control" switch markup),
+   not Bootstrap 5's .form-check-input/.form-check-label — must target the v4 classes. */
+.allow-rate-type-zero-switch .custom-control-label {
+  font-weight: 700;
+  color: #dc3545;
+}
+
+.allow-rate-type-zero-switch .custom-control-label::before {
+  border-color: #dc3545 !important;
+  background-color: #f5b8bd !important;
+}
+
+.allow-rate-type-zero-switch .custom-control-label::after {
+  background-color: #dc3545 !important;
+}
+
+.allow-rate-type-zero-switch .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.allow-rate-type-zero-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: #fff !important;
+}
+
+.allow-rate-type-zero-switch .custom-control-input:focus ~ .custom-control-label::before {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}

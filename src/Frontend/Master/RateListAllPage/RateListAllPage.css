@@ -1,0 +1,31 @@
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 6px !important;
+}
+
+.p-tabview-nav{
+    gap: 2rem !important;
+}
+
+.nav-item.nav-link{
+  color: #000;
+  font-weight: 500;
+}
+.nav-item.nav-link.active{
+    color: #fff !important;
+}
+
+.info_section{
+  background-color: #e2dfdf;
+  padding: 4px 6px;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+.info_section > p{
+  margin:0;
+  margin-right: 2rem;
+}
+
+.nav-tabs {
+  margin-bottom: 0px !important;
+}

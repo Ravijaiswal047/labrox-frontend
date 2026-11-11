@@ -1,0 +1,17 @@
+.infoIcon_cls {
+  font-size: 16px !important;
+  margin-bottom: 0;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.counticon {
+  width: fit-content;
+  height: 24px;
+  border-radius: 20%;
+  padding: 2px 4px;
+  background-color: #d4d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,11 @@
+/* Mobile: make Search Data accordion header always flex */
+.mm-search-accordion .card-title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.mm-search-accordion .main-heading-link {
+  display: flex !important;
+  align-items: center;
+}
