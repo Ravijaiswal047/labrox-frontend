@@ -1,0 +1,460 @@
+.color_dot {
+  width: fit-content;
+  padding: 1px 8px;
+  border: 1px solid #38383896;
+  background-color: #ffc0cb;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 11px !important;
+}
+
+.barcode_title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.kohdskj .input-group-text {
+  height: 24px;
+  font-weight: 500;
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
+}
+
+.custome_little {
+  height: 28px !important;
+}
+
+div.title_custom div label {
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.6px;
+}
+
+#btnSave:focus {
+  border: 2px solid rgb(82, 81, 81) !important;
+}
+
+div.d_none {
+  display: none !important;
+}
+
+.mandatory_field {
+  border-bottom: 2px solid #ca1010 !important;
+  border-bottom-color: #ca1010 !important;
+  border-radius: 4px;
+}
+
+.small-col-sm {
+  flex: 0 0 23%;
+  max-width: 24%;
+}
+/* Mobile Responsiveness Fixes */
+@media (max-width: 768px) {
+  /* Ensure header elements don't overlap */
+  .card-header .card-title {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Fix for common pattern: input (86/87%) + button (10%) */
+  div[style*="width: 86%"],
+  div[style*="width: 87%"] {
+    width: calc(100% - 32px) !important;
+    display: inline-block;
+  }
+
+  div[style*="width: 10%"] {
+    width: 28px !important;
+    display: inline-block;
+    margin-left: 2px !important;
+    vertical-align: bottom;
+  }
+
+  /* Fix for Mobile Stepper on small screens */
+  .mobile-stepper-container {
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+}
+
+/* Comprehensive Mobile UI Overhaul */
+@media (max-width: 768px) {
+  /* Header Fixes */
+  .card-header {
+    padding: 10px !important;
+  }
+
+  .card-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Form Spacing */
+  .row.g-2 > [class*="col-"] {
+    margin-bottom: 15px !important;
+  }
+
+  /* Improved Search Buttons Alignment */
+  div[style*="width: 10%"] {
+    display: flex !important;
+    align-items: flex-end !important;
+    padding-bottom: 0 !important;
+  }
+
+  div[style*="width: 10%"] button {
+    height: 38px !important;
+    width: 38px !important;
+    border-radius: 8px !important;
+    margin-left: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Modern Input Styling for Mobile */
+  .form-control,
+  input,
+  select {
+    height: 38px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border: 1px solid #dee2e6 !important;
+  }
+
+  /* Fix Floating Labels positioning */
+  label.customINputLabel {
+    font-size: 11px !important;
+    top: -9px !important;
+    left: 10px !important;
+    background: #fff !important;
+    padding: 0 5px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Stepper Improvements */
+  .mobile-stepper-container {
+    padding: 10px 0 !important;
+    margin-bottom: 10px !important;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Buttons at the bottom */
+  .btn-primary,
+  .btn-success,
+  .btn-info {
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    font-weight: 500 !important;
+  }
+
+  .profile-image-container {
+    width: 67%;
+    height: 88px;
+    margin-left: 10px;
+  }
+
+  .action-btn {
+    width: 78%;
+    margin-left: 5px;
+    bottom: 5px;
+  }
+  .reload-icon-mobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+  }
+
+  /* Fix small action buttons next to inputs (Pre Booking, Membership) on mobile */
+  .btn-sm.btn-primary,
+  .btn-sm.btn-danger,
+  .btn-sm.btn-success {
+    padding: 4px 8px !important;
+    height: 33px !important;
+    min-width: 33px;
+    border-radius: 6px !important;
+  }
+
+  .profile-image-container {
+    width: 130px !important;
+    height: 130px !important;
+    margin: 0 auto !important;
+  }
+
+  .action-btn {
+    width: 130px !important;
+    padding: 6px 12px !important;
+    font-size: 14px !important;
+    margin: 4px auto !important;
+    display: block !important;
+  }
+
+  /* Registration Details header (mobile): shrink the photo + PDF/H buttons
+     so they fit next to the Membership/Pre Booking fields instead of the
+     full-size 130px versions above. Two-class selectors beat the single
+     class !important rules regardless of source order. */
+  .profile-image-container.pr-photo-mobile {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 auto !important;
+  }
+
+  .action-btn.pr-action-btn-mobile {
+    width: 30px !important;
+    height: 26px !important;
+    padding: 2px !important;
+    font-size: 11px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Widen the Discount input in the Booking Details test card (mobile only) */
+  .discount-input-resp {
+    width: 80px !important;
+  }
+
+  /* Fix for header inputs overlap */
+  .color-code-search-resp {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Fix button container overflow - container was 28px but button was 38px+5px margin */
+  div[style*="width: 10%"] {
+    width: 36px !important;
+    min-width: 36px !important;
+    flex-shrink: 0 !important;
+    margin-left: 4px !important;
+  }
+
+  /* Make BOTH Ref Lab and Referred Doctor buttons exactly same size */
+  div[style*="width: 10%"] button,
+  div[style*="width: 10%"] .tooltip-container button {
+    width: 32px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 13px !important;
+  }
+
+  /* Fix tooltip-container so it doesn't shrink the button */
+  div[style*="width: 10%"] .tooltip-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Fix input divs to use flex:1 so they don't overflow with fixed button */
+  div[style*="width: 90%"],
+  div[style*="width: 87%"],
+  div[style*="width: 86%"] {
+    flex: 1 1 0% !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Gap between each form field on mobile */
+  .row > .col-sm-2,
+  .row > .col-sm-3,
+  .row > .col-sm-4 {
+    margin-bottom: 8px !important;
+  }
+
+  /* Fix Ref Lab & Referred Doctor button vertical alignment (exclude flex-column containers) */
+  .col-12.d-flex:not(.flex-column),
+  .p-inputgroup.d-flex {
+    align-items: flex-end !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Remove form-group bottom margin so buttons align with input bottom */
+  .custominputbox .form-group {
+    margin-bottom: 0 !important;
+  }
+
+  /* Normalize input heights inside custominputbox for consistency */
+  .custominputbox .form-control {
+    height: 33px !important;
+    padding: 2px 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* Registration Details accordion header - compact column layout on mobile */
+  .color-code-search-resp .row.g-2 {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .color-code-search-resp .row.g-2 > [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Trim the trailing blank space at the bottom of the Registration
+     Details header (below Pre Booking No / the photo+buttons column) —
+     only this header, since .color-code-search-resp is unique to it. */
+  .color-code-search-resp {
+    margin-bottom: -10px !important;
+  }
+
+  /* Compact inputs in Registration Details header */
+  .color-code-search-resp .form-control {
+    height: 33px !important;
+    padding: 2px 8px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+  }
+
+  .color-code-search-resp .customINputLabel {
+    font-size: 10px !important;
+    top: -7px !important;
+  }
+
+  /* Ensure flex rows inside Registration Details stay as row + fix button upward drift */
+  .color-code-search-resp .d-flex.align-items-end {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  /* Remove bottom margins that push buttons up with align-items:center */
+  .color-code-search-resp .flex-shrink-0.mb-1,
+  .color-code-search-resp .btn.mb-1 {
+    margin-bottom: 0 !important;
+  }
+
+  .color-code-search-resp .ms-1.d-flex.gap-1 {
+    margin-bottom: 0 !important;
+  }
+
+  /* Booking Details test table (mobile): keep the real column/grid layout
+     instead of the site-wide "#no-more-tables" card-stacking behaviour
+     (src/index.css) which turns every td into a stacked block row with a
+     data-title label. Two-selector combo (.pr-booking-table-desktop-grid
+     #no-more-tables) plus !important beats those global rules regardless
+     of source order. */
+  .pr-booking-table-desktop-grid #no-more-tables,
+  .pr-booking-table-desktop-grid #no-more-tables table,
+  .pr-booking-table-desktop-grid #no-more-tables thead,
+  .pr-booking-table-desktop-grid #no-more-tables tbody,
+  .pr-booking-table-desktop-grid #no-more-tables tr {
+    display: table !important;
+    width: 100% !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables {
+    overflow-x: auto !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables table {
+    display: table !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables thead {
+    display: table-header-group !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables tbody {
+    display: table-row-group !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables tr {
+    display: table-row !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables thead tr {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables th,
+  .pr-booking-table-desktop-grid #no-more-tables td {
+    display: table-cell !important;
+    position: static !important;
+    padding: 4px 6px !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    width: auto !important;
+  }
+
+  .pr-booking-table-desktop-grid #no-more-tables td:before {
+    content: none !important;
+  }
+
+  /* Due Amount / Total Discount Amount labels (mobile only): Bootstrap's
+     default `label { margin-bottom: .5rem }` was inflating the gap between
+     the two wrapped lines of this 2x2 grid. Only touch the <label>
+     elements themselves here — leave Billing Remarks / Submit (and their
+     column gutter padding) completely untouched. */
+  .pr-due-disc-submit-mobile {
+    row-gap: 2px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pr-due-disc-submit-mobile > label {
+    margin: 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* The Billing Remarks button (right column, untouched) is taller than
+     the Due Amount label next to it, so that flex line renders taller
+     than the label's own text — leaving blank space below "Due Amount"
+     before the "Total Discount Amount" line begins. Pull the second
+     label up into that leftover blank space so the two texts sit close
+     together, without changing the row's own height or touching the
+     Billing Remarks / Submit buttons at all. */
+  .pr-total-discount-mobile {
+    margin-top: -20px !important;
+  }
+
+  /* Total Amount block (mobile only): sits right below the Due Amount /
+     Total Discount Amount stack. The Billing Remarks / Submit buttons
+     (right column, untouched) are taller than the labels next to them,
+     so the row above ends up taller than its own text content — pull
+     this block up into that leftover blank space so it sits close to
+     the column content above it. */
+  .pr-total-amount-mobile {
+    padding-top: 0 !important;
+    margin-top: -35px !important;
+  }
+
+  .pr-total-amount-mobile .row {
+    margin-top: 0 !important;
+  }
+}
+
+/* Desktop-only: Fix Registration Details header items width so labels don't truncate */
+@media (min-width: 769px) {
+  .color-code-search-resp .row.g-2 > [class*="col-"] {
+    flex: 1 0 180px !important;
+    width: auto !important;
+    max-width: 260px !important;
+  }
+
+  .color-code-search-resp .row.g-2 {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
