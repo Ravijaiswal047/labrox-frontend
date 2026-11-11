@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="LIMS 9.O" />
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/all.js"
+    ></script>
+
+    <!-- <link rel="apple-touch-icon" href="/logo192.png" /> -->
+    <!-- <link rel="apple-touch-icon" /> -->
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>LabRox | New Gen Software</title>
+    <!-- <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v16.0'
+        });
+      };
+    </script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+      (function () {
+        try {
+          var SECRET_KEY = "your-secret-key";
+          var encryptedData = localStorage.getItem("userData");
+          if (encryptedData) {
+            var bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+            var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+            if (decryptedData) {
+              var userData = JSON.parse(decryptedData);
+              var fontSize = Number(userData?.applicationFont || 13);
+              document.documentElement.style.setProperty(
+                "--app-font-size",
+                fontSize + "px"
+              );
+              var height = Math.max(28, fontSize * 2);
+              document.documentElement.style.setProperty(
+                "--control-height",
+                height + "px"
+              );
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" class=""></div>
+    <script type="module" src="/src/index.jsx"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </body>
+</html>
