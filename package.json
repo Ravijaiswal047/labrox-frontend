@@ -119,7 +119,7 @@
     "react-select": "^5.10.1",
     "react-simple-captcha": "^9.3.1",
     "react-time-picker": "^8.0.2",
-    "react-toastify": "11.0.5",
+    "react-toastify": "11.2.0",
     "react-tooltip": "^5.30.0",
     "react-webcam": "^7.2.0",
     "recharts": "^3.6.0",
