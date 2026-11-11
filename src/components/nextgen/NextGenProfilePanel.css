@@ -1,0 +1,293 @@
+.ng-profile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  display: flex;
+  justify-content: flex-end;
+  animation: ng-overlay-in 220ms ease;
+}
+
+/* This div carries BOTH `nextgen-mode` and `ng-profile-overlay` (needed so
+   shell.css's `.nextgen-mode X` rules cascade to everything inside the
+   panel) — and shell.css has its own `.nextgen-mode { background:
+   var(--ng-bg) !important }`, a solid opaque navy, single-class selector.
+   A plain `.ng-profile-overlay { background: transparent !important }` is
+   the same specificity as that (one class each), so which one wins is
+   whichever happens to load later — unpredictable in dev mode, and it was
+   losing. Targeting the compound `. nextgen-mode.ng-profile-overlay` (two
+   classes) is strictly more specific, so this wins regardless of order. */
+.nextgen-mode.ng-profile-overlay {
+  background: transparent !important;
+}
+
+@keyframes ng-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ng-profile-panel {
+  width: 460px;
+  max-width: 92vw;
+  height: 100%;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--ng-surface) 82%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--ng-border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--ng-text, #e8ecf5);
+  animation: ng-panel-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes ng-panel-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Sticky at the top of the panel's own scroll (.ng-profile-panel has
+   overflow-y:auto) — the negative margin cancels the panel's own 20px
+   padding so the header can sit flush against the true scroll-container
+   edge (required for `position: sticky; top` to work flush), then re-adds
+   that same 20px as its own padding so the visual spacing is unchanged.
+   `top: -20px` matches that same offset so it locks in place exactly
+   where it started rather than at a shifted position. A slightly
+   different tone (primary-tinted, like the Classic accordion header) +
+   its own bottom border and shadow give it a visible "elevated bar" edge
+   once content scrolls underneath, instead of blending into the panel. */
+.ng-profile-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: -20px;
+  z-index: 5;
+  margin: -20px -20px 0;
+  padding: 16px 20px;
+  background: color-mix(in srgb, var(--ng-primary-500) 12%, var(--ng-surface));
+  border-bottom: 1px solid var(--ng-border);
+  box-shadow: var(--ng-shadow-sm);
+}
+
+.ng-profile-panel__avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #ec4899);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ng-profile-panel__avatar--lg {
+  width: 54px;
+  height: 54px;
+  font-size: 18px;
+}
+
+.ng-profile-panel__avatar--img {
+  object-fit: cover;
+  background: var(--ng-navy-700);
+  border: 1px solid rgba(var(--ng-ink), 0.15);
+}
+
+.ng-profile-panel__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ng-profile-panel__identity strong {
+  font-size: 15px;
+}
+
+.ng-profile-panel__identity span {
+  font-size: 12px;
+  color: var(--ng-text-muted, #8b96ad);
+}
+
+.ng-profile-panel__close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--ng-ink), 0.1);
+  background: rgba(var(--ng-ink), 0.06);
+  color: var(--ng-text, #e8ecf5);
+  cursor: pointer;
+}
+
+.ng-profile-panel__close:hover {
+  background: rgba(248, 113, 113, 0.18);
+  color: #f87171;
+}
+
+.ng-profile-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ng-profile-panel__design-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ng-profile-panel__design-row .ng-mode-toggle {
+  flex: 1;
+}
+
+.ng-profile-panel__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ng-text-muted, #8b96ad);
+}
+
+.ng-profile-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  overflow: visible;
+}
+
+.ng-profile-panel__action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-radius: var(--ng-radius-md, 10px);
+  border: 1px solid rgba(var(--ng-ink), 0.08);
+  background: rgba(var(--ng-ink), 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ng-text, #e8ecf5);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.ng-profile-panel__action:hover {
+  transform: translateY(-2px);
+  background: rgba(var(--ng-ink), 0.08);
+  border-color: color-mix(in srgb, var(--tile-accent, #3b82f6) 55%, transparent);
+}
+
+.ng-profile-panel__action-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    var(--tile-accent, #3b82f6),
+    color-mix(in srgb, var(--tile-accent, #3b82f6) 55%, #0b1220)
+  );
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--tile-accent, #3b82f6) 35%, transparent);
+}
+
+.ng-profile-panel__action-text {
+  text-align: center;
+}
+
+/* Embedded legacy icon-trigger components (Theme/Language/Voice/FontSize/
+   CenterDropdown/DesignationDropdown) render their own <i>/<li>/<ul> markup
+   — normalize it to sit centered inside the gradient icon slot instead of
+   rebuilding each one from scratch. */
+.ng-profile-panel__action--embed .ng-profile-panel__action-icon {
+  cursor: pointer;
+}
+
+.ng-profile-panel__action-icon li {
+  list-style: none;
+}
+
+.ng-profile-panel__action-icon i,
+.ng-profile-panel__action-icon svg {
+  color: #fff !important;
+  font-size: 15px !important;
+}
+
+.ng-profile-panel__action-icon .dropdown-toggle::after {
+  display: none;
+}
+
+.ng-profile-panel__profile-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ng-profile-panel__profile-fields {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ng-profile-panel__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--ng-text, #e8ecf5);
+  background: rgba(var(--ng-ink), 0.04);
+  border: 1px solid rgba(var(--ng-ink), 0.08);
+  border-radius: var(--ng-radius-sm, 6px);
+  padding: 7px 10px;
+}
+
+.ng-profile-panel__field i {
+  color: var(--ng-primary-500, #3b82f6);
+}
+
+.ng-profile-panel__logout {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  margin-top: auto;
+  border-radius: var(--ng-radius-md, 10px);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.08);
+  color: #f87171;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 140ms ease;
+}
+
+.ng-profile-panel__logout:hover {
+  background: rgba(248, 113, 113, 0.18);
+}

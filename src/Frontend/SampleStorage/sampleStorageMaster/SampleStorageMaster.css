@@ -1,0 +1,12 @@
+.nav-tabs .nav-link {
+  background-color: unset;
+  color: #000 !important;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #b48af6;
+}
+.text_black a{
+  color: #222020;
+}
+

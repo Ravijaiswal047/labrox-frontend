@@ -1,0 +1,42 @@
+
+.sampleStatusClass{
+    gap: 8px !important;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dlcCheckBox label{
+    display: inline;
+}
+
+td span.required_forvldl{
+    /* background-color: #4d4dce !important; */
+    color: #4d4dce !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
+}
+
+.p-autocomplete-panel {
+  width: 220px !important;    /* match input width */
+  max-width: 100% !important;
+}
+
+.p-float-label:has(.p-inputwrapper-focus) label,
+.p-float-label:has(input.p-filled):not(.p-inputwrapper-focus) label{
+    top: 1px;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    background-color: #fff;
+    color: inherit !important;
+}
+
+label:not(.form-check-label):not(.custom-file-label){
+    font-weight: 500 !important;
+    color: inherit;
+}
+
+@media screen and (max-width:576px) {
+    .p-autocomplete-panel{
+        width: 80% !important;
+    }
+}

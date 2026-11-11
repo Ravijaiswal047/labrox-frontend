@@ -1,0 +1,51 @@
+/* Force heading row flex on mobile: Search Result + Search Bar in same row */
+.pts-results-accordion .card-title {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+/* Allow seconTitle to size properly, no overflow scroll */
+.pts-results-accordion .color-code-search-resp {
+  flex: 1 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  justify-content: flex-end !important;
+}
+
+
+/* Override nowrap from parent */
+.remarks-column {
+  min-width: 220px;
+  max-width: 300px;
+  width: 250px;
+  white-space: normal !important;   /* Override nowrap */
+  word-break: break-word;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .remarks-column {
+    min-width: 160px;
+    width: 180px;
+  }
+}
+
+.rateType-column {
+  min-width: 220px;
+  max-width: 300px;
+  width: 250px;
+  white-space: normal !important;   /* Override nowrap */
+  word-break: break-word;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .rateType-column {
+    min-width: 160px;
+    width: 180px;
+  }
+}

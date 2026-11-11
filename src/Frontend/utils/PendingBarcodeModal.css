@@ -1,0 +1,82 @@
+.pending-barcode-table-wrap #no-more-tables {
+  white-space: normal !important;
+}
+
+.pending-barcode-table-wrap .mainTable th,
+.pending-barcode-table-wrap .mainTable td,
+.pending-barcode-table-wrap table th,
+.pending-barcode-table-wrap table td {
+  white-space: normal !important;
+  word-break: break-word;
+  vertical-align: middle !important;
+}
+
+.pending-barcode-table-wrap table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pending-barcode-table-wrap .col-sno {
+  width: 56px;
+  min-width: 56px;
+}
+
+.pending-barcode-table-wrap .col-check {
+  width: 56px;
+  min-width: 56px;
+  max-width: 56px;
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+.pending-barcode-table-wrap .col-check .form-check-input,
+.pending-barcode-table-wrap .col-check input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  float: none !important;
+  position: static !important;
+  vertical-align: middle;
+  cursor: pointer;
+  accent-color: #0d6efd;
+}
+
+.pending-barcode-table-wrap .centre-group-row td {
+  background: #eef2ff;
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  border-top: 1px solid #c7d2fe;
+  border-bottom: 1px solid #c7d2fe;
+  padding: 8px 10px !important;
+}
+
+.pending-barcode-table-wrap .centre-group-meta {
+  font-weight: 500;
+  color: #475569;
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .pending-barcode-table-wrap table,
+  .pending-barcode-table-wrap thead,
+  .pending-barcode-table-wrap tbody,
+  .pending-barcode-table-wrap th,
+  .pending-barcode-table-wrap td,
+  .pending-barcode-table-wrap tr {
+    display: revert !important;
+  }
+
+  .pending-barcode-table-wrap td:before {
+    content: none !important;
+  }
+
+  .pending-barcode-table-wrap .col-check {
+    display: table-cell !important;
+  }
+}

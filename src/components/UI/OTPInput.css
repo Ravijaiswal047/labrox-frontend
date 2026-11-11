@@ -1,0 +1,42 @@
+.otp_container {
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;  /* Center horizontally */
+  gap: 20px;                           /* Space between boxes */
+  margin-top: 10px;
+}
+
+.otp_input {
+  width: 100% !important;        /* Make each input stretch */
+  max-width: 35px;               /* Keep box size balanced (adjust as needed) */
+  height: 35px;                  /* Match your text input height */
+  margin: 0 5px;
+  font-size: 18px;
+  border: 0.5px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  outline: none;
+}
+
+.otp_input:focus {
+  border-color: #5b66eb;
+}
+
+@media screen and (max-width: 768px) {
+  .otp_input {
+    /* height: 38px !important;     */
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .otp_container {
+    gap: 6px !important;    /* smaller space between otp fields */
+  }
+
+  .otp_input {
+    /* max-width: 45px !important; 
+    height: 42px !important; */
+    margin: 0 2px;
+  }
+}

@@ -1,0 +1,33 @@
+@media (max-width: 767px) {
+  /* Sample Storage Device Master heading - ViewMenu on right */
+  .dm-device-heading .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .dm-device-heading .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+
+  /* Device List heading - search bar on right */
+  .dm-search-heading .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .dm-search-heading .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+
+  .dm-search-heading .color-code-search-resp input {
+    width: 130px !important;
+    font-size: 12px;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}

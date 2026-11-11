@@ -1,0 +1,34 @@
+.ng-accordion {
+  background: var(--ng-surface, #fff);
+  border: 1px solid var(--ng-border, #e2e8f0);
+  border-radius: var(--ng-radius-md, 10px);
+  margin-bottom: var(--ng-space-3, 12px);
+  overflow: hidden;
+}
+
+.ng-accordion .ng-heading {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--ng-border, #e2e8f0);
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.ng-accordion__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ng-transition, 200ms ease);
+}
+
+.ng-accordion__body.is-open {
+  grid-template-rows: 1fr;
+}
+
+.ng-accordion__inner {
+  overflow: hidden;
+  padding: 0 var(--ng-space-4, 16px);
+}
+
+.ng-accordion__body.is-open .ng-accordion__inner {
+  padding: var(--ng-space-4, 16px);
+}

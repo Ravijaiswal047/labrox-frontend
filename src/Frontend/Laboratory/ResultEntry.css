@@ -1,0 +1,343 @@
+.sampleStatusClass{
+    gap: 8px !important;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dlcCheckBox label{
+    display: inline;
+}
+
+td span.required_forvldl{
+    /* background-color: #4d4dce !important; */
+    color: #4d4dce !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
+}
+
+.p-autocomplete-panel {
+  width: 220px !important;    /* match input width */
+  max-width: 100% !important;
+}
+
+.p-float-label:has(.p-inputwrapper-focus) label,
+.p-float-label:has(input.p-filled):not(.p-inputwrapper-focus) label{
+    top: 1px;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    background-color: #fff;
+    color: inherit !important;
+}
+
+label:not(.form-check-label):not(.custom-file-label){
+    font-weight: 500 !important;
+    color: inherit;
+}
+
+.wrap-fix .custom-col {
+  flex: 0 0 auto;
+}
+
+.wrap-fix {
+  gap: 16px;   /* adjust spacing as needed */
+  row-gap: 4px;
+}
+
+.vertical-center {
+  vertical-align: middle !important;
+}
+
+@media screen and (max-width:576px) {
+    .p-autocomplete-panel{
+        width: 80% !important;
+    }
+}
+
+/* Result Entry header (mobile only): keep "Result Entry" title and
+   "Total Patient" / "Total Test Count" all on ONE single row instead of
+   the title wrapping to its own line above the stats. Scoped via
+   :has(#pr_id_11) — #pr_id_11 is this header's unique id — so no other
+   page/accordion is affected. */
+@media (max-width: 768px) {
+  .card-title:has(#pr_id_11) {
+    flex-wrap: nowrap !important;
+  }
+
+  .card-title:has(#pr_id_11) > div.w-100 {
+    width: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  #pr_id_11 {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    width: auto !important;
+  }
+
+  #pr_id_11 .link-title-item {
+    white-space: nowrap;
+    font-size: 11px !important;
+    padding: 5px 0 !important;
+  }
+}
+
+/* @media (min-width: 992px) {
+  #no-more-tables {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+    white-space: normal !important;
+    cursor: default !important;
+  }
+} */
+/* @media (min-width: 1200px) {
+  #no-more-tables {
+    overflow-x: hidden !important;
+    white-space: normal !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  #no-more-tables table {
+    width: 100% !important;
+    table-layout: fixed !important;  
+  }
+}
+
+@media (min-width: 1200px) {
+  #no-more-tables th,
+  #no-more-tables td {
+    white-space: normal !important;
+    word-break: break-word;
+  }
+} */
+
+.resultInput {
+  background-color: white;
+  color: black !important;
+  font-weight: 510 !important;
+}
+
+textarea.resultInput {
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.resultInput:disabled {
+  background-color: white !important;
+  color: black !important;
+  opacity: 1 !important;
+  
+}
+
+
+@media (max-width: 768px) {
+  .resultEntryCssTable {
+    max-width: 90vw; /* tooltip takes at most 90% of viewport width */
+    font-size: 0.85rem; /* optional: smaller font on mobile */
+  }
+}
+
+.resultEntryCssTable table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.resultEntryCssTable th,
+.resultEntryCssTable td {
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+/* ── ResultEntry.css ── */
+
+/* Help Menu Dropdown */
+.suggestion-data {
+  width: 100%;
+  position: absolute;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #dddfeb;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;        /* ✅ scroll */
+  overflow-y: auto;         /* ✅ scroll */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  top: 100%;                /* ✅ appears below input */
+  left: 0;
+}
+
+.suggestion-data li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-data li:last-child {
+  border-bottom: none;
+}
+
+.suggestion-data li:hover {
+  background-color: #f0f4ff;
+  color: #007bff;
+}
+
+.suggestion-data li.matchIndex {
+  background-color: #e0ebff;
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* Result-entry detail panel (opened via the eye/edit icon) — the chips
+   header row and the Save/Approve/etc action row both used to render with
+   no background/polish of their own (a couple of background-color
+   experiments had been commented out), leaving them looking like bare,
+   unstyled HTML sitting on whatever page background happened to be behind
+   them. Pure visual polish only — every element inside keeps its existing
+   onClick/logic untouched. */
+.re-detail-header {
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.re-detail-chips {
+  /* background: linear-gradient(135deg, #1565c0, #0d47a1); */
+  border-radius: 8px;
+  padding: 8px 12px !important;
+  color: #fff;
+}
+
+.re-detail-chips span,
+.re-detail-chips a {
+  color: #fff;
+}
+
+.re-action-row {
+  gap: 8px 10px;
+  padding: 4px 0;
+}
+
+.re-action-row .btn {
+  border-radius: 6px !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.re-action-row .btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.re-action-row .btn:active:not(:disabled) {
+  transform: translateY(0);
+  filter: brightness(0.96);
+}
+
+/* NextGen dark mode: the surrounding page is already dark, so the chips
+   header's blue tint needs to sit a shade darker/richer to still read as
+   distinct chrome rather than another flat panel, and the action buttons
+   need a visible border since NextGen's own dark surfaces are low-contrast
+   against plain box-shadow alone. */
+.nextgen-mode .re-detail-chips {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ng-primary-500) 55%, #0a1a33), color-mix(in srgb, var(--ng-primary-500) 30%, #050d1a));
+}
+
+.nextgen-mode .re-action-row .btn {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Resizable image wrapper used in comment contentEditable */
+
+.re-resizable-image {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  resize: both;
+  overflow: auto;
+  max-width: 100%;
+  border: 1px dashed #e0e0e0;
+  padding: 2px;
+  margin: 2px 0;
+}
+
+.re-resizable-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Minor styling for the editable comment area */
+
+
+
+/* Enhanced Action Row & Buttons Layout */
+.re-action-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-end !important;
+  gap: 8px 12px !important;
+  padding: 8px 14px !important;
+  margin: 12px 0 6px 0 !important;
+  background: #f8f9fa !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+}
+
+.re-action-row > div {
+  margin-bottom: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+
+.re-action-row .col-sm-2,
+.re-action-row .col-sm-1 {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+.re-action-row .col-sm-2 {
+  min-width: 200px !important;
+}
+
+.re-action-row .col-sm-1 {
+  min-width: 140px !important;
+}
+
+.re-action-row .form-group,
+.re-action-row .input-group {
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.re-action-btn-item {
+  display: inline-flex !important;
+  align-items: flex-end !important;
+  margin-bottom: 0 !important;
+}
+
+.re-action-btn-item .btn {
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+  padding: 4px 14px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+}

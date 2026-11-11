@@ -1,0 +1,36 @@
+.custom-two-row-table th,
+.custom-two-row-table td {
+  padding: 6px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.custom-two-row-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  /* border: 2px solid #000;  */
+}
+
+.table-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px) {
+  .custom-two-row-table th,
+  .custom-two-row-table td {
+    font-size: 0.75rem;
+    padding: 4px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .custom-two-row-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,45 @@
+.ng-no-record {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 48px 20px;
+}
+
+.ng-no-record__glow {
+  position: absolute;
+  top: 10px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.ng-no-record__badge {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #93c5fd;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ng-no-record__text {
+  position: relative;
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ng-text-muted, #8b96ad);
+  letter-spacing: 0.02em;
+}

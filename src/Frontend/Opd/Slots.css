@@ -1,0 +1,88 @@
+.slot-container {
+  padding: 20px;
+}
+.slot-box {
+  border-radius: 9999px;
+  padding: 2px 0px;
+  background-color: #88807c;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+}
+
+.slot-pill-time {
+  text-transform: uppercase;
+}
+
+/* ---------- STATUS COLORS ---------- */
+.slot-available {
+  background-color: #3cb371;
+  cursor: pointer;
+}
+
+/* Booked */
+.slot-booked {
+  background-color: #fee188;
+  color: #000000;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Confirmed */
+.slot-confirmed {
+  background-color: #9585bf;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Selected (HIGHEST PRIORITY) */
+.slot-selected {
+  background-color: #d6487e !important;
+  color: #ffffff !important;
+  border: 2px solid #b82f5f;
+  transform: scale(1.05);
+}
+
+/* Expired */
+.slot-expired {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Mobile */
+.slot-mobile {
+  background-color: #3a87ad;
+  cursor: not-allowed;
+}
+
+/* ---------- DATE TITLE ---------- */
+.ot-name {
+  font-weight: bold !important;
+  font-size: 20px !important;
+  margin-bottom: 3px !important;
+}
+
+/* ---------- NO SLOTS BLINK ---------- */
+.blink-red {
+  color: red;
+  font-size: 20px !important;
+  font-weight: 800;
+  animation: smooth-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes smooth-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

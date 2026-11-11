@@ -1,0 +1,12 @@
+svg.inserFyIcon{
+    font-size: 23px !important;
+    cursor: pointer;
+}
+
+.inertBtn{
+    padding: 2px 0 !important;
+}
+
+.inertBtn:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

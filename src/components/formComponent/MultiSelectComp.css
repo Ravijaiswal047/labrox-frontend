@@ -1,0 +1,55 @@
+.floating-label-container {
+  position: relative;
+}
+
+.floating-labelxx {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  font-size: 11px !important;
+  color: #001a57; /* your theme color */
+  height: fit-content;
+  font-weight: 500;
+  line-height: 3px;
+}
+
+.p-multiselect-items.p-component {
+  margin-bottom: 5px !important;
+  padding: 3px 3px;
+}
+
+.p-multiselect:focus ~ .floating-labelxx,
+.p-multiselect.p-inputwrapper-filled ~ .floating-labelxx {
+  top: 0px;
+  left: 8px;
+  font-size: 10px !important;
+  background: #fff;
+  height: fit-content;
+  padding: 0 4px;
+  color: #001a57;
+  line-height: 1px;
+}
+
+
+.p-multiselect-items .p-multiselect-item {
+  white-space: normal !important;
+  height: auto !important;
+  line-height: 1.4;
+  padding-right: 12px;
+}
+
+.p-multiselect-panel {
+  max-width: 350px !important;
+  width: auto !important;
+}
+
+.p-checkbox {
+  margin-top: 3px;
+}
+
+.p-multiselect-header {
+  white-space: normal !important;
+}

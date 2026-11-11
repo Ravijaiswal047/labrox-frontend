@@ -1,0 +1,6 @@
+.membership-table .table-input,
+.membership-table input[type="number"] {
+  width: 100px !important;
+  max-width: 100px !important;
+  min-width: 100px !important;
+}

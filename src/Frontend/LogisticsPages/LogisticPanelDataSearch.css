@@ -1,0 +1,13 @@
+/* Force header row to flex on all screen sizes for this accordion only */
+.lpds-data-accordion .card-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Override the global inline-block rule for small screens */
+.lpds-data-accordion .color-code-search-resp {
+  display: flex !important;
+  justify-content: flex-end !important;
+  flex: 1 !important;
+}

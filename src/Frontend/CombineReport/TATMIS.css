@@ -1,0 +1,58 @@
+/* ── TAT MIS heading: Excel icon at right end on mobile ── */
+@media (max-width: 767px) {
+  .tatmis-main-accordion .card-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between !important;
+  }
+  .tatmis-main-accordion .card-title .color-code-search-resp {
+    width: auto !important;
+  }
+}
+
+/* ── Desktop: hide empty linkTitle div so layout stays original ── */
+@media (min-width: 768px) {
+  .tatmis-search-accordion .card-title .main-heading-link {
+    display: none !important;
+  }
+}
+
+/* ── Mobile: Search Data header — title left, search bar right ── */
+@media (max-width: 767px) {
+  .tatmis-search-accordion .card-title {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+    justify-content: space-between !important;
+  }
+  /* Search bar stays on row 1 with "Search Data" title */
+  .tatmis-search-accordion .card-title .main-heading-link {
+    order: 1;
+    flex-shrink: 0;
+  }
+  /* seconTitle drops to row 2 (full width below header row) */
+  .tatmis-search-accordion .card-title .color-code-search-resp {
+    order: 2;
+    width: 100% !important;
+    margin-top: 4px;
+  }
+
+  /* seconTitle inner: stats first, then legends + colors */
+  .tatmis-sec-title {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+  }
+  .tatmis-sec-title > div:last-child {
+    order: -1;
+    width: 100%;
+  }
+  .tatmis-sec-title > div:first-child {
+    order: 1;
+    width: 100%;
+  }
+  .tatmis-legend-text {
+    white-space: normal !important;
+    word-break: break-word;
+  }
+}

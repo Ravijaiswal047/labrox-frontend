@@ -1,0 +1,58 @@
+/* Mobile view only (below 768px) */
+@media (max-width: 767px) {
+    .env-header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .env-header-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        flex-basis: 100%;
+        margin-bottom: 8px;
+    }
+
+    .env-header-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    /* Ensure buttons are visible in mobile */
+    .env-header-tabs button,
+    .env-header-actions button {
+        font-size: 12px;
+        padding: 6px 12px;
+        white-space: normal;
+    }
+}
+
+/* Desktop view (768px and above) - no changes */
+@media (min-width: 768px) {
+    .env-header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .env-header-tabs {
+        display: flex;
+        flex-nowrap: nowrap;
+        gap: 5px;
+    }
+
+    .env-header-actions {
+        display: flex;
+        flex-nowrap: nowrap;
+        gap: 5px;
+    }
+}

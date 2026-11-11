@@ -1,0 +1,107 @@
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 998;
+}
+
+/* ================= Drawer ================= */
+
+.drawer {
+  position: fixed;
+  bottom: 0;
+  right: -100%;
+  height: 300px;
+  background: #ffffff;
+  z-index: 999;
+  transition: right 0.35s ease;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+  width: 45%;
+}
+
+.drawer-open {
+  right: 0;
+}
+
+.drawer-header {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  background: #f8fafc;
+}
+
+.drawer-body {
+  padding: 6px 6px;
+  overflow-y: auto;
+  height: calc(100% - 52px);
+}
+
+.drawer-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .drawer {
+    width: 100%;
+  }
+}
+
+/* ================= Speed Dial ================= */
+
+.speed-dial-container {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  z-index: 1000;
+}
+
+.speed-dial-main {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  /* background: #2563eb; */
+  color: #ffffff;
+  font-size: 30px !important;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.speed-dial-main.rotate {
+  transform: rotate(45deg);
+}
+
+/* Action buttons */
+.speed-dial-action {
+  position: absolute;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #111827;
+  color: #ffffff;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

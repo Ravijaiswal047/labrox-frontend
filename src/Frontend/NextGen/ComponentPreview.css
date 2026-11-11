@@ -1,0 +1,22 @@
+.ng-preview {
+  min-height: 100vh;
+  padding: var(--ng-space-5, 24px);
+}
+
+.ng-preview__section {
+  margin-top: var(--ng-space-4, 16px);
+}
+
+.ng-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ng-space-4, 16px);
+  align-items: start;
+}
+
+.ng-preview__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ng-space-3, 12px);
+  align-items: center;
+}

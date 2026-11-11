@@ -1,0 +1,53 @@
+.ng-fontsize {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(var(--ng-ink), 0.04);
+  border: 1px solid var(--ng-border);
+  border-radius: var(--ng-radius-sm, 6px);
+  padding: 8px 12px;
+}
+
+.ng-fontsize__slider {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(var(--ng-ink), 0.15);
+  outline: none;
+  cursor: pointer;
+  /* index.css has an unscoped `input { overflow: hidden; }` reset that clips
+     any input's own box — since this input's box is only 4px tall (the
+     track height), it was cutting the 16px round thumb down to a thin
+     sliver instead of letting it protrude outside the track. */
+  overflow: visible !important;
+}
+
+.ng-fontsize__slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ng-primary, #2563eb);
+  border: 2px solid var(--ng-surface);
+  box-shadow: 0 0 0 1px var(--ng-primary);
+  cursor: pointer;
+}
+
+.ng-fontsize__slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ng-primary, #2563eb);
+  border: 2px solid var(--ng-surface);
+  cursor: pointer;
+}
+
+.ng-fontsize__value {
+  flex-shrink: 0;
+  min-width: 34px;
+  text-align: right;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ng-text);
+}

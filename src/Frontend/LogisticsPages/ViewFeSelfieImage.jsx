@@ -1,0 +1,263 @@
+import { useEffect, useState } from "react";
+import Accordion from "@app/components/UI/Accordion";
+import Loading from "../../components/loader/Loading";
+import { useTranslation } from "react-i18next";
+import ReactSelect from "../../components/formComponent/ReactSelect";
+import { axiosInstance } from "../../utils/axiosInstance";
+import DatePicker from "../../components/formComponent/DatePicker";
+import Tables from "../../components/UI/customTable";
+import NoRecordFound from "../../components/formComponent/NoRecordFound";
+import { toast } from "react-toastify";
+import { SearchButton } from "../../components/UI/CustomButton";
+
+import Modal from "../../components/ModalComponent/Modal";
+
+const ViewFeSelfieImage = () => {
+  const [t] = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const [fieldBoyOptions, setFieldBoyOptions] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const [payload, setPayload] = useState({
+    FromDate: new Date(),
+    ToDate: new Date(),
+    fieldBoyId: "",
+    fieldBoyName: "",
+  });
+  useEffect(() => {
+    const fetchFieldBoys = async () => {
+      setLoading(true);
+      try {
+        const res = await axiosInstance.get("FieldBoyMaster/BindFieldBoy");
+        const data = res?.data?.message || [];
+        if(res?.data?.success && Array.isArray(data)){
+          const mapped = data.map((r) => ({
+          label: r.NAME,
+          value: String(r.FieldBoyID),
+        }));
+        setFieldBoyOptions(mapped);
+        }
+      } catch (err) {
+        console.error("Failed to load centers", err);
+        setFieldBoyOptions([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFieldBoys();
+  }, []);
+
+
+  const handleDateSelect = (...args) => {
+    const date = args[0];
+    const fieldName = args[1];
+
+    const val = date ? new Date(date).toISOString() : null;
+    setPayload((prev) => ({ ...prev, [fieldName]: val }));
+  };
+
+  const handleSelectChange = (name, value) => {
+    setPayload({ ...payload, [name]: value.value });
+  };
+
+  const handleSearch = () => {
+    const finalPaylaod = {
+      FromDate: payload?.FromDate,
+      ToDate: payload?.ToDate,
+      fieldBoyId: String(payload?.fieldBoyId),
+      fieldBoyName: payload?.fieldBoyName,
+    }
+    setLoading(true);
+    axiosInstance
+      .post("LogisticWeb/FieldboySelfiLoginSearch", finalPaylaod)
+      .then((res) => {
+        const data = res?.data?.data || [];
+        if (res?.data?.success && Array.isArray(data)) {
+          setTableData(data);
+        } else {
+          setTableData([]);
+          toast.error(res?.data?.message || "No Data Found")
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch data!", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const handleImageClick = (url) => {
+      setSelectedImage(url);
+      setShowModal(true);
+  };
+
+  const renderImages = (imageString) => {
+      if (!imageString) return null;
+      return (
+          <div className="d-flex flex-wrap gap-1">
+                  <img 
+                      src={imageString} 
+                      alt="Thumbnail" 
+                      style={{ width: "30px", height: "30px", objectFit: "cover", cursor: "pointer", border: "1px solid #ccc" }}
+                      onClick={() => handleImageClick(imageString)}
+                      // onError={(e) => {
+                      //   e.target.src = "";
+                      //   e.target.style.display = "none";
+                      // }}
+                  />
+          </div>
+      );
+  };
+
+  return (
+    <>
+      <Accordion
+        name={t("View FE Selfie Image")}
+        defaultValue={true}
+        isBreadcrumb={true}
+      >
+        <div className="row pt-2 px-2 py-2">
+          <div className="col-12">
+            <div className="row gap-3 justify-content-start d-flex">
+              <div className="col-12 col-sm-6 col-md-2 my-1">
+                <DatePicker
+                  className="custom-calendar"
+                  name="FromDate"
+                  placeholder=" "
+                  id="FromDate"
+                  lable="From Date"
+                  value={payload.FromDate ? new Date(payload.FromDate) : null}
+                  onChange={handleDateSelect}
+                />
+              </div>
+              <div className="col-12 col-sm-6 col-md-2 my-1">
+                <DatePicker
+                  className="custom-calendar"
+                  name="ToDate"
+                  placeholder=" "
+                  id="ToDate"
+                  lable="To Date"
+                  value={payload.ToDate ? new Date(payload.ToDate) : null}
+                  onChange={handleDateSelect}
+                />
+              </div>
+              <div className="col-12 col-sm-3">
+                <ReactSelect
+                  dynamicOptions={fieldBoyOptions}
+                  name="fieldBoyId"
+                  lable={t("Field Boy")}
+                  id="fieldBoyId"
+                  removeIsClearable={true}
+                  placeholderName={t("Field Boy")}
+                  value={payload.fieldBoyId}
+                  onChange={handleSelectChange}
+                  isDisabled={loading || fieldBoyOptions.length === 0}
+                />
+              </div>
+              <div className="col-sm-auto">
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <SearchButton
+                    text={"Search"}
+                    className="text-white"
+                    onClick={handleSearch}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Accordion>
+      <Accordion defaultValue={true} title={t("")}>
+        <div className="row gx-3 gy-3">
+          <div className="card w-100">
+            <div className="card-body p-2">
+              <div className="table-responsive" style={{ width: "100%" }}>
+                {tableData.length > 0 ? (
+                  <Tables
+                    style={{
+                      maxHeight: "400px",
+                      overflowY: "auto",
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">{t("S.No")}</th>
+                        <th scope="col">{t("Name")}</th>
+                        <th scope="col">{t("Date")}</th>
+                        <th scope="col">{t("Selfie")}</th>
+                        <th scope="col">{t("Bike")}</th>
+                        <th scope="col">{t("Temp")}</th>
+                        <th scope="col">{t("Bag")}</th>
+                        <th scope="col">{t("Bike Meter")}</th>
+                        <th scope="col">{t("Logout Selfie")}</th>
+                        <th scope="col">{t("Logout Meter")}</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {tableData.map((row, idx) => {
+                        return (
+                          <tr key={idx}>
+                            <td data-title={t("S.No")}>{idx + 1}</td>
+                            <td data-title={t("Name")}>{row.Name}</td>
+                            <td data-title={t("Date")}>{row.dtEntry}</td>
+                            <td data-title={t("Selfie")}>
+                                {renderImages(row.selfieimage || "-")}
+                            </td>
+                            <td data-title={t("Bike")}>
+                                {renderImages(row.BikeImage || "-")}
+                            </td>
+                            <td data-title={t("Temp")}>
+                                {renderImages(row.TempImage || "-")}
+                            </td>
+                            <td data-title={t("Bag")}>
+                                {renderImages(row.BagImage || "-")}
+                            </td>
+                            <td data-title={t("Bike Meter")}>
+                                {renderImages(row.BikeMeterImage || "-")}
+                            </td>
+                            <td data-title={t("Logout Selfie")}>
+                                {renderImages(row.LogoutSelfieImage || "-")}
+                            </td>
+                            <td data-title={t("Logout Meter")}>
+                                {renderImages(row.LogoutBikeMeterImage || "-")}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </Tables>
+                ) : (
+                  <NoRecordFound />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Accordion>
+      <Modal
+         visible={showModal}
+         setVisible={setShowModal}
+         Header={t("View Image")}
+         modalWidth="60vw"
+      >
+          <div className="d-flex justify-content-center align-items-center">
+              {selectedImage && (
+                  <img 
+                      src={selectedImage} 
+                      alt="Full View" 
+                      style={{ maxWidth: "100%", maxHeight: "80vh" }} 
+                  />
+              )}
+          </div>
+      </Modal>
+    </>
+  )
+}
+export default ViewFeSelfieImage

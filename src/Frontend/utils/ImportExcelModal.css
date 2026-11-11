@@ -1,0 +1,40 @@
+.mainTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff; /* IMPORTANT: prevents overlap transparency */
+}
+
+.mainTable thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.test-name-cell {
+  max-width: 200px;
+  /* width: 200px; */
+}
+
+.truncate-text {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .test-name-cell {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .truncate-text {
+    white-space: normal;   /* allow wrapping */
+    overflow: visible;
+    text-overflow: unset;
+  }
+}

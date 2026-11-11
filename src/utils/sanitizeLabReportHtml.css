@@ -1,0 +1,43 @@
+.lr-html-safe {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+  box-sizing: border-box;
+  contain: layout style;
+  isolation: isolate;
+}
+
+.lr-html-safe,
+.lr-html-safe * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  position: static !important;
+  float: none !important;
+  transform: none !important;
+}
+
+.lr-html-safe table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse;
+}
+
+.lr-html-safe td,
+.lr-html-safe th {
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
+}
+
+.lr-html-safe img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.lr-html-safe pre,
+.lr-html-safe code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}

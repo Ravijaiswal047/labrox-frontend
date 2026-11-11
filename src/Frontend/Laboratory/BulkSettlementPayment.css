@@ -1,0 +1,11 @@
+.sticky-header th {
+  position: sticky;
+  top: 0;
+  background: #fff; /* important to prevent overlap */
+  z-index: 10;
+}
+
+/* Optional: better visual separation */
+.sticky-header th {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+}

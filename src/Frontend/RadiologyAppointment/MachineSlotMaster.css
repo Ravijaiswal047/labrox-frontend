@@ -1,0 +1,62 @@
+/* Machine + slot booking toolbar: one line on desktop, clean full-width
+   stacked fields on mobile instead of squishing every field down. */
+.msm-toolbar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.msm-toolbar .msm-field {
+  flex: 0 0 auto;
+}
+
+.msm-toolbar .msm-machine-name {
+  min-width: 200px;
+}
+
+.msm-toolbar .msm-room-no {
+  min-width: 160px;
+}
+
+.msm-toolbar .msm-lunch-time {
+  min-width: 130px;
+}
+
+/* Self-contained floating label for the Lunch Start/End time inputs —
+   same overlapping-the-border look as the shared <Input> component's
+   label, but without its .lable/.truncate classes, which clip against
+   native type="time" inputs. */
+.msm-floating-label {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #fff;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #475569;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.msm-toolbar .msm-search {
+  min-width: 220px;
+  margin-left: auto;
+}
+
+@media (max-width: 767px) {
+  .msm-toolbar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .msm-toolbar .msm-field {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+  }
+}

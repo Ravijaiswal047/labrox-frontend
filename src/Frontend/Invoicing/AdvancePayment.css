@@ -1,0 +1,33 @@
+.background_clr {
+  background: #f6fffb !important;
+}
+
+/* div > div.bg_remove.card, */
+div > div.bg_remove.card {
+  background-color: transparent !important;
+}
+
+.mainTable thead th {
+  padding: 1px 4px !important;
+}
+
+.fontSizeIcon {
+  font-size: 14px !important;
+}
+
+.c_red {
+  font-size: 18px !important;
+  margin-left: 2px;
+}
+
+.p-float-label label {
+  color: #051c68;
+  font-weight: 600;
+  font-size: 10px !important;
+}
+
+.p-float-label .p-inputwrapper-focus ~ label,
+.p-float-label .p-inputwrapper-filled ~ label {
+  top: 1px !important;
+  background-color: #fff;
+}

@@ -1,0 +1,42 @@
+.ng-modal.p-dialog {
+  border-radius: var(--ng-radius-lg, 16px);
+  overflow: hidden;
+  box-shadow: var(--ng-shadow-lg);
+  border: 1px solid var(--ng-border, #e2e8f0);
+  background: color-mix(in srgb, var(--ng-surface) 86%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ng-modal .p-dialog-header {
+  background: transparent;
+  border-bottom: 1px solid var(--ng-border, #e2e8f0);
+  padding: var(--ng-space-4, 16px) var(--ng-space-5, 24px);
+}
+
+.ng-modal .p-dialog-title {
+  font-size: var(--ng-font-md, 16px);
+  font-weight: 700;
+  color: var(--ng-text, #0f172a);
+}
+
+.ng-modal .p-dialog-content {
+  padding: 0;
+  background: transparent;
+}
+
+.ng-modal__body {
+  padding: var(--ng-space-5, 24px);
+}
+
+.ng-modal .p-dialog-footer {
+  padding: var(--ng-space-3, 12px) var(--ng-space-5, 24px);
+  background: rgba(var(--ng-ink), 0.03);
+  border-top: 1px solid var(--ng-border, #e2e8f0);
+}
+
+.ng-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ng-space-2, 8px);
+}

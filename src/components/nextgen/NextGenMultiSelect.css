@@ -1,0 +1,130 @@
+.ng-multiselect__field {
+  position: relative;
+  margin-bottom: 6px;
+}
+
+/* Flat by design — same plain 1px-border look as NextGenInput/NextGenSelect,
+   no gradient/blur glass. */
+.ng-multiselect__control.p-multiselect {
+  width: 100%;
+  min-height: 30px !important;
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  background: var(--ng-surface) !important;
+  border: 1px solid var(--ng-border) !important;
+  border-radius: var(--ng-radius-sm, 6px) !important;
+  font-weight: 400 !important;
+  transition: border-color var(--ng-transition, 160ms ease);
+}
+
+.ng-multiselect__control.p-multiselect .p-multiselect-label-container {
+  background: transparent !important;
+}
+
+.ng-multiselect__control.p-multiselect.p-focus {
+  border-color: var(--ng-primary-500, #3b82f6) !important;
+}
+
+.ng-multiselect__control.ng-required {
+  border-color: var(--ng-danger, #f87171) !important;
+}
+
+/* index.css has a legacy `.p-multiselect .p-multiselect-label { background:
+   #fff !important; }` rule (same specificity as a plain `.ng-multiselect__control
+   .p-multiselect-label` selector, so which one wins is load-order-dependent
+   in dev). It was forcing a white patch behind the label text specifically
+   — the outer control's own dark gradient background was fine, but this
+   inner label span painted white over it, leaving --ng-text's light color
+   unreadable against its own opaque white backdrop. Extra specificity
+   (three classes deep) makes the win unconditional rather than order-luck. */
+.ng-multiselect__control.p-multiselect .p-multiselect-label {
+  padding: 4px 8px;
+  background: transparent !important;
+  color: var(--ng-text, #e8ecf5) !important;
+  font-size: 12.5px;
+}
+
+.ng-multiselect__control .p-multiselect-token {
+  background: rgba(59, 130, 246, 0.16) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--ng-radius-sm, 6px);
+  font-size: 11.5px;
+  padding: 1px 6px;
+}
+
+.ng-multiselect__control .p-multiselect-trigger {
+  color: var(--ng-text-muted, #8b96ad);
+}
+
+/* Prefixed with .nextgen-mode purely to win specificity over shell.css's
+   `.nextgen-mode label { background: transparent !important }` — a bare
+   `.ng-multiselect__label` (one class, (0,0,1,0)) actually loses to that
+   rule ((0,0,1,1) — one class + one element beats one class alone once
+   element-count is the tiebreaker), even with matching !important. Two
+   classes here, (0,0,2,0), wins outright. See NextGenDatePicker.css's
+   .ng-date__label for the same fix and full specificity walkthrough — this
+   had the identical bug. */
+.nextgen-mode .ng-multiselect__label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: var(--ng-surface) !important;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: var(--ng-font-sm, 12.5px);
+  font-weight: 400 !important;
+  color: var(--ng-primary-500, #3b82f6);
+  pointer-events: none;
+}
+
+.ng-multiselect__panel.p-multiselect-panel {
+  background: color-mix(in srgb, var(--ng-surface) 90%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--ng-radius-md, 10px) !important;
+  box-shadow: var(--ng-shadow-lg);
+  border: 1px solid rgba(var(--ng-ink), 0.1) !important;
+  overflow: hidden;
+}
+
+.ng-multiselect__panel .p-multiselect-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(var(--ng-ink), 0.08) !important;
+}
+
+.ng-multiselect__panel .p-multiselect-filter-container input {
+  background: rgba(var(--ng-ink), 0.05) !important;
+  border: 1px solid rgba(var(--ng-ink), 0.1) !important;
+  color: var(--ng-text, #e8ecf5) !important;
+  border-radius: var(--ng-radius-sm, 6px) !important;
+}
+
+.ng-multiselect__panel .p-multiselect-filter-container input:focus {
+  border-color: var(--ng-primary-500, #3b82f6) !important;
+  box-shadow: none;
+}
+
+.ng-multiselect__panel .p-multiselect-item {
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+.ng-multiselect__panel .p-multiselect-item.p-highlight {
+  background: var(--ng-primary, #2563eb) !important;
+  color: #fff !important;
+}
+
+.ng-multiselect__panel .p-multiselect-item:not(.p-highlight):hover {
+  background: var(--ng-primary-soft, rgba(59, 130, 246, 0.16)) !important;
+}
+
+.ng-multiselect__panel .p-checkbox-box {
+  background: rgba(var(--ng-ink), 0.06) !important;
+  border-color: rgba(var(--ng-ink), 0.25) !important;
+}
+
+.ng-multiselect__panel .p-checkbox-box.p-highlight {
+  background: var(--ng-primary, #2563eb) !important;
+  border-color: var(--ng-primary, #2563eb) !important;
+}

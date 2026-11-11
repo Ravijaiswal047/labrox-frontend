@@ -1,0 +1,18 @@
+#pr_id_165_content {
+  padding: 4px 0px !important;
+}
+
+.rr-action-menu {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.rr-action-menu .p-1 > div {
+  padding: 6px 8px !important;
+  margin: 0 !important;
+  border-radius: 4px;
+}
+
+.rr-action-menu .p-1 > div:hover {
+  background: #f1f5f9;
+}

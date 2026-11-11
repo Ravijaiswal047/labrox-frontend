@@ -1,0 +1,121 @@
+.ng-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--ng-radius-sm, 6px);
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background var(--ng-transition, 160ms ease),
+    border-color var(--ng-transition, 160ms ease), opacity 160ms ease;
+  white-space: nowrap;
+}
+
+.ng-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Fixed height (not padding-derived) so this lines up exactly with
+   NextGenInput/NextGenSelect/NextGenMultiSelect/NextGenDatePicker, which
+   are all 32px — a button sitting next to them was visibly shorter before. */
+.ng-btn--sm {
+  height: 32px !important;
+  padding: 0 14px !important;
+  font-size: 12.5px !important;
+  border-radius: var(--ng-radius-sm, 6px) !important;
+}
+
+.ng-btn--md {
+  height: 38px !important;
+  padding: 0 18px !important;
+  font-size: var(--ng-font-base, 14px) !important;
+  border-radius: var(--ng-radius-sm, 6px) !important;
+}
+
+.ng-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.ng-btn--primary {
+  background: linear-gradient(135deg, var(--ng-primary-500, #3b82f6), var(--ng-primary-700, #1d4ed8));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+.ng-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--ng-primary-400, #60a5fa), var(--ng-primary-600, #2563eb));
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+}
+
+.ng-btn--secondary {
+  background: var(--ng-surface-alt, #f8fafc);
+  color: var(--ng-text, #0f172a);
+  border-color: var(--ng-border, #e2e8f0);
+}
+.ng-btn--secondary:hover:not(:disabled) {
+  background: var(--ng-border, #e2e8f0);
+}
+
+.ng-btn--danger {
+  background: linear-gradient(135deg, #f87171, #dc2626);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+.ng-btn--danger:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.ng-btn--ghost {
+  background: transparent;
+  color: var(--ng-primary, #2563eb);
+  border-color: var(--ng-primary, #2563eb);
+}
+.ng-btn--ghost:hover:not(:disabled) {
+  background: var(--ng-primary-soft, #eff6ff);
+}
+
+.ng-btn--success {
+  background: linear-gradient(135deg, #4ade80, #16a34a);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+}
+.ng-btn--success:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.ng-btn--warning {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #1c1300;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+}
+.ng-btn--warning:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.ng-btn--info {
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+.ng-btn--info:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.ng-btn__spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ng-spin 0.7s linear infinite;
+}
+
+@keyframes ng-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

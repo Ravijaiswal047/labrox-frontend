@@ -1,0 +1,248 @@
+.nabl-is-loading {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.nabl-kpi {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-top: 3px solid #28a745;
+  border-radius: 4px;
+  padding: 10px 12px;
+  min-height: 88px;
+}
+
+.nabl-kpi.orange { border-top-color: #e67a22; }
+.nabl-kpi.amber { border-top-color: #d08a18; }
+.nabl-kpi.teal { border-top-color: #17a2b8; }
+.nabl-kpi.green { border-top-color: #28a745; }
+
+.nabl-kpi-label {
+  color: #6c757d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.nabl-kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2px;
+  color: #212529;
+}
+
+.nabl-kpi-meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.nabl-minor {
+  color: #b9770e;
+  font-weight: 700;
+}
+
+.nabl-panel {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px 12px 12px;
+  height: 100%;
+}
+
+.nabl-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.nabl-clause-row {
+  display: grid;
+  grid-template-columns: 190px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.nabl-clause-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nabl-track {
+  height: 8px;
+  background: #eef1f6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.nabl-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.nabl-fill.green { background: #28a745; }
+.nabl-fill.amber { background: #c9a227; }
+.nabl-fill.red { background: #dc3545; }
+
+.nabl-clause-pct {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.nabl-note {
+  margin-top: 8px;
+  background: #fff8e6;
+  border: 1px solid #fac775;
+  color: #633806;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 8px 10px;
+}
+
+.nabl-donut-wrap {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.nabl-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.nabl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nabl-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 180px;
+  padding-top: 6px;
+}
+
+.nabl-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.nabl-bar {
+  width: 36px;
+  max-width: 70%;
+  border-radius: 3px 3px 0 0;
+  min-height: 8px;
+}
+
+.nabl-bar-label {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6c757d;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.nabl-line-chart {
+  height: 200px;
+}
+
+.nabl-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 4px;
+}
+
+.nabl-timeline li {
+  position: relative;
+  padding: 0 0 12px 16px;
+}
+
+.nabl-timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.nabl-timeline li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #e67a22;
+  background: #fff;
+  z-index: 1;
+}
+
+.nabl-timeline li.navy::before { border-color: #1a4f8b; }
+.nabl-timeline li.green::before { border-color: #28a745; }
+.nabl-timeline li.orange::before { border-color: #e67a22; }
+
+.nabl-timeline li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 16px;
+  bottom: 0;
+  width: 1px;
+  background: #dee2e6;
+}
+
+.nabl-item-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nabl-item-detail {
+  margin-top: 2px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.nabl-progress-row {
+  margin-bottom: 12px;
+}
+
+.nabl-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 900px) {
+  .nabl-clause-row,
+  .nabl-donut-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .nabl-clause-pct {
+    text-align: left;
+  }
+}
+
+@media print {
+  .nav-wrapper,
+  .card-header {
+    display: none !important;
+  }
+}

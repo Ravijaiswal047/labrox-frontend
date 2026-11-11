@@ -1,0 +1,242 @@
+i.sjhiweo_red {
+  color: rgb(194, 6, 6) !important;
+}
+
+i.ahddh_black {
+  color: rgb(14, 13, 13) !important;
+}
+
+i.bi-envelope-arrow-up {
+  height: fit-content !important;
+}
+
+/* .dispatchTestCell {
+  width: 300px;
+  white-space: normal;
+  word-break: break-word;
+} */
+
+.printTest input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* @media (max-width: 767px) {
+  .dispatchTestCell {
+    width: auto;
+    max-width: 100%;
+  }
+} */
+
+
+@media (min-width: 801px) {
+  .dispatch-test-col {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+  }
+
+  .dispatchTestCell {
+    width: 300px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .dispatch-test-col {
+    width: auto;
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  .dispatchTestCell {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+/* Text wrapping */
+.dispatchTestCell {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Override status colors ONLY for the new dispatch report table to avoid affecting old pages */
+.dispatch-report-new-table .Status-1, 
+.dispatch-report-new-table .Status-2, 
+.dispatch-report-new-table .Status-3, 
+.dispatch-report-new-table .Status-4, 
+.dispatch-report-new-table .Status-5, 
+.dispatch-report-new-table .Status-6, 
+.dispatch-report-new-table .Status-7, 
+.dispatch-report-new-table .Status-10, 
+.dispatch-report-new-table .Status-11, 
+.dispatch-report-new-table .Status-13,
+.dispatch-report-new-table .Status-14,
+.dispatch-report-new-table .Status-15,
+.dispatch-report-new-table .Status-16, 
+.dispatch-report-new-table .Status-18, 
+.dispatch-report-new-table .Status-20, 
+.dispatch-report-new-table .Status-22,
+.dispatch-report-new-table .Status-25 {
+    font-weight: 500 !important;
+    font-size: 1.166rem !important;
+    color: #000 !important;
+}
+
+/* Specific Light Background Overrides (Medium Light versions) - Scoped to the component */
+.dispatch-report-new-table .Status-5 { background-color: #9df09d !important; } /* Medium Light Approved Green */
+.dispatch-report-new-table .Status-6 { background-color: #97e5e5 !important; } /* Medium Light Printed Cyan */
+.dispatch-report-new-table .Status-4 { background-color: #cbd3da !important; } /* Medium Light Rejected Gray */
+.dispatch-report-new-table .Status-11 { background-color: #ffff99 !important; } /* Medium Light Hold Yellow */
+.dispatch-report-new-table .Status-20 { background-color: #ffa1a1 !important; } /* Medium Light Red */
+.dispatch-report-new-table .Status-10 { background-color: #f7a9af !important; } /* Medium Light Pink */
+.dispatch-report-new-table .Status-13 { background-color: #f3b48a !important; } /* MAC Data */
+.dispatch-report-new-table .Status-14 { background-color: #fbc4e8 !important; } /* Re-Run */
+.dispatch-report-new-table .Status-15 { background-color: #e5f0b8 !important; } /* Dispatched */
+.dispatch-report-new-table .Status-25 { background-color: #f5d4b8 !important; } /* OutSource */
+
+/* Ensure test name doesn't have its own color badge background if row is already colored */
+.dispatch-report-new-table .dispatchTestCell .rounded {
+    background-color: transparent !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    font-size: inherit !important;
+}
+
+/* Mobile Fixes for Overlap */
+@media (max-width: 800px) {
+  .mobile-hide-column {
+    display: none !important;
+  }
+
+  /* Fix for text overlap when many tests are present */
+  #no-more-tables td {
+    min-height: 24px !important;
+    height: auto !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-left: 28% !important;
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+
+  /* Ensure labels don't overlap if they wrap */
+  #no-more-tables td:before {
+    white-space: normal !important;
+    word-break: break-word;
+    top: 2px !important;
+    line-height: 1.1;
+    max-height: 100%;
+    width: 26% !important;
+    font-size: 10.5px;
+  }
+
+  /* Remove p tag gaps in mobile table */
+  #no-more-tables td p {
+    margin-bottom: 0 !important;
+  }
+
+  /* Clearer gap between patients on mobile */
+  .patient-group-row {
+    margin-top: 6px !important;
+    border-top: 2px solid #007bff !important;
+    box-shadow: 0 -1px 3px -1px rgba(0,0,0,0.1);
+  }
+}
+
+
+
+
+/* Filter Buttons / Status Pills - Scoped to Lab Search */
+.lab-search-filter-card.filter-card {
+    background: white;
+    border-radius: 12px;
+    padding: 10px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    margin-bottom: 12px;
+    border: 1px solid #f1f5f9;
+}
+
+.lab-search-filter-card .status-pill {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    transition: all 0.2s ease;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.lab-search-filter-card .scroll-container-pills {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.lab-search-filter-card .scroll-container-pills::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Webkit */
+}
+
+.lab-search-filter-card .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.lab-search-filter-card .status-pill:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.lab-search-filter-card .active-pill {
+    border-color: #6366f1 !important;
+    background: #f8fafc !important;
+    color: #4f46e5 !important;
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.15) !important;
+}
+
+@media (max-width: 768px) {
+  .lab-search-filter-card.filter-card {
+    padding: 16px;
+  }
+  
+  .lab-search-filter-card .gap-3 {
+    gap: 10px !important;
+  }
+
+  .lab-search-filter-card .status-pill {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate__fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+.animate__fadeIn { animation: fadeIn 0.8s ease-out forwards; }

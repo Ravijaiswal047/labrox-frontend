@@ -1,0 +1,768 @@
+.custom-tooltip {
+  background: transparent !important; /* remove default black background */
+  box-shadow: none !important; /* remove shadow */
+  padding: 0 !important; /* remove default padding */
+  pointer-events: none;
+}
+
+/* Keep each row's status color on hover instead of the global table-row
+   hover grey (index.css: "table tbody tr:hover"), which otherwise wins
+   via !important. */
+.receipt-reprint-row:hover {
+  background: var(--row-bg) !important;
+}
+
+/* When AllowDesktopView is on for this user, undo index.css's mobile
+   "card view" breakpoint (index.css: "#no-more-tables td:before" etc.)
+   so the table keeps its normal desktop layout even on small screens. */
+@media only screen and (max-width: 800px) {
+  #no-more-tables.force-desktop-table table {
+    display: table !important;
+  }
+  #no-more-tables.force-desktop-table thead {
+    display: table-header-group !important;
+  }
+  #no-more-tables.force-desktop-table tbody {
+    display: table-row-group !important;
+  }
+  #no-more-tables.force-desktop-table tr {
+    display: table-row !important;
+  }
+  #no-more-tables.force-desktop-table th,
+  #no-more-tables.force-desktop-table td {
+    display: table-cell !important;
+  }
+  #no-more-tables.force-desktop-table thead tr {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+  }
+  #no-more-tables.force-desktop-table td {
+    padding-left: inherit !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+    width: auto !important;
+  }
+  #no-more-tables.force-desktop-table td:before {
+    content: none !important;
+    position: static !important;
+  }
+}
+
+/* ── Table / Card view toggle ──────────────────────────────────────────── */
+
+.rr-view-toggle {
+  display: inline-flex;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.rr-view-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: #fff;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.rr-view-toggle__btn + .rr-view-toggle__btn {
+  border-left: 1px solid #d1d5db;
+}
+
+.rr-view-toggle__btn.is-active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.rr-view-toggle__btn:hover:not(.is-active) {
+  background: #f1f5f9;
+}
+
+.nextgen-mode .rr-view-toggle {
+  border-color: var(--ng-border);
+}
+
+.nextgen-mode .rr-view-toggle__btn {
+  background: var(--ng-surface);
+  color: var(--ng-text-muted);
+}
+
+.nextgen-mode .rr-view-toggle__btn + .rr-view-toggle__btn {
+  border-left-color: var(--ng-border);
+}
+
+.nextgen-mode .rr-view-toggle__btn.is-active {
+  background: var(--ng-primary, #2563eb);
+  color: #fff;
+}
+
+.nextgen-mode .rr-view-toggle__btn:hover:not(.is-active) {
+  background: var(--ng-surface-alt);
+  color: var(--ng-text);
+}
+
+/* ── Search Result header on mobile ────────────────────────────────────
+   index.css forces .color-code-search-resp to display:inline-block below
+   450px, which breaks this row's flex layout (legend/search/toggle end up
+   stacked and clipped). Restore flex here and drop the icon captions so
+   everything fits without overflowing the header. */
+@media (max-width: 767px) {
+  .rr-results-accordion .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .rr-results-accordion .color-code-search-resp {
+    display: flex !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex-shrink: 1;
+    overflow: visible !important;
+    gap: 6px !important;
+  }
+
+  .rr-results-accordion .rr-legend {
+    gap: 6px !important;
+    margin-right: 4px !important;
+    flex-shrink: 0;
+  }
+
+  .rr-results-accordion .rr-legend-text,
+  .rr-results-accordion .rr-toggle-text {
+    display: none !important;
+  }
+
+  .rr-results-accordion #search {
+    width: 70px !important;
+    min-width: 50px;
+    flex-shrink: 1;
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+  }
+
+  .rr-results-accordion .rr-view-toggle {
+    flex-shrink: 0;
+  }
+
+  .rr-results-accordion .rr-view-toggle__btn {
+    padding: 4px 8px !important;
+  }
+
+  /* ReceiptReprint.jsx already hides the legend and table/card toggle
+     entirely on mobile (isMobile check in the JSX), so nothing else
+     competes for space next to the search box — it just needs to sit on
+     the same row as "Search Result", pinned right. Self-contained (every
+     property explicitly set, not relying on the shared ".rr-results-
+     accordion" rule above) since that alone wasn't enough to keep this
+     row from dropping the search box onto its own line. */
+  .receipt-reprint-results .card-title {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .receipt-reprint-results .color-code-search-resp {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  .receipt-reprint-results #search {
+    width: 140px !important;
+    max-width: 45vw !important;
+    min-width: 0 !important;
+    font-size: 13px !important;
+    padding: 4px 8px !important;
+  }
+}
+
+/* DispatchReport.jsx's "Sample Status :" chip row (.sampleStatusList) is a
+   horizontally-scrolling slider (overflow-x: auto, nowrap) inline — on a
+   phone that hides most chips off-screen with no visual hint there's more
+   to scroll to. Below 767px, drop the slider for a plain 3-per-row wrap
+   grid instead, so every status stays visible and evenly sized. */
+@media (max-width: 767px) {
+  .sampleStatusClass strong {
+    display: none !important;
+  }
+
+  .sampleStatusList {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    overflow-x: visible !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .sampleStatusList > div {
+    width: 100%;
+  }
+
+  .sampleStatusList .d-flex.rounded.pointer-cursor,
+  .sampleStatusList .tf-dot-chip {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sampleStatusList .tf-dot-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* ReceiptReprint.jsx's "Details:" stats strip (Total Patient | Gross
+   Amount | Discount Amount | ...) is an inline-flex-wrap list with "|"
+   separators, sized for one wide desktop line — on mobile it just wraps
+   mid-phrase into a ragged paragraph. Below 767px, drop the separators
+   and lay the stat labels out as a clean 3-per-row grid instead.
+   Each <label> holds both the label text and the value <span> as plain
+   inline content — letting that wrap (white-space:normal) put the value
+   on its own line only for the longer labels ("Discount Amount"), so
+   rows ended up uneven/misaligned. Force every label into a fixed
+   label-then-value column instead, so all 8 tiles line up the same way,
+   and pull the block up closer under "Details:" (mt-2 left too much gap
+   once this became a full-width grid). */
+@media (max-width: 767px) {
+  .receipt-reprint-details-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px 8px !important;
+    width: 100% !important;
+    margin-top: 2px !important;
+  }
+
+  .receipt-reprint-details-stats > span {
+    display: none !important;
+  }
+
+  .receipt-reprint-details-stats > label {
+    display: flex !important;
+    flex-direction: column !important;
+    white-space: normal !important;
+    margin: 0 !important;
+    line-height: 1.35 !important;
+  }
+
+  .receipt-reprint-details-stats > label .text-danger {
+    margin-left: 0 !important;
+    font-weight: 700;
+  }
+}
+
+/* ── Card view ──────────────────────────────────────────────────────────
+   Reuses the exact same columnsToRender/renderCell output as the table
+   (see ReceiptReprintTable.jsx) — this only supplies the visual shell:
+   identity + actions up top, a thin divider, label:value pairs in the
+   body, another divider, then the print/attachment/trf icon row. */
+
+.rr-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  padding: 4px 2px 12px;
+}
+
+@media (max-width: 480px) {
+  .rr-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dispatch Report's card grid (DispatchReportTable.jsx and
+   DispatchReportTableNew.jsx) — the shared auto-fill above packs in as
+   many 300px+ cards as fit, which meant 5 per row on a wide monitor.
+   Fixed to 4 per row instead, scoped here so ReceiptReprint/ResultEntry's
+   card grids keep their auto-fill behavior. */
+@media (min-width: 481px) {
+  .dispatch-card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Dispatch Report card view on mobile: Barcode/Visit No (.rr-card__ids in
+   DispatchReportTableNew.jsx/DispatchReportTable.jsx) currently stack
+   under the patient name on the left, in the flow of .rr-card__identity.
+   Pin them to the top-right of that block instead, so identity (name +
+   age/gender/doctor) reads on the left and Barcode/Visit No reads on the
+   right — scoped to .dispatch-card-grid so ReceiptReprint's card view
+   (same .rr-card__ids markup) keeps its current stacked-left layout. */
+@media (max-width: 767px) {
+  .dispatch-card-grid .rr-card__identity {
+    position: relative;
+    padding-right: 112px;
+  }
+
+  .dispatch-card-grid .rr-card__ids {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    align-items: flex-end;
+  }
+
+  .dispatch-card-grid .rr-card__barcode,
+  .dispatch-card-grid .rr-card__visitno {
+    text-align: right;
+  }
+}
+
+/* ReceiptReprintTable.jsx card view on mobile: resequenced per the
+   hand-drawn layout — Centre name promoted to the card header (left,
+   next to the action icons on the right), then identity splits into two
+   columns: left = Patient name, Age/Gender + Doctor, Barcode + Visit No;
+   right = Reference No, Username, Mobile No. These classes only exist in
+   the DOM when isMobileCardView is true (ReceiptReprintTable.jsx), so
+   this is scoped by JS already — the media query here just keeps it
+   consistent with the rest of this file and guards against any stale
+   markup from a resize. Desktop card view (reachable via the Table/Card
+   toggle) renders the original .rr-card__identity markup untouched. */
+@media (max-width: 767px) {
+  /* First section (header + identity block) tinted with the same
+     per-row status color already used for the card's left accent border
+     (--card-status, set from getColor(data.reportStatus) — the same
+     Paid/Partial Paid/Unpaid/Refund/Credit palette as the legend chips
+     above the results). */
+  .rr-card__header,
+  .rr-card__identity--mobile {
+    background: var(--card-status, transparent);
+  }
+
+  .rr-card__centre {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1e293b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .rr-card__identity--mobile {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .rr-card__identity-col--left {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .rr-card__identity-col--left .rr-card__patient {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .rr-card__srno {
+    font-weight: 700;
+    color: #475569;
+    flex-shrink: 0;
+  }
+
+  .rr-card__identity-col--right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+    max-width: 45%;
+    text-align: right;
+  }
+
+  .rr-card__identity-col--right .rr-card__mini-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    line-height: 1.25;
+  }
+
+  .rr-card__mini-field-icon {
+    font-size: 11px;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+
+  /* The "1" serial number bundled with the header's action icons
+     (renderCell's "Action"/"S.No" case, shared with the table view — see
+     the .rr-card-srno-badge className there) is now redundant on mobile
+     since the same number renders beside the patient name instead (see
+     .rr-card__srno above). Desktop card view keeps it, since that view
+     doesn't show the number beside the name. */
+  .rr-card-grid .rr-card-srno-badge {
+    display: none !important;
+  }
+
+  .rr-card__identity-col--right .rr-card__field-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #94a3b8;
+  }
+
+  .rr-card__identity-col--right .rr-card__field-label--bold {
+    font-weight: 700;
+    font-size: 12px;
+    color: #334155;
+  }
+
+  .rr-card__identity-col--right .rr-card__field-value {
+    font-size: 11px;
+    font-weight: 400;
+    color: #1e293b;
+    overflow-wrap: break-word;
+  }
+
+  .rr-card__identity-col--left .rr-card__ids {
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  /* Amount section: all 5 fields (Gross/Dis/Net/Due/Paid Amt) in a single
+     row of 5 columns instead of the default 2-column grid — each field
+     keeps label-on-top/value-below (the .rr-card__field default), just
+     laid out side by side across the full row. */
+  .rr-card__body--amounts {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 8px 6px !important;
+  }
+
+  .rr-card__body--amounts .rr-card__field {
+    text-align: center;
+  }
+
+  .rr-card__body--amounts .rr-card__field-label {
+    font-weight: 700;
+    font-size: 11.5px;
+    color: #475569;
+  }
+
+  /* renderCell wraps each amount in a plain ".amount" div (shared with the
+     table view), which index.css forces to text-align:end !important —
+     that beat this section's centering above. Override it here, scoped to
+     just this section, so the value actually centers under its label. */
+  .rr-card__body--amounts .rr-card__field-value .amount {
+    text-align: center !important;
+  }
+
+  /* Same one-line label+value treatment for the other body section
+     (Remarks/UHID/CashCollection/OtherCollection/CollectionBoyName/Reg
+     Date, etc. — everything in cardOtherBodyCols) — this section doesn't
+     have the "--amounts" modifier, so target it by excluding that class
+     rather than listing every field's data-field like the amounts rule
+     above. Every field spans the full row (grid-column:1/-1) so its
+     label+value stay on one line without wrapping, EXCEPT
+     CollectionBoyName/Reg Date — those two go back to the 2-column grid,
+     sharing one row with each other, label on top and its own value
+     below (column direction) instead of inline. */
+  .rr-card__body:not(.rr-card__body--amounts) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="CollectionBoyName"],
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="Reg Date"] {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Remarks moves below the CollectionBoyName/Reg Date row instead of
+     above it — order defaults to 0 for every other field in this
+     section, so bumping just Remarks to 1 pushes it after them
+     regardless of cardOtherBodyCols' original data order. */
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="Remarks"] {
+    order: 1;
+  }
+
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="Remarks"] .rr-card__field-label,
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="CollectionBoyName"] .rr-card__field-label,
+  .rr-card__body:not(.rr-card__body--amounts) .rr-card__field[data-field="Reg Date"] .rr-card__field-label {
+    font-weight: 700;
+    font-size: 12px;
+    color: #475569;
+  }
+}
+
+.rr-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid var(--card-status, #cbd5e1);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
+  overflow: hidden;
+}
+
+.rr-card:hover {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Only the identity+body zone shows the "hoverable" cursor/tooltip
+   affordance — the header's action icons and footer's print/attachment
+   buttons keep their own default cursor so it's clear they're separate,
+   individually-clickable controls, not part of the hover-for-tooltip area. */
+.rr-card__hover-zone {
+  cursor: pointer;
+}
+
+.rr-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 0;
+}
+
+.rr-card__ids {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rr-card__visitno {
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rr-card__barcode {
+  font-weight: 700;
+  font-size: 12px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rr-card__actions {
+  flex-shrink: 0;
+}
+
+.rr-card__identity {
+  padding: 6px 12px 0;
+}
+
+.rr-card__patient {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rr-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.rr-card__dot {
+  opacity: 0.6;
+}
+
+.rr-card__divider {
+  height: 1px;
+  background: #eef0f3;
+  margin: 10px 12px 0;
+  flex-shrink: 0;
+}
+
+.rr-card__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  padding: 10px 12px;
+}
+
+.rr-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.rr-card__field-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.rr-card__field-value {
+  font-size: 12.5px;
+  color: #1e293b;
+  overflow-wrap: break-word;
+}
+
+/* New card section (mobile only, ReceiptReprintTable.jsx): the same
+   package/individual test grouping already shown in the flask-icon's
+   CustomTooltip popup (see CustomTooltip.jsx's "package-header" /
+   "no-package-header" / "test" item types), rendered inline in the card
+   instead of on hover/click — single-column since the card itself is
+   already narrow, unlike the tooltip's 2-column desktop layout. */
+.rr-card__tests {
+  padding: 8px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rr-card__tests-header {
+  background: #4f46e5;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.rr-card__tests-header:first-child {
+  margin-top: 0;
+}
+
+.rr-card__tests-row {
+  font-size: 12px;
+  color: #222;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #fafafa;
+  word-wrap: break-word;
+}
+
+.rr-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 12px;
+  margin-top: auto;
+}
+
+.rr-card__footer-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DispatchReportTable.jsx's card-footer Print action renders two <i
+   class="fa fa-print iconStyle"> icons at the browser's plain default icon
+   size (`.iconStyle` itself carries no rules — it's shared by ~19 other
+   pages' table views, so it's left alone there and scoped here instead).
+   That reads fine on an actual phone but looks tiny/cramped next to the
+   rest of the card footer in a desktop browser's mobile view. */
+.rr-card__footer-action .iconStyle {
+  font-size: 20px !important;
+  padding: 4px;
+  line-height: 1;
+}
+
+.rr-card__footer-action .d-flex.flex-row {
+  gap: 14px;
+}
+
+/* Dispatch Report card view: per-patient test list. Fixed to roughly
+   2 test-cards tall so every patient card in a row ends up the same
+   height regardless of how many tests it has — extra tests scroll
+   inside this box instead of stretching the card. */
+.rr-card__tests-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 190px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.rr-card__tests-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rr-card__tests-scroll::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+  border-radius: 3px;
+}
+
+.nextgen-mode .rr-card__tests-scroll::-webkit-scrollbar-thumb {
+  background: var(--ng-border);
+}
+
+.nextgen-mode .rr-card__tests-scroll {
+  scrollbar-color: var(--ng-border) transparent;
+}
+
+/* NextGen theming — same --ng-* tokens as the rest of the system, so this
+   tracks both light and dark NextGen mode automatically. */
+/* border-color (not border-top/right/bottom-color individually) would also
+   touch the left side, overwriting the base rule's `border-left: ...
+   var(--card-status)` — the per-row paid/partial/unpaid/etc. status color —
+   with plain --ng-border gray. Left deliberately excluded so the status
+   color keeps showing in both modes. */
+.nextgen-mode .rr-card {
+  background: var(--ng-surface);
+  border-top-color: var(--ng-border);
+  border-right-color: var(--ng-border);
+  border-bottom-color: var(--ng-border);
+}
+
+.nextgen-mode .rr-card:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  border-top-color: var(--ng-primary-500, #3b82f6);
+  border-right-color: var(--ng-primary-500, #3b82f6);
+  border-bottom-color: var(--ng-primary-500, #3b82f6);
+}
+
+.nextgen-mode .rr-card__barcode,
+.nextgen-mode .rr-card__meta {
+  color: var(--ng-text-muted);
+}
+
+.nextgen-mode .rr-card__visitno,
+.nextgen-mode .rr-card__patient,
+.nextgen-mode .rr-card__field-value {
+  color: var(--ng-text);
+}
+
+.nextgen-mode .rr-card__divider {
+  background: var(--ng-border);
+}
+
+.nextgen-mode .rr-card__field-label {
+  color: var(--ng-text-muted);
+}

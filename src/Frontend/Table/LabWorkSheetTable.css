@@ -1,0 +1,31 @@
+.print-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.print-tooltip {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 4px;
+  z-index: 100;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+}
+
+.print-icon-wrapper:hover .print-tooltip {
+  display: block;
+}
+
+.print-tooltip table {
+  border-collapse: collapse;
+}
+
+.print-tooltip th,
+.print-tooltip td {
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+  font-size: 12px;
+}

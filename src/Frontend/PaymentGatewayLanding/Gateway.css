@@ -1,0 +1,126 @@
+.payment_container {
+  width: 450px;
+}
+
+.ieoi {
+  height: 100vh;
+  background-color: #e2e2fc;
+}
+.ieoi button {
+  height: 30px !important;
+}
+
+.payment_container img {
+  width: 200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+h2.type_font.center_title {
+  font-size: 18px !important;
+}
+
+h1.health_title span {
+  font-weight: 600;
+  font-size: 16px !important;
+}
+
+h2.center_title {
+  font-size: 15px !important;
+  font-weight: 600;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.payment_container input {
+  height: 30px !important;
+  font-size: 14px !important;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.payment_container input::placeholder {
+  font-size: 14px !important;
+  text-align: left;
+}
+
+.otp_para {
+  font-size: 14px !important;
+  color: #a1a8ae;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.Resent-otp {
+  font-weight: 600;
+  text-align: center;
+  width: fit-content;
+  letter-spacing: 0.2px;
+  padding: 3px 6px;
+  font-size: 14px !important;
+  margin: 0 auto;
+  color: #ac8989 !important;
+  cursor: pointer;
+  border-radius: 6px !important;
+  background-color: #8bc098 !important;
+  border: unset;
+}
+
+.Resent-otp:hover {
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.btn-resend {
+  background-color: #c6c3f1 !important;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-resend:hover:enabled {
+  background-color: #574bdb !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-resend:disabled {
+  background-color: #c5c5c5 !important;
+  cursor: not-allowed;
+}
+
+.btn-reset {
+  background-color: transparent !important;
+  color: #3a3939;
+  font-weight: 600;
+  font-size: 14px !important;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-reset:hover {
+  background-color: #c0bdbdaf !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.remarks input{
+  font-weight: 400;
+}
+.remarks textarea {
+  font-weight: 400;
+  min-height: 50px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .payment_container {
+    height: 90%;
+  }
+  .ieoi {
+    background-color: #686bf3;
+    height: 100vh;
+  }
+}

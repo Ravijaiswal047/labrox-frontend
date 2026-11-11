@@ -1,0 +1,42 @@
+.dashboard-heading {
+  font-size: 18px !important;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #8b2424; /* blue underline */
+  color: #8b2424;
+}
+
+.dashboard-sub-heading {
+  font-size: 20px !important;
+  font-weight: 600;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  color: #8b2424;
+}
+
+/* .sidebar-layout{
+    padding: 10px 20px;
+    height: 100%;
+} */
+
+.map-container {
+  width: 100%;
+  height: 350px; /* Adjust height */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+
+/* .ambulance-table th {
+  background: #f5f5f5;
+  color: #444;
+  font-weight: 600;
+} */
+
+.ambulance-table td, 
+.ambulance-table th {
+  padding: 10px;
+  vertical-align: middle;
+}

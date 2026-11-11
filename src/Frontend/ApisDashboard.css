@@ -1,0 +1,56 @@
+@media only screen and (max-width: 767px) {
+  /* "Total Records" badge was hugging the "Search Data" title with no gap.
+     Heading.jsx gives it a "w-100" class which (as a flex item) forces it to
+     flex-shrink down tight against the title instead of sizing to its own
+     content — override that so it shrinks to content width and the h4's own
+     justify-content-between pushes it naturally to the right edge. */
+  .apis-search-accordion .card-title .color-code-search-resp {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    margin-left: 8px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Filter row (FromDate/ToDate/Vendor/API/Search/Excel) stacks one-per-line on
+     mobile — tighten the vertical gaps between them, they were much larger than
+     needed (my-1 utility margin + each field's own form-group margin stacking up). */
+  .apis-filter-row > div {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .apis-filter-row .form-group {
+    margin-bottom: 0.15rem !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Mobile status pills + search: styled with the theme's own "card-header" class
+     so its background/gradient matches the real header automatically (whatever
+     theme is active), and pulled up flush against it so they read as one bar. */
+  .apis-search-accordion .apis-mobile-header-controls {
+    padding: 8px !important;
+    margin-top: -1px;
+    border-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  /* Visual separation between stacked rows in the responsive/card table view */
+  .apis-dashboard-table tr {
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+  }
+
+  /* Desktop truncation widths (150px) don't apply to the stacked mobile layout —
+     without this override the AWS Key column labels wrap awkwardly and look broken.
+     min-height keeps empty cells (e.g. UpdatedAt/UpdatedBy before a record is ever
+     updated) from collapsing to 0px and overlapping the next row's label. */
+  .apis-dashboard-table td {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 24px;
+  }
+}

@@ -1,0 +1,239 @@
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    max-height: 500px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables table {
+    width: max-content !important;
+    min-width: 100% !important;
+    display: table !important;
+    border-collapse: collapse !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables thead {
+    display: table-header-group !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables thead tr {
+    display: table-row !important;
+    position: static !important;
+    background-color: #f8f9fc !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables thead th {
+    display: table-cell !important;
+    padding: 12px 8px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    background-color: #f8f9fc !important;
+    border-bottom: 2px solid #dee2e6 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables tbody {
+    display: table-row-group !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables tbody tr {
+    display: table-row !important;
+    border: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active) #no-more-tables tbody td {
+    display: table-cell !important;
+    padding: 8px !important;
+    border: 1px solid #dee2e6 !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    position: static !important;
+    padding-left: 8px !important;
+  }
+
+  .bulk-activity-wrapper:not(.responsive-mode-active)
+    #no-more-tables
+    tbody
+    td::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables table {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables thead {
+    display: none !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables tbody {
+    display: block !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables tbody tr {
+    display: block !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+    background: #fff !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    white-space: normal !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables tbody td {
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 10px 12px !important;
+    padding-left: 12px !important;
+    border: none !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    position: static !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active
+    #no-more-tables
+    tbody
+    td:last-child {
+    border-bottom: none !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active
+    #no-more-tables
+    tbody
+    td::before {
+    content: attr(data-title) ": " !important;
+    font-weight: 700 !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+    flex-shrink: 0 !important;
+    color: #444 !important;
+    margin-right: 8px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    padding-right: 0 !important;
+  }
+
+  .bulk-activity-wrapper.responsive-mode-active #no-more-tables tbody td > * {
+    flex: 1 !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    min-width: 0 !important;
+  }
+}
+
+.bulk-activity-wrapper #no-more-tables {
+  position: relative !important;
+  overflow: auto !important;
+  max-height: 500px !important;
+}
+
+.bulk-activity-wrapper #no-more-tables thead th {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background-color: #f8f9fc !important;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bulk-activity-wrapper #no-more-tables tbody {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.bulk-activity-wrapper #no-more-tables td {
+  padding-left: 8px !important;
+  position: static !important;
+}
+
+.bulk-activity-wrapper #no-more-tables td::before {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  padding-right: 0 !important;
+}
+
+.bulk-activity-wrapper .mobile-card-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 6px 14px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.bulk-activity-wrapper .mobile-card-label {
+  display: block !important;
+  flex: 0 0 40% !important;
+  max-width: 40% !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #495057 !important;
+  padding-right: 8px !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+}
+
+.bulk-activity-wrapper .mobile-card-value {
+  display: block !important;
+  flex: 1 !important;
+  font-size: 13px !important;
+  color: #2c3e50 !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+  min-width: 0 !important;
+}
+
+.bulk-activity-wrapper .mobile-card {
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  margin-bottom: 12px !important;
+  overflow: hidden !important;
+}
+
+.bulk-activity-wrapper .mobile-cards-container {
+  padding: 4px !important;
+  background: #eeeeee !important;
+}
+
+.bulk-activity-wrapper .mainTable thead tr th {
+  white-space: nowrap !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+}
+
+.bulk-activity-wrapper .mainTable tbody tr td {
+  width: auto !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+}
+.bulk-activity-wrapper .mainTable thead tr th {
+  padding: 2px 8px !important;
+}

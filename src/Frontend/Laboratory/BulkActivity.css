@@ -1,0 +1,21 @@
+.skweoi tr td {
+  padding: 4px 10px !important;
+}
+
+.awpoqw tr th {
+  padding: 4px 10px !important;
+}
+
+@media only screen and (max-width: 800px) {
+  /* Specificity: ID(1) + element(1) + class(1) = 111, beats #no-more-tables td = 101 */
+  #no-more-tables td.bulk-info-patient-td {
+    padding-left: 8px !important;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
+  #no-more-tables td.bulk-info-patient-td::before {
+    display: none !important;
+    content: none !important;
+  }
+}

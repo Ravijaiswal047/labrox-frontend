@@ -1,0 +1,37 @@
+.input-patient {
+  width: 100%;
+}
+
+.uhid-width {
+  width: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .uhid-width {
+    width: 100px; 
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .input-patient {
+    width: 130px; 
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .input-patient {
+    width: 160px; 
+  }
+}
+
+@media (min-width: 992px) {
+  .uhid-width {
+    width: 120px; 
+  }
+}
+
+@media (min-width: 992px) {
+  .input-patient {
+    width: 180px; 
+  }
+}

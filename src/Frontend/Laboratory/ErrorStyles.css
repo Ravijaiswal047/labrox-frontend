@@ -1,0 +1,66 @@
+/* Error styling for form validation */
+.error {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.error-message {
+  font-size: 0.875rem;
+  color: #dc3545 !important;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.border-danger {
+  border-color: #dc3545 !important;
+}
+
+/* React Select error styling */
+.react-select__control--error {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.react-select__control--error:hover {
+  border-color: #dc3545 !important;
+}
+
+/* Input group error styling */
+.input-group .form-control.error {
+  border-color: #dc3545 !important;
+}
+
+.input-group .form-control.error:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Required field styling */
+.required-fields.error {
+  border-color: #dc3545 !important;
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* Error toast styling */
+.Toastify__toast--error {
+  /* background-color: #dc3545; */
+}
+
+/* Validation summary styling */
+.validation-summary {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.validation-summary ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.validation-summary li {
+  margin-bottom: 0.25rem;
+}

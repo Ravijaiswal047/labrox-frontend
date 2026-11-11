@@ -1,0 +1,35 @@
+@media (max-width: 767px) {
+  /* Sample Storage Report heading - ViewMenu on right */
+  .ssr-main-heading .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .ssr-main-heading .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+
+  /* Patient Detail heading - search bar on right */
+  .ssr-patient-heading .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .ssr-patient-heading .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .ssr-patient-heading .color-code-search-resp input {
+    width: 130px !important;
+    font-size: 12px;
+    margin: 0 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+  }
+}

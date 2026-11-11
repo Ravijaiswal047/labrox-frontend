@@ -1,0 +1,24 @@
+.required-fields {
+  border-bottom: 1px solid red !important;
+  border-radius: 5px !important;
+}
+
+.required-fields-active {
+  border-color: #d35050;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    1px 0.5px 5px 0px rgb(201 74 74 / 60%);
+  border: 1px solid #e53d3d;
+}
+
+.required-select-fields {
+  border-bottom: 1px solid red !important;
+  border-radius: 5px !important;
+}
+.css-19bb58m > .required-fields {
+  border-bottom: 1px solid rgb(255, 255, 255) !important;
+}
+
+.required-select-fields .required-select-fields {
+  border-bottom: 0px !important;
+}

@@ -1,0 +1,54 @@
+/* Table */
+.table-container {
+  max-height: 200px; /* vertical limit */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* enables horizontal scroll */
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px; /* ensures wide layout for scrolling */
+}
+
+.responsive-table th,
+.responsive-table td {
+  border: 1px solid #000;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.responsive-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+._client_log p span:first-child {
+  font-weight: 600;
+  font-size: 13px !important;
+}
+
+.p-divider {
+  display: none !important;
+}
+
+.btn_border_right {
+  border-radius: 0px 3px 3px 0px !important;
+  margin-right: -1px !important;
+  z-index: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .responsive-table {
+    font-size: 12px;
+  }
+}
+
+.p-dialog-content {
+  padding: 2px 6px !important;
+}

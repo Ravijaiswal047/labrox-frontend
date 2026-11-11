@@ -1,0 +1,19 @@
+.transparent-background {
+  background-color: transparent;
+}
+
+.gap-custom > * {
+  margin-left: 16px;
+}
+
+.row-active {
+  background-color: #90EE90 !important;
+}
+
+.row-inactive {
+  background-color: #ffe58f !important;
+}
+
+/* .vehicle-row td {
+  color: white;
+} */

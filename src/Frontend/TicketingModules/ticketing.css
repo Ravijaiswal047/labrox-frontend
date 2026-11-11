@@ -1,0 +1,283 @@
+/* ══════════════════════════════════════════════════════════
+   Ticketing Module — Custom Styles
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Global icon alignment fix (Bootstrap Icons) ─────────── */
+.bi {
+  display: inline-block;
+  vertical-align: -0.125em;
+  line-height: 1;
+}
+
+/* ── Pill Badges ─────────────────────────────────────────── */
+.tk-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Status */
+.tk-status-open      { background: #dbeafe; color: #1d4ed8; }
+.tk-status-progress  { background: #dcfce7; color: #166534; }
+.tk-status-hold      { background: #fef9c3; color: #854d0e; }
+.tk-status-escalated { background: #fee2e2; color: #991b1b; }
+.tk-status-resolved  { background: #e0f2fe; color: #0369a1; }
+.tk-status-closed    { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+/* Priority */
+.tk-pri-critical { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+.tk-pri-high     { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.tk-pri-medium   { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.tk-pri-low      { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+
+/* ── Stat Cards ───────────────────────────────────────────── */
+.tk-stat-card {
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+  border-left: 4px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: default;
+  min-height: 76px;
+}
+.tk-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.tk-stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tk-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.tk-stat-label {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Category Breakdown Cards ─────────────────────────────── */
+.tk-cat-card {
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 14px rgba(0,0,0,0.05);
+  border: 1.5px solid transparent;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  cursor: default;
+  min-height: 64px;
+  overflow: hidden;
+}
+.tk-cat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.11);
+}
+
+.tk-cat-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.tk-cat-count {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+/* ── Ticket ID Chip ───────────────────────────────────────── */
+.tk-ticket-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f5fb;
+  border: 1px solid #c8d6e8;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #3d5a8a;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* ── Auto Ticket ID Badge ─────────────────────────────────── */
+.tk-auto-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(135deg, #dbe8f7 0%, #eaf1fb 100%);
+  border: 1.5px solid #4a6fa544;
+  border-radius: 10px;
+  padding: 7px 16px;
+  box-shadow: 0 2px 8px rgba(74, 111, 165, 0.14);
+}
+
+/* ── Category Info Card (Create Ticket) ───────────────────── */
+.tk-cat-info-card {
+  border-radius: 10px;
+  padding: 11px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Escalation Level Badge ───────────────────────────────── */
+.tk-esc-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* ── Escalation Row (Modal) ───────────────────────────────── */
+.tk-esc-row {
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid transparent;
+  overflow: visible;
+  position: relative;
+}
+.tk-esc-row-l1 { background: #f0fdf4; border-color: #bbf7d0; }
+.tk-esc-row-l2 { background: #fffbeb; border-color: #fde68a; }
+.tk-esc-row-l3 { background: #fef2f2; border-color: #fecaca; }
+
+/* ── Fix MultiSelect dropdown clipping inside modal ─────── */
+.rmsc .dropdown-content {
+  z-index: 99999 !important;
+  position: absolute !important;
+}
+
+/* ── SLA Bar ──────────────────────────────────────────────── */
+.tk-sla-bar {
+  height: 7px;
+  border-radius: 999px;
+  background: #e9ecef;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.tk-sla-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ── SLA text colors ──────────────────────────────────────── */
+.tk-sla-ok      { color: #16a34a; font-weight: 600; }
+.tk-sla-warning { color: #d97706; font-weight: 600; }
+.tk-sla-danger  { color: #dc2626; font-weight: 600; }
+
+/* ── Subcategory Item ─────────────────────────────────────── */
+.tk-subcat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #f5f8fc;
+  border: 1px solid #d9e4f0;
+  font-size: 12.5px;
+  transition: background 0.12s;
+}
+.tk-subcat-item:hover { background: #eaf1fb; }
+
+/* ── Metric Chip (MIS header) ─────────────────────────────── */
+.tk-metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.tk-metric-chip-blue   { background: #dbeafe; color: #1d4ed8; }
+.tk-metric-chip-red    { background: #fee2e2; color: #991b1b; }
+.tk-metric-chip-green  { background: #dcfce7; color: #166534; }
+.tk-metric-chip-muted  { background: #f1f5f9; color: #475569; }
+
+/* ── Escalation preview strip ─────────────────────────────── */
+.tk-esc-strip {
+  background: #f5f8fc;
+  border: 1px solid #d9e4f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 11.5px;
+  margin-top: 6px;
+}
+
+/* ── Quick Action bar ─────────────────────────────────────── */
+.tk-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── Dashboard responsive grid ────────────────────────────── */
+@media (max-width: 768px) {
+  .tk-dashboard-grid-stat {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .tk-dashboard-grid-cat {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

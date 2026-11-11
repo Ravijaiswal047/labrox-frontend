@@ -1,0 +1,4 @@
+select option:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+}

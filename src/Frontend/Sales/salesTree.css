@@ -1,0 +1,114 @@
+
+.tree-container {
+    padding: 40px;
+    background: #f8fafc;
+}
+
+.node-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.node-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-4px);
+}
+
+.line-vertical {
+    width: 2px;
+    background: #cbd5e1;
+    height: 20px;
+}
+
+.line-horizontal {
+    height: 2px;
+    background: #cbd5e1;
+    position: absolute;
+    top: -20px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* Container to allow horizontal scrolling */
+.tree-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+/* The vertical stem coming out of a parent */
+.stem-line {
+  width: 2px;
+  height: 20px;
+  background-color: #cbd5e1;
+}
+
+/* The horizontal bridge connecting siblings */
+.bridge-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  padding-top: 20px; /* Space for the bridge line */
+}
+
+.bridge-line {
+  position: absolute;
+  top: 0;
+  height: 2px;
+  background-color: #cbd5e1;
+}
+
+.vertical-tree-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* The L-shape connector */
+.vertical-line-branch {
+  position: absolute;
+  left: -20px;
+  top: -10px;
+  width: 20px;
+  height: 32px;
+  border-left: 2px solid #cbd5e1;
+  border-bottom: 2px solid #cbd5e1;
+  border-bottom-left-radius: 8px;
+}
+
+/* The straight vertical line for deep nesting */
+.vertical-line-trunk {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #cbd5e1;
+}
+
+.node-card-vertical {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.node-card-vertical:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+
+@media (max-width: 767px) {
+  .sales-tree-page .card-title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+  }
+}

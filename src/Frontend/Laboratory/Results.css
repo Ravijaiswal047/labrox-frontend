@@ -1,0 +1,27 @@
+.text_how_nextLine{
+    max-width: 100%;
+}
+
+/* Login OTP CSS used a global `.fw-bold { color: white }` that leaked into
+   this search table. Keep barcode readable on striped rows. */
+.sc-barcode-no {
+  color: #212529 !important;
+}
+
+.text-wrap-width{
+    max-width: 220px;
+}
+
+.text-wrap-width p{
+    text-wrap: auto;
+    text-transform: capitalize;
+}
+
+.wrap-fix .custom-col {
+  flex: 0 0 auto;
+}
+
+.wrap-fix {
+  gap: 16px;   /* adjust spacing as needed */
+  row-gap: 4px;
+}

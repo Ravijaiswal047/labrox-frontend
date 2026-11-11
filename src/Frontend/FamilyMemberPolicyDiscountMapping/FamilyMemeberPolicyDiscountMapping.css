@@ -1,0 +1,7 @@
+.over-table{
+    max-height: 400px;
+}
+
+.over-table table thead{
+    z-index: 1;
+}

@@ -1,0 +1,878 @@
+/* ==========================================================================
+   OPD Consultation Module — visual design layer
+   Scoped under .dopd-shell so nothing here leaks into the rest of the app.
+   All colors intentionally mirror the --ng-* tokens used by the NextGen
+   component kit (NextGenButton/NextGenInput) elsewhere in the codebase, so
+   this module feels like one piece with the emerging design language.
+   ========================================================================== */
+
+.dopd-shell {
+  --dopd-primary-50: #eff6ff;
+  --dopd-primary-100: #dbeafe;
+  --dopd-primary-400: #60a5fa;
+  --dopd-primary-500: #3b82f6;
+  --dopd-primary-600: #2563eb;
+  --dopd-primary-700: #1d4ed8;
+  --dopd-success-50: #f0fdf4;
+  --dopd-success-500: #16a34a;
+  --dopd-success-600: #15803d;
+  --dopd-danger-50: #fef2f2;
+  --dopd-danger-500: #dc2626;
+  --dopd-warning-50: #fffbeb;
+  --dopd-warning-500: #d97706;
+  --dopd-info-50: #f0f9ff;
+  --dopd-info-500: #0284c7;
+  --dopd-indigo-50: #eef2ff;
+  --dopd-indigo-500: #4f46e5;
+  --dopd-slate-50: #f8fafc;
+  --dopd-slate-100: #f1f5f9;
+  --dopd-slate-200: #e2e8f0;
+  --dopd-slate-400: #94a3b8;
+  --dopd-slate-500: #64748b;
+  --dopd-slate-600: #475569;
+  --dopd-slate-700: #334155;
+  --dopd-slate-900: #0f172a;
+  --dopd-radius: 14px;
+  --dopd-radius-sm: 8px;
+  --dopd-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --dopd-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  animation: dopd-fade-in 0.25s ease both;
+}
+
+@keyframes dopd-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.dopd-shell * { box-sizing: border-box; }
+
+/* ---- Section card scaffolding (sits inside each Accordion body) -------- */
+
+.dopd-section {
+  padding: 14px 16px 18px;
+}
+
+.dopd-section + .dopd-section {
+  border-top: 1px solid var(--dopd-slate-100);
+}
+
+.dopd-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dopd-section-head .dopd-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--dopd-primary-500), var(--dopd-primary-700));
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.35);
+}
+
+.dopd-section-head .dopd-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  background: var(--dopd-primary-50);
+  color: var(--dopd-primary-600);
+}
+
+.dopd-section-head h3 {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--dopd-slate-900);
+  letter-spacing: 0.1px;
+}
+
+.dopd-section-head span.dopd-section-sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dopd-slate-500);
+  margin-top: 1px;
+}
+
+.dopd-section-head .dopd-head-extra {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dopd-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px 14px;
+  align-items: end;
+}
+
+.dopd-grid .dopd-field-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dopd-fieldset {
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius-sm);
+  background: var(--dopd-slate-50);
+  padding: 12px 12px 4px;
+  margin-bottom: 14px;
+}
+
+.dopd-fieldset legend {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dopd-slate-500);
+  padding: 0 6px;
+  width: auto;
+  margin: -20px 0 6px 4px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+/* ---- Stat chips ---------------------------------------------------------- */
+
+.dopd-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 2px 0 14px;
+}
+
+.dopd-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--dopd-radius-sm);
+  background: var(--dopd-slate-50);
+  border: 1px solid var(--dopd-slate-200);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--dopd-slate-700);
+}
+
+.dopd-stat b {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--dopd-slate-900);
+}
+
+.dopd-stat.dopd-stat-primary { background: var(--dopd-primary-50); border-color: var(--dopd-primary-100); color: var(--dopd-primary-700); }
+.dopd-stat.dopd-stat-success { background: var(--dopd-success-50); border-color: #bbf7d0; color: var(--dopd-success-600); }
+.dopd-stat.dopd-stat-warning { background: var(--dopd-warning-50); border-color: #fde68a; color: #92400e; }
+.dopd-stat.dopd-stat-danger { background: var(--dopd-danger-50); border-color: #fecaca; color: #991b1b; }
+
+/* ---- Badges v2 ------------------------------------------------------------ */
+
+.dopd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+
+.dopd-badge svg { width: 12px; height: 12px; }
+
+.dopd-badge-waiting { background: var(--dopd-primary-50); color: var(--dopd-primary-700); }
+.dopd-badge-current { background: var(--dopd-warning-50); color: #92400e; animation: dopd-pulse-soft 1.6s ease-in-out infinite; }
+.dopd-badge-absent { background: var(--dopd-danger-50); color: #991b1b; }
+.dopd-badge-done { background: var(--dopd-success-50); color: var(--dopd-success-600); }
+.dopd-badge-cancel { background: var(--dopd-slate-100); color: var(--dopd-slate-600); }
+.dopd-badge-reschedule { background: var(--dopd-indigo-50); color: var(--dopd-indigo-500); }
+.dopd-badge-paid { background: var(--dopd-success-50); color: var(--dopd-success-600); }
+.dopd-badge-partial { background: var(--dopd-warning-50); color: #92400e; }
+.dopd-badge-unpaid { background: var(--dopd-danger-50); color: #991b1b; }
+
+@keyframes dopd-pulse-soft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.28); }
+  50% { box-shadow: 0 0 0 5px rgba(217, 119, 6, 0); }
+}
+
+/* ---- Leave legend chips (Doctor Setup) ----------------------------------- */
+
+.dopd-leave-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.dopd-leave-legend::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dopd-leave-legend.dopd-leave-active { background: var(--dopd-success-50); color: var(--dopd-success-600); }
+.dopd-leave-legend.dopd-leave-active::before { background: var(--dopd-success-500); }
+.dopd-leave-legend.dopd-leave-inactive { background: var(--dopd-danger-50); color: #991b1b; }
+.dopd-leave-legend.dopd-leave-inactive::before { background: var(--dopd-danger-500); }
+
+tr.dopd-leave-active { background-color: var(--dopd-success-50) !important; }
+tr.dopd-leave-inactive { background-color: var(--dopd-danger-50) !important; }
+
+/* ---- Quick-fill bar (apply header row to all days) ----------------------- */
+
+.dopd-quickfill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dopd-primary-600);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* ---- Toggle switches ------------------------------------------------------ */
+
+.dopd-shell .form-check.form-switch .form-check-input {
+  width: 2.4em;
+  cursor: pointer;
+}
+.dopd-shell .form-check.form-switch .form-check-input:checked {
+  background-color: var(--dopd-success-500);
+  border-color: var(--dopd-success-500);
+}
+
+/* ---- Table polish ---------------------------------------------------------- */
+
+.dopd-table-card {
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius);
+  overflow: hidden;
+  background: #fff;
+}
+
+.dopd-table-card #no-more-tables {
+  border-radius: var(--dopd-radius);
+}
+
+.dopd-table-card .mainTable {
+  margin-bottom: 0;
+}
+
+.dopd-table-card .mainTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--dopd-slate-50);
+  color: var(--dopd-slate-600);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--dopd-slate-200);
+  white-space: normal;
+  vertical-align: middle;
+  padding: 10px 12px;
+}
+
+.dopd-table-card .mainTable tbody td {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--dopd-slate-700);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--dopd-slate-100);
+}
+
+.dopd-table-card .mainTable tbody tr:hover td {
+  background: var(--dopd-primary-50);
+}
+
+.dopd-table-card .mainTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dopd-table-card .mainTable tbody tr.dopd-current-row td {
+  background: var(--dopd-warning-50);
+  font-weight: 700;
+}
+
+.dopd-empty-row td {
+  text-align: center;
+  padding: 34px 12px !important;
+  color: var(--dopd-slate-400);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ---- Doctor directory cards (Search Doctor) -------------------------------- */
+
+.dopd-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 14px;
+}
+
+.dopd-doc-card {
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius);
+  background: #fff;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.dopd-doc-card:hover {
+  box-shadow: var(--dopd-shadow);
+  border-color: var(--dopd-primary-100);
+  transform: translateY(-2px);
+}
+
+.dopd-doc-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dopd-avatar {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--dopd-primary-500), var(--dopd-indigo-500));
+}
+
+.dopd-doc-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--dopd-slate-900);
+  line-height: 1.25;
+}
+
+.dopd-doc-designation {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dopd-primary-600);
+}
+
+.dopd-doc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--dopd-slate-600);
+}
+
+.dopd-doc-meta .dopd-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dopd-doc-meta svg {
+  width: 14px;
+  height: 14px;
+  color: var(--dopd-slate-400);
+  flex: 0 0 auto;
+}
+
+.dopd-doc-schedule {
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--dopd-slate-200);
+  font-size: 12px;
+  color: var(--dopd-slate-600);
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.dopd-doc-schedule svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  color: var(--dopd-slate-400);
+  flex: 0 0 auto;
+}
+
+/* ---- Slot / token picker (Booking) ----------------------------------------- */
+
+.dopd-slot-panel {
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius);
+  background: var(--dopd-slate-50);
+  padding: 14px;
+}
+
+.dopd-slot-legend {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--dopd-slate-500);
+}
+
+.dopd-slot-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dopd-slot-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.dopd-slot-legend .dopd-dot-free { background: #fff; border: 1.5px solid var(--dopd-slate-400); }
+.dopd-slot-legend .dopd-dot-selected { background: linear-gradient(135deg, var(--dopd-primary-500), var(--dopd-primary-700)); }
+.dopd-slot-legend .dopd-dot-booked { background: var(--dopd-slate-200); }
+
+.dopd-slot-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dopd-slot {
+  min-width: 78px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--dopd-slate-200);
+  background: #fff;
+  color: var(--dopd-slate-700);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.3;
+}
+
+.dopd-slot .dopd-slot-token {
+  font-size: 10.5px;
+  font-weight: 600;
+  opacity: 0.65;
+}
+
+.dopd-slot:hover:not(:disabled) {
+  border-color: var(--dopd-primary-400);
+  transform: translateY(-1px);
+}
+
+.dopd-slot--selected {
+  background: linear-gradient(135deg, var(--dopd-primary-500), var(--dopd-primary-700));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.dopd-slot--selected .dopd-slot-token { opacity: 0.85; }
+
+.dopd-slot:disabled {
+  background: var(--dopd-slate-100);
+  color: var(--dopd-slate-400);
+  border-color: var(--dopd-slate-200);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.dopd-slot-empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dopd-slate-500);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 2px;
+}
+
+/* ---- Payment summary card (Booking) ---------------------------------------- */
+
+.dopd-pay-card {
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius);
+  background: #fff;
+  padding: 14px 16px;
+  margin-top: 14px;
+}
+
+.dopd-pay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.dopd-pay-net {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: var(--dopd-radius-sm);
+  background: var(--dopd-primary-50);
+  color: var(--dopd-primary-700);
+}
+
+.dopd-pay-net span {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  opacity: 0.8;
+}
+
+.dopd-pay-net b {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* ---- Patient banner (Booking) ---------------------------------------------- */
+
+.dopd-patient-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--dopd-primary-50), #fff);
+  border: 1px solid var(--dopd-primary-100);
+  border-radius: var(--dopd-radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--dopd-primary-700);
+  font-weight: 600;
+}
+
+.dopd-patient-banner svg { width: 16px; height: 16px; }
+
+/* ---- Action bar in tables --------------------------------------------------- */
+
+.dopd-action-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dopd-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--dopd-slate-200);
+  color: var(--dopd-slate-700);
+  transition: all 0.12s ease;
+}
+
+.dopd-link-pill:hover {
+  border-color: var(--dopd-primary-400);
+  color: var(--dopd-primary-600);
+  background: var(--dopd-primary-50);
+}
+
+.dopd-link-pill svg { width: 12px; height: 12px; }
+
+/* ---- Audit log timeline (Confirmation) -------------------------------------- */
+
+.dopd-log-panel {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--dopd-slate-200);
+}
+
+.dopd-log-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dopd-slate-700);
+  margin-bottom: 10px;
+}
+
+/* ---- Token Display — waiting-room board ------------------------------------- */
+
+.dopd-board {
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) 1fr;
+  gap: 18px;
+  padding: 4px 16px 18px;
+}
+
+@media (max-width: 900px) {
+  .dopd-board { grid-template-columns: 1fr; }
+}
+
+.dopd-now-serving {
+  position: relative;
+  border-radius: var(--dopd-radius);
+  padding: 22px 20px;
+  background: linear-gradient(160deg, #1d4ed8, #4f46e5 65%, #3730a3);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(29, 78, 216, 0.3);
+}
+
+.dopd-now-serving::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dopd-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.dopd-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  animation: dopd-live-ping 1.5s ease-in-out infinite;
+}
+
+@keyframes dopd-live-ping {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.dopd-now-serving .dopd-token-number {
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1;
+  margin: 14px 0 6px;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+.dopd-now-serving .dopd-token-patient {
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+}
+
+.dopd-now-serving .dopd-token-meta {
+  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+}
+
+.dopd-now-serving .dopd-token-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dopd-now-serving .dopd-token-meta svg { width: 14px; height: 14px; }
+
+.dopd-now-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 40px 10px;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+}
+
+.dopd-now-idle svg { width: 30px; height: 30px; opacity: 0.8; }
+
+.dopd-queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 460px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.dopd-queue-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius-sm);
+  background: #fff;
+}
+
+.dopd-queue-row.dopd-current-row {
+  border-color: #fde68a;
+  background: var(--dopd-warning-50);
+}
+
+.dopd-queue-token {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  background: var(--dopd-slate-100);
+  color: var(--dopd-slate-700);
+}
+
+.dopd-queue-row.dopd-current-row .dopd-queue-token {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+}
+
+.dopd-queue-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.dopd-queue-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--dopd-slate-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dopd-queue-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--dopd-slate-500);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.dopd-queue-sub svg { width: 12px; height: 12px; }
+
+.dopd-queue-actions {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+/* ---- Item autosuggest (unchanged behaviour, refreshed look) ---------------- */
+
+.dopd-item-select {
+  min-width: 220px;
+  overflow: visible;
+}
+
+.dopd-item-ac {
+  position: relative;
+}
+
+.dopd-item-ac .suggestion-data {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid var(--dopd-slate-200);
+  border-radius: var(--dopd-radius-sm);
+  box-shadow: var(--dopd-shadow);
+  margin: 4px 0 0;
+  padding: 4px;
+  list-style: none;
+}
+
+.dopd-item-ac .suggestion-data li {
+  padding: 7px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--dopd-slate-700);
+}
+
+.dopd-item-ac .suggestion-data li:hover {
+  background: var(--dopd-primary-50);
+  color: var(--dopd-primary-700);
+}
+
+/* ---- Small helpers ----------------------------------------------------------- */
+
+.dopd-hint {
+  font-size: 11.5px;
+  color: var(--dopd-slate-500);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.dopd-divider-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dopd-slate-400);
+  margin: 4px 0 12px;
+}
+
+.dopd-divider-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--dopd-slate-200);
+}

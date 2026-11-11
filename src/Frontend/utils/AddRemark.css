@@ -1,0 +1,33 @@
+.switch-lg {
+  width: 26px !important;
+  height: 16px !important;
+}
+
+.switch-lg .slider:before {
+  height: 10px;
+  width: 10px;
+  left: 3px;
+  bottom: 3px;
+}
+
+.switch-lg input:checked + .slider:before {
+  transform: translateX(10px);
+}
+
+@media (max-width: 768px) {
+  .switch-lg {
+    width: 20px !important;
+    height: 13px !important;
+  }
+
+  .switch-lg .slider:before {
+    height: 8px;
+    width: 8px;
+    left: 2px;
+    bottom: 2.5px;
+  }
+
+  .switch-lg input:checked + .slider:before {
+    transform: translateX(7px);
+  }
+}

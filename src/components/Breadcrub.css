@@ -1,0 +1,8 @@
+.back_breadcrub > i{
+    font-size: 18px !important;
+    font-weight: 700;
+}
+
+.back_breadcrub{
+    cursor: pointer;
+}

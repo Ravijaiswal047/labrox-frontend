@@ -1,0 +1,431 @@
+:root {
+  --ng-sidebar-width: 260px;
+}
+
+.ng-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--ng-sidebar-width, 260px);
+  z-index: 1030;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--ng-navy-900), color-mix(in srgb, var(--ng-navy-900) 85%, black));
+  border-right: 1px solid var(--ng-border);
+  padding: 14px;
+  gap: 12px;
+  overflow: visible;
+  transition: width 180ms ease, background 160ms ease;
+}
+
+/*
+  Classic's per-color-theme stylesheet (theme.css) has ~30 blocks like
+  `.sky_blue_theme button { background-color: ... }` which, because they
+  combine a class with the bare `button` element, are MORE specific than a
+  single custom class and were winning against every button in this sidebar
+  (that's why everything rendered solid blue regardless of active state).
+  All interactive backgrounds below are `!important` specifically to stay
+  immune to whichever Classic color theme happens to be selected underneath.
+*/
+
+.ng-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Intentionally always near-white + bordered — this is the branding card,
+     not a theme surface. In dark mode the border is barely visible (the
+     white fill already pops against the dark sidebar); in light mode the
+     sidebar itself becomes near-white too, so the border is what keeps this
+     card from blending invisibly into it. */
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: var(--ng-shadow-sm);
+  border-radius: var(--ng-radius-lg, 16px);
+  padding: 8px 10px;
+  flex-shrink: 0;
+}
+
+.ng-sidebar.is-collapsed .ng-sidebar__brand {
+  justify-content: center;
+  padding: 8px;
+}
+
+/* Company logos vary wildly (square marks, wide wordmarks, tall marks) —
+   a fixed 32x32 square box was crushing wide logos (e.g. a text wordmark)
+   down to a barely-visible sliver instead of nicely filling the available
+   card width. `flex: 1 1 auto` lets it claim the remaining row width next
+   to the collapse button when expanded; object-fit/object-position keep
+   whatever the actual image's aspect ratio is centered within that box
+   rather than stretched or pinned to a corner. Collapsed state below
+   shrinks it back to a small fixed square matching the icon-only rail. */
+.ng-sidebar__brand-logo {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  height: 32px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.ng-sidebar.is-collapsed .ng-sidebar__brand-logo {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+}
+
+.ng-sidebar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.ng-sidebar__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+}
+
+/* Text inside the brand card — fixed dark-on-white regardless of mode,
+   since the card itself is always near-white (see .ng-sidebar__brand). */
+.ng-sidebar__brand-text strong {
+  color: #0f172a !important;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ng-sidebar__brand-text span {
+  color: #64748b !important;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.ng-sidebar__collapse-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  border: none;
+  border-radius: 8px;
+  background: #eef2ff !important;
+  color: #4338ca !important;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 140ms ease;
+}
+
+.ng-sidebar__collapse-btn:hover {
+  background: #c7d2fe !important;
+}
+
+.ng-sidebar.is-collapsed .ng-sidebar__collapse-btn {
+  position: absolute;
+  right: -11px;
+  top: 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ng-primary, #2563eb) !important;
+  color: #fff !important;
+  border: 2px solid var(--ng-navy-900);
+}
+
+.ng-sidebar__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: var(--ng-radius-pill, 999px);
+  background: rgba(var(--ng-ink), 0.06) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(var(--ng-ink), 0.08);
+  flex-shrink: 0;
+  color: var(--ng-text-muted, #8b96ad);
+}
+
+.ng-sidebar__search input {
+  flex: 1;
+  background: transparent !important;
+  border: none;
+  outline: none;
+  color: var(--ng-text, #e8ecf5) !important;
+  font-size: 13px;
+}
+
+.ng-sidebar__search input::placeholder {
+  color: var(--ng-text-muted, #8b96ad);
+}
+
+.ng-sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-right: 2px;
+}
+
+.ng-sidebar__nav::-webkit-scrollbar {
+  width: 5px;
+}
+.ng-sidebar__nav::-webkit-scrollbar-thumb {
+  background: rgba(var(--ng-ink), 0.12);
+  border-radius: 3px;
+}
+
+.ng-sidebar__group {
+  position: relative;
+}
+
+.ng-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: none;
+  border-left: 2px solid transparent;
+  background: transparent !important;
+  padding: 8px 8px 8px 6px;
+  border-radius: var(--ng-radius-sm, 6px);
+  color: var(--ng-text-muted, #8b96ad) !important;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.ng-sidebar.is-collapsed .ng-sidebar__item {
+  justify-content: center;
+  padding: 8px;
+}
+
+.ng-sidebar__item:hover {
+  background: rgba(var(--ng-ink), 0.05) !important;
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+/* Active group: thin accent border + soft tint, not a solid fill. */
+.ng-sidebar__item.is-active-group {
+  color: var(--ng-text, #e8ecf5) !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+  border-left-color: var(--ng-primary-500, #3b82f6);
+}
+
+.ng-sidebar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ng-sidebar__label {
+  flex: 1;
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ng-sidebar__chevron {
+  font-size: 11px;
+  transition: transform 160ms ease;
+  flex-shrink: 0;
+}
+
+.ng-sidebar__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.ng-sidebar__submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 2px 0 6px 26px;
+  border-left: 1px solid rgba(var(--ng-ink), 0.08);
+  padding-left: 8px;
+}
+
+.ng-sidebar__page {
+  text-align: left;
+  border: none;
+  border-left: 2px solid transparent;
+  background: transparent !important;
+  color: var(--ng-text-muted, #8b96ad) !important;
+  font-size: 12.5px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.ng-sidebar__page:hover {
+  color: var(--ng-text, #e8ecf5) !important;
+  background: rgba(var(--ng-ink), 0.04) !important;
+}
+
+/* Active page: accent border + tint, matching the group style — no solid fill. */
+.ng-sidebar__page.is-active {
+  color: #93c5fd !important;
+  background: rgba(59, 130, 246, 0.12) !important;
+  border-left-color: var(--ng-primary-500, #3b82f6);
+  font-weight: 700;
+}
+
+/* Collapsed mode: icon-only rail + hover flyout with that menu's pages. */
+.ng-sidebar__flyout {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 0;
+  min-width: 210px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--ng-surface) 92%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--ng-border);
+  border-radius: var(--ng-radius-md, 10px);
+  box-shadow: var(--ng-shadow-lg);
+  padding: 8px;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ng-sidebar__flyout-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ng-text-muted, #8b96ad);
+  padding: 4px 8px 6px;
+}
+
+.ng-sidebar__footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(var(--ng-ink), 0.08);
+}
+
+.ng-sidebar.is-collapsed .ng-sidebar__footer {
+  justify-content: center;
+}
+
+.ng-sidebar__designation-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--ng-ink), 0.12);
+  background: rgba(59, 130, 246, 0.16) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #93c5fd !important;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.ng-sidebar__designation-btn:hover {
+  background: var(--ng-primary, #2563eb) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.ng-sidebar__profile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  background: rgba(var(--ng-ink), 0.05) !important;
+  border: 1px solid rgba(var(--ng-ink), 0.08);
+  border-radius: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 140ms ease;
+}
+
+.ng-sidebar__profile:hover {
+  background: rgba(var(--ng-ink), 0.09) !important;
+}
+
+.ng-sidebar__avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #ec4899) !important;
+  color: #fff !important;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ng-sidebar__avatar--img {
+  object-fit: cover;
+  background: var(--ng-navy-700) !important;
+  border: 1px solid rgba(var(--ng-ink), 0.15);
+}
+
+.ng-sidebar__profile-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.ng-sidebar__profile-text strong {
+  font-size: 12.5px;
+  color: var(--ng-text, #e8ecf5) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ng-sidebar__profile-text span {
+  font-size: 10.5px;
+  color: var(--ng-text-muted, #8b96ad) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 900px) {
+  .ng-sidebar {
+    display: none;
+  }
+}

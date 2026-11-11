@@ -1,0 +1,183 @@
+.test_select > div {
+  gap: 4px;
+}
+
+.test_select > div input {
+  width: 14px;
+  /* height: fit-content; */
+}
+
+.test_select > div > span {
+  font-size: 14px;
+  line-height: normal;
+}
+
+.input_search {
+  width: 100%;
+  outline: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border-color: #00000070;
+}
+
+.test_select {
+  border-bottom: 1px solid rgb(216, 221, 230);
+  padding: 8px 4px;
+}
+.test_select:hover {
+  background-color: rgb(227, 242, 255);
+}
+
+.wrapper_container {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+
+.customeClass > div > label {
+  top: 1px;
+}
+
+i {
+  line-height: normal;
+  height: fit-content !important;
+}
+
+.generate_excel {
+  /* border: 1px solid #00000070; */
+  display: flex;
+  align-items: center;
+  /* gap: 4px; */
+  justify-content: center;
+  border-radius: 3px;
+  width: 100%;
+  height: 24px;
+  border: 1px solid #ced4da;
+}
+
+#basic-addon1 {
+  margin-bottom: unset !important;
+  padding: 1px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.generate_excel:hover {
+  cursor: pointer;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+input.amount_inputGroup {
+  height: fit-content !important;
+}
+
+button {
+  gap: 5px;
+}
+
+.test_name {
+  background-color: #345795;
+}
+
+.test_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  gap: 8px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.test_name > span {
+  display: inline-block;
+  padding: 1px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  cursor: pointer;
+}
+
+.Order_container table tbody tr {
+  border: none !important;
+  line-height: 2 !important;
+}
+.Order_container table th,
+.Order_container table td {
+  padding-left: 10px !important;
+}
+
+.btn_border {
+  border-radius: 3px 0px 0px 3px !important;
+  margin-right: -1px !important;
+}
+.btn_border_right {
+  border-radius: 0px 3px 3px 0px !important;
+  margin-right: -1px !important;
+  z-index: 0;
+}
+.btn_border_Left {
+  border-radius: 3px 0px 0px 3px !important;
+  margin-right: -1px !important;
+  z-index: 0;
+}
+/* .generate_excel {
+  margin-left: 8px;
+    margin-right: 8px;
+  width: ;
+} */
+
+.preview_btn {
+  background-color: #00000050;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.preview_btn:hover {
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+td:has(.emptyBox) {
+  /* padding: 0.25rem 0.5rem; */
+  padding: 0 !important;
+  border-bottom: 1px solid red !important;
+}
+
+.inputwidh div> div> div input{
+  width: 100%;
+}
+
+.admitted_btn{
+  height: fit-content;
+  width: fit-content;
+  padding: 2px 8px;
+}
+
+.downloadcolorChang{
+  background-color: #00000020;
+  gap: 3px;
+}
+
+.txtArearHeight textarea{
+  height: 23px !important;
+  resize: none;
+}
+
+.align-adjuest{
+  margin-left:  10px !important;
+  margin-right:  10px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .admitted_btn{
+    width: 98% !important;
+    margin: 0 auto;
+  }
+}

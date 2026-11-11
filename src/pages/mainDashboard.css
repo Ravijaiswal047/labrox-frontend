@@ -1,0 +1,46 @@
+/* Dashboard Navigation Container */
+.dashboard-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Tabs List */
+.dashboard-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+}
+
+.tab-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #292929;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab-item:hover {
+    color: #007bff;
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.tab-item.active {
+    color: #007bff;
+    border-bottom: 3px solid #007bff;
+    font-weight: 600;
+}
+
+.das-search-wrapper {
+    width: 250px;
+    margin-bottom: 8px;
+}
+
+.filter-section {
+    border: 1px solid #e9ecef;
+}

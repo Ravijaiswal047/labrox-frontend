@@ -1,0 +1,134 @@
+.ng-date {
+  margin-bottom: 6px;
+}
+
+.ng-date__field {
+  position: relative;
+}
+
+.ng-date__control.p-calendar {
+  width: 100%;
+  display: flex;
+}
+
+.ng-date__control .p-inputtext {
+  height: 30px !important;
+  padding: 0 8px !important;
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+  background: var(--ng-surface, #fff) !important;
+  border: 1px solid var(--ng-border, #e2e8f0) !important;
+  color: var(--ng-text, #0f172a) !important;
+  border-radius: var(--ng-radius-sm, 6px) 0 0 var(--ng-radius-sm, 6px);
+  box-sizing: border-box;
+}
+
+.ng-date__control .p-inputtext:focus {
+  outline: none;
+  border-color: var(--ng-primary, #2563eb) !important;
+}
+
+.ng-date__control .p-datepicker-trigger {
+  width: 30px !important;
+  height: 30px !important;
+  background: var(--ng-surface-alt, #f8fafc) !important;
+  border: 1px solid var(--ng-border, #e2e8f0) !important;
+  border-left: none;
+  color: var(--ng-text-muted, #64748b) !important;
+  border-radius: 0 var(--ng-radius-sm, 6px) var(--ng-radius-sm, 6px) 0;
+  box-sizing: border-box;
+}
+
+.ng-date__control .p-datepicker-trigger:hover {
+  background: var(--ng-primary, #2563eb) !important;
+  color: #fff !important;
+}
+
+.nextgen-mode .ng-date__label {
+  position: absolute;
+  left: 10px;
+  top: -8px;
+  padding: 0 4px;
+  font-size: 12.5px;
+  font-weight: 400 !important;
+  color: var(--ng-text-muted, #64748b) !important;
+  /* --ng-surface (semantic "current surface" token), not the raw
+     --ng-navy-800 palette value — hardcoding it meant this label's
+     background patch stayed dark-navy even in NextGen light mode. */
+  background: var(--ng-surface, #fff) !important;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/*
+  PrimeReact's own base theme (lara-light-cyan, imported globally) sets
+  `.p-datepicker` to a light background — same class of bug as the earlier
+  Classic-theme `button{}` collisions, just from a different stylesheet.
+  Every color/background/border here needs !important to reliably beat it,
+  since the panel portals to document.body and PrimeReact's theme CSS can
+  load after this file depending on which page/component mounts first.
+*/
+.ng-date__panel.p-datepicker {
+  background: var(--ng-surface, #fff) !important;
+  color: var(--ng-text, #0f172a) !important;
+  border: 1px solid var(--ng-border, #e2e8f0) !important;
+  border-radius: var(--ng-radius-md, 10px) !important;
+  box-shadow: var(--ng-shadow-md);
+  z-index: 3000 !important;
+}
+
+.ng-date__panel .p-datepicker-header {
+  background: transparent !important;
+  color: var(--ng-text, #0f172a) !important;
+  border-bottom: 1px solid var(--ng-border, #e2e8f0) !important;
+}
+
+.ng-date__panel .p-datepicker-header .p-datepicker-prev,
+.ng-date__panel .p-datepicker-header .p-datepicker-next {
+  color: var(--ng-text, #0f172a) !important;
+}
+
+.ng-date__panel .p-datepicker-header .p-datepicker-title,
+.ng-date__panel .p-datepicker-header select {
+  color: var(--ng-text, #0f172a) !important;
+}
+
+.ng-date__panel table {
+  background: transparent !important;
+}
+
+.ng-date__panel table th {
+  color: var(--ng-text-muted, #64748b) !important;
+}
+
+/* index.css has an unscoped global `table tbody tr:nth-child(even) {
+   background-color: white }` rule (meant for report grids) that also
+   matches this calendar's own internal <table> — same leak as the earlier
+   CustomTable bug, just landing on a different table this time. */
+.ng-date__panel table tbody tr,
+.ng-date__panel table tbody tr:nth-child(even) {
+  background: transparent !important;
+}
+
+.ng-date__panel table td {
+  background: transparent !important;
+}
+
+.ng-date__panel table td > span {
+  color: var(--ng-text, #0f172a) !important;
+  border-radius: var(--ng-radius-sm, 6px);
+}
+
+.ng-date__panel table td > span:hover {
+  background: var(--ng-primary-soft, rgba(59, 130, 246, 0.16)) !important;
+}
+
+.ng-date__panel table td.p-datepicker-today > span {
+  background: var(--ng-surface-alt, #f8fafc) !important;
+  border: 1px solid var(--ng-primary, #2563eb);
+}
+
+.ng-date__panel table td > span.p-highlight {
+  background: var(--ng-primary, #2563eb) !important;
+  color: #fff !important;
+}

@@ -1,0 +1,227 @@
+/* InactiveClientCard.css */
+
+.inactive-clients-section {
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+.inactive-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.inactive-section-icon {
+  width: 10px;
+  height: 10px;
+  background: #4a6fff;
+  border-radius: 50%;
+}
+
+.inactive-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #253572;
+  margin: 0;
+}
+
+.inactive-section-subtitle {
+  font-size: 12px;
+  color: #888888;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.warning-icon {
+  font-size: 14px;
+}
+
+.inactive-clients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.inactive-client-card {
+  background: #ffffff;
+  border: 1px solid #ffd6d6;
+  border-left: 4px solid #e74c3c;
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inactive-client-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+}
+
+.inactive-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.inactive-card-left {
+  flex: 1;
+}
+
+.inactive-client-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2a6c;
+  margin-bottom: 3px;
+}
+
+.inactive-branch {
+  font-size: 11px;
+  color: #888888;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.location-icon {
+  font-size: 12px;
+}
+
+.inactive-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.meta-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.date-badge {
+  background: #fff0e0;
+  color: #b85c00;
+}
+
+.bill-badge {
+  background: #e5ebff;
+  color: #2d4ed8;
+}
+
+.badge-icon {
+  font-size: 10px;
+}
+
+.inactive-card-right {
+  text-align: center;
+  min-width: 50px;
+}
+
+.days-count {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e74c3c;
+  font-family: monospace;
+  line-height: 1;
+}
+
+.days-label {
+  font-size: 9px;
+  color: #aaaaaa;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .inactive-clients-grid {
+    gap: 10px;
+  }
+  
+  .inactive-client-card {
+    padding: 14px;
+  }
+  
+  .inactive-client-name {
+    font-size: 13px;
+  }
+  
+  .days-count {
+    font-size: 18px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .inactive-clients-section {
+    padding: 0 8px;
+  }
+  
+  .inactive-clients-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .inactive-client-card {
+    padding: 14px;
+  }
+  
+  .inactive-section-title {
+    font-size: 15px;
+  }
+  
+  .inactive-section-subtitle {
+    font-size: 11px;
+  }
+  
+  .inactive-client-name {
+    font-size: 13px;
+  }
+  
+  .inactive-branch {
+    font-size: 10px;
+  }
+  
+  .meta-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+  
+  .days-count {
+    font-size: 18px;
+  }
+  
+  .days-label {
+    font-size: 8px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .inactive-client-card {
+    padding: 12px;
+  }
+  
+  .inactive-client-name {
+    font-size: 12px;
+  }
+  
+  .meta-badge {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+  
+  .days-count {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,20 @@
+@media (max-width: 767px) {
+  .cnr-wrapper .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .cnr-wrapper .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+
+  .cnr-wrapper .search-container {
+    width: 150px;
+  }
+
+  .cnr-wrapper .search-menu-container {
+    font-size: 13px;
+  }
+}

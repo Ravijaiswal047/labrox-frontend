@@ -1,0 +1,847 @@
+/* These tabs are long enough to run to the bottom of the layout; keep clear of
+   the footer band so the copyright line never sits against the last card. */
+.em-master {
+  padding-bottom: 24px;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+
+/* Heading's secondTitle wrapper carries `overflow-auto`, which clips the
+   floating label a select renders at top:-13px once a value is picked.
+   Let it show, and wrap the bar instead of scrolling it on narrow screens. */
+.em-master .color-code-search-resp {
+  overflow: visible !important;
+}
+
+.em-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.em-filter-search {
+  width: 210px;
+}
+
+.em-filter-field {
+  width: 160px;
+}
+
+/* The select ships a form-group margin that knocks it out of line with the
+   search box; both controls are 26px tall once it's gone. */
+.em-filter-bar .form-group {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .em-filter-bar {
+    justify-content: flex-start;
+  }
+
+  .em-filter-search,
+  .em-filter-field {
+    flex: 1 1 140px;
+    width: auto;
+  }
+}
+
+/* ── Master grid cells ────────────────────────────────────────────────────── */
+
+.em-eq-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.em-eq-sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.em-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.em-badge-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.em-badge-maintenance {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.em-badge-supplier {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.em-badge-outofservice {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.em-badge-condemned {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.em-badge-inactive {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ── Row action buttons ───────────────────────────────────────────────────── */
+/* Every theme fills plain buttons via `.<theme> button { background-color: … }`,
+   so Bootstrap's btn-outline-* variants end up dark text on a saturated fill and
+   become unreadable. Force white label text on the in-row action buttons. */
+
+.em-row-btn,
+.em-row-btn:hover,
+.em-row-btn:focus,
+.em-row-btn:active {
+  color: #ffffff !important;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Row action icons ─────────────────────────────────────────────────────── */
+
+.em-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Every theme sets `.<theme> button { background-color: ... }`, which outranks
+   a bare class selector — hence the !important flags here. */
+.em-icon-btn,
+.em-icon-btn:hover,
+.em-icon-btn:focus,
+.em-icon-btn:active {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none;
+  padding: 0;
+  line-height: 1;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.em-icon-btn:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+.em-icon-view {
+  color: #0f766e !important;
+}
+
+.em-icon-edit {
+  color: #2563eb !important;
+}
+
+.em-icon-qr {
+  color: #64748b !important;
+}
+
+.em-crit-high {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.em-crit-medium {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.em-crit-low {
+  color: #15803d;
+  font-weight: 600;
+}
+
+/* ── KPI cards ────────────────────────────────────────────────────────────── */
+
+.em-kpis,
+.em-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.em-kpi {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left-width: 4px;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.em-kpi-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.em-kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* 5 tiles in a single row (Compliance tab) */
+.em-kpi-row-5 {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+@media (min-width: 992px) {
+  .em-kpi-row-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .em-kpi-row-5 .em-kpi {
+    padding: 10px 12px;
+  }
+
+  .em-kpi-row-5 .em-kpi-value {
+    font-size: 18px;
+  }
+
+  .em-kpi-row-5 .em-kpi-label {
+    font-size: 11px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .em-kpi-row-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .em-kpi-row-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The dashboard has 8 tiles. At the default minmax(170px) only 7 fit, leaving
+   the last one stranded on its own row — so pin the count and tighten the
+   tiles instead of letting auto-fit decide. */
+@media (min-width: 1200px) {
+  .em-kpi-row-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .em-kpi-row-8 .em-kpi {
+    padding: 10px 11px;
+  }
+
+  .em-kpi-row-8 .em-kpi-value {
+    font-size: 18px;
+  }
+
+  .em-kpi-row-8 .em-kpi-label {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+}
+
+/* Two tidy rows of four rather than a ragged wrap on mid-size screens. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .em-kpi-row-8 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.em-kpi-neutral  { border-left-color: #0f766e; }
+.em-kpi-good     { border-left-color: #15803d; }
+.em-kpi-warning  { border-left-color: #b45309; }
+.em-kpi-critical { border-left-color: #dc2626; }
+.em-kpi-info     { border-left-color: #2563eb; }
+
+/* ── Contract table cells ─────────────────────────────────────────────────── */
+
+.em-amc-type {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.em-amc-active   { color: #15803d; font-weight: 600; }
+.em-amc-expiring { color: #b45309; font-weight: 600; }
+.em-amc-expired  { color: #dc2626; font-weight: 600; }
+
+/* ── Vendor bar chart ─────────────────────────────────────────────────────── */
+/* One measure, one hue: colour here encodes nothing, so it must not vary by
+   rank. Magnitude is carried by bar length alone. */
+
+.em-chart {
+  padding: 14px 6px 6px;
+}
+
+.em-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.em-bar-label {
+  flex: 0 0 190px;
+  text-align: right;
+  font-size: 12px;
+  color: #475569;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.em-bar-track {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  background: #eef2f5;
+  border-radius: 4px;
+}
+
+.em-bar-fill {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 34px;
+  padding-right: 7px;
+  background: #0f766e;
+  border-radius: 4px;
+}
+
+.em-bar-fill-danger {
+  background: #dc2626;
+}
+
+.em-bar-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.em-bar-zero {
+  padding-left: 8px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+@media (max-width: 767px) {
+  .em-bar-label {
+    flex-basis: 110px;
+    font-size: 11px;
+  }
+}
+
+/* ── Two-column split (donut beside the due list) ─────────────────────────── */
+
+.em-split {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(320px, 1.3fr);
+  gap: 4px;
+  margin-bottom: 4px;
+  align-items: stretch;
+}
+
+/* The dashboard card ships its own outer padding and margin, which double up
+   inside a grid — trim them and let both panels match heights. */
+.em-panel.mainDashboardwrp {
+  padding: 4px;
+}
+
+.em-panel .mainBox1 {
+  height: 100%;
+  margin: 0;
+}
+
+/* .mainHeader is space-between for the dashboard's title + control pairing;
+   here the title sits alone, so keep it left-aligned. */
+.em-panel .mainHeader {
+  justify-content: flex-start;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 991px) {
+  .em-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Three-across panel row (maintenance analytics) */
+.em-split-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 4px;
+}
+
+/* ── Nested tabs ──────────────────────────────────────────────────────────── */
+/* CustomTabs is shared with the page-level tab strip, so an inner set renders
+   identically and the two read as one confusing double bar. Inside .em-subtabs
+   the tabs flatten to an underline: no fill, no card border, just a rule under
+   the active one.
+   These need !important and the extra .em-subtabs specificity to beat both
+   CustomTabs' own injected <style> and the per-theme
+   `.<theme> .active-tab-menu { background-color: … }` rule in theme.css. */
+
+.em-subtabs .nav-wrapper {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.em-subtabs .nav-tabs-scrollable .nav-link {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+  padding: 8px 14px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.em-subtabs .nav-tabs-scrollable .nav-link:not(.active):hover {
+  background: transparent !important;
+  color: #0f172a !important;
+}
+
+.em-subtabs .nav-tabs-scrollable .nav-link.active,
+.em-subtabs .nav-tabs-scrollable .nav-link.active-tab-menu {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #0f766e !important;
+  border-bottom-color: #0f766e !important;
+}
+
+/* ── Ticket pipeline ──────────────────────────────────────────────────────── */
+
+.em-pipe {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 11px;
+  margin: 2px 0 16px;
+}
+
+.em-pipe span {
+  padding: 4px 14px;
+  background: #eef2f5;
+  color: #64748b;
+  border-right: 2px solid #fff;
+}
+
+/* Every stage up to the current one reads as done, so the bar shows progress
+   rather than just the current step. */
+.em-pipe span.on {
+  background: #0f766e;
+  color: #fff;
+  font-weight: 600;
+}
+
+.em-pipe span:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.em-pipe span:last-child {
+  border-radius: 0 5px 5px 0;
+  border-right: 0;
+}
+
+.em-detail-block {
+  margin-top: 14px;
+}
+
+.em-detail-block > div:last-child {
+  font-size: 13px;
+  color: #0f172a;
+}
+
+/* ── Checkbox row (decontamination gate) ──────────────────────────────────── */
+
+.em-check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  margin: 4px 0 0;
+}
+
+.em-check-row input {
+  width: auto;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+/* ── Compliance donut ─────────────────────────────────────────────────────── */
+
+.em-donut-wrap {
+  padding: 10px 0 16px;
+}
+
+.em-donut {
+  position: relative;
+  width: 190px;
+  margin: 0 auto;
+}
+
+.em-donut svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.em-donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.em-donut-total {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.em-donut-caption {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.em-donut-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  margin-top: 14px;
+}
+
+.em-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  /* Legend text keeps text ink; the swatch beside it carries identity. */
+  color: #475569;
+}
+
+.em-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.em-alert-tag {
+  flex: 0 0 auto;
+  min-width: 92px;
+  text-align: center;
+}
+
+/* ── Due-in-next list ─────────────────────────────────────────────────────── */
+
+.em-due-list {
+  padding: 2px 0;
+}
+
+.em-due-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 4px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 12px;
+}
+
+.em-due-row:last-child {
+  border-bottom: none;
+}
+
+.em-freq-pill {
+  flex: 0 0 auto;
+  min-width: 84px;
+  text-align: center;
+  padding: 2px 9px;
+  border-radius: 10px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.em-freq-pill-late {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.em-due-name {
+  flex: 1 1 auto;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.em-due-date {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.em-cal-done    { color: #15803d; font-weight: 600; }
+.em-cal-due     { color: #b45309; font-weight: 600; }
+.em-cal-overdue { color: #dc2626; font-weight: 600; }
+
+.em-file-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+/* ── View popup ───────────────────────────────────────────────────────────── */
+
+.em-detail {
+  min-height: 200px;
+}
+
+.em-detail .tab-content {
+  padding-top: 14px;
+}
+
+/* Auto-fit keeps the label/value pairs on a tidy grid at any modal width
+   instead of leaving ragged gaps at the end of each row. */
+.em-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px 20px;
+  padding: 4px 2px;
+}
+
+.em-detail-field {
+  min-width: 0;
+}
+
+.em-detail-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+  margin-bottom: 3px;
+}
+
+.em-detail-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.em-detail-expired {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.em-detail-subhead {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 2px 0 8px;
+}
+
+.em-detail-strong {
+  font-weight: 600;
+  color: #0f766e;
+}
+
+.em-detail-link {
+  color: #0f766e;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.em-detail-empty {
+  padding: 14px 2px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ── QR labels ────────────────────────────────────────────────────────────── */
+
+.em-qr-sheet {
+  padding: 12px 2px;
+}
+
+.em-qr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 12px;
+}
+
+.em-qr-label {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 12px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.em-qr-name {
+  font-weight: 700;
+  font-size: 12.5px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.em-qr-img {
+  display: block;
+  margin: 0 auto;
+}
+
+.em-qr-placeholder,
+.em-qr-fallback {
+  margin: 0 auto;
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.em-qr-meta {
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.em-qr-due {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #0f766e;
+  margin-top: 3px;
+}
+
+.em-qr-enlarged {
+  text-align: center;
+}
+
+/* ── Mobile scan preview ──────────────────────────────────────────────────── */
+
+.em-scanphone {
+  max-width: 320px;
+  margin: 4px auto 10px;
+  border: 9px solid #22343b;
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.em-scanphone-head {
+  background: #0f766e;
+  color: #fff;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.em-scanphone-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 12px;
+}
+
+.em-scanphone-row:last-child {
+  border-bottom: 0;
+}
+
+.em-scanphone-row b {
+  text-align: right;
+  color: #0f172a;
+}
+
+.em-scanphone-row .em-detail-label {
+  margin-bottom: 0;
+}
+
+/* Printing a label sheet should give labels, not the whole application. */
+@media print {
+  .em-noprint,
+  #main-header,
+  .main-header,
+  .main-sidebar,
+  .main-footer,
+  .em-kpi-row,
+  .nav-wrapper {
+    display: none !important;
+  }
+
+  .em-qr-label {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* ── Placeholder panel for tabs not built yet ─────────────────────────────── */
+
+.em-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 260px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.em-placeholder-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+}

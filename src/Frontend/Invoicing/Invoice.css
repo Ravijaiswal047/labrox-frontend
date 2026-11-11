@@ -1,0 +1,63 @@
+.jsh tr td:first-child {
+  width: 100px !important;
+  padding: 4px 4px;
+}
+
+.mainTable tbody.jsh tr td {
+  width: fit-content !important;
+  text-align: left !important;
+  padding: 1px 2px !important;
+}
+
+.icons_font {
+  font-size: 16px !important;
+}
+
+div#pr_id_28_content {
+  padding: 0px 6px 0px 6px !important;
+}
+
+.text-area {
+  height: fit-content !important;
+}
+
+/* Mobile layout for Search Detail accordion */
+@media (max-width: 767px) {
+  /* card-title: flex with wrap so we can have 2 rows */
+  .invoice-search-detail .card-title {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+  }
+
+  /* Row 1 right: search bar (main-heading-link) pushed to right */
+  .invoice-search-detail .card-title .main-heading-link {
+    order: 2;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .invoice-search-detail .card-title .main-heading-link .btn-link {
+    padding: 0;
+  }
+
+  /* Row 2: seconTitle (stats) — full width, starts from left */
+  .invoice-search-detail .card-title .color-code-search-resp {
+    order: 3;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    overflow: visible !important;
+    justify-content: flex-start !important;
+    padding: 2px 0 0 0 !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+  }
+}
+
+/* Desktop: hide the mobile stats (seconTitle) */
+@media (min-width: 768px) {
+  .invoice-search-detail .card-title .color-code-search-resp {
+    display: none !important;
+  }
+}

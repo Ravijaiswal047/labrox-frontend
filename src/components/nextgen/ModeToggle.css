@@ -1,0 +1,158 @@
+.ng-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: #eef1f8;
+  border: 1px solid #e2e8f0;
+}
+
+.ng-mode-toggle__option {
+  border: none;
+  background: transparent;
+  padding: 5px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #64748b;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.ng-mode-toggle__option:hover {
+  color: #1d4ed8;
+}
+
+.ng-mode-toggle__option.is-active {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+
+/* Glowing "iris" mode-switch transition — a radial reveal expanding from
+   the center with a pulsing orb, rather than a flat pair of sliding panels. */
+.ng-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.ng-transition__veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #16265a 0%, #0b1220 55%, #03050c 100%);
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 450ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.ng-transition--closed .ng-transition__veil {
+  clip-path: circle(80% at 50% 50%);
+}
+
+.ng-transition--opening .ng-transition__veil {
+  clip-path: circle(0% at 50% 50%);
+}
+
+.ng-transition__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #e8ecf5;
+  opacity: 0;
+  transition: opacity 250ms ease 150ms;
+}
+
+.ng-transition--closed .ng-transition__content {
+  opacity: 1;
+}
+
+.ng-transition__orb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ng-transition__orb-core {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #bfdbfe, #3b82f6 55%, #1d4ed8);
+  box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.65), 0 0 48px 16px rgba(59, 130, 246, 0.3);
+  animation: ng-orb-pulse 1.3s ease-in-out infinite;
+}
+
+.ng-transition__orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #60a5fa;
+  border-right-color: rgba(96, 165, 250, 0.35);
+  animation: ng-orb-spin 850ms linear infinite;
+}
+
+.ng-transition__orb-ripple {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  animation: ng-orb-ripple 1.3s ease-out infinite;
+}
+
+@keyframes ng-orb-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes ng-orb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ng-orb-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.ng-transition__label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #93c5fd, #f0f9ff 45%, #93c5fd);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: ng-label-shimmer 1.5s linear infinite;
+}
+
+@keyframes ng-label-shimmer {
+  to {
+    background-position: -200% center;
+  }
+}

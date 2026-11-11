@@ -1,0 +1,56 @@
+.b2bc-dash-hero {
+  background: linear-gradient(135deg, #16247a 0%, #2c3d9e 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-bottom: 22px;
+}
+
+.b2bc-dash-hero h2 {
+  margin: 0 0 8px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.b2bc-dash-hero p {
+  margin: 0;
+  max-width: 640px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.88;
+}
+
+.b2bc-dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.b2bc-dash-card {
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.b2bc-dash-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #98a2b3;
+}
+
+.b2bc-dash-card strong {
+  font-size: 18px;
+  color: #101828;
+}
+
+@media (max-width: 480px) {
+  .b2bc-dash-hero {
+    padding: 22px 20px;
+  }
+}

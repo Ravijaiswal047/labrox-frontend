@@ -1,0 +1,1242 @@
+/* Modern, distinctive look for the Receipt Format Designer tool. Buttons/inputs/select
+   still carry the app's own shared-component behavior (Bootstrap classes underneath) —
+   this file adds the tool's own accent colour, rounding, spacing and the bespoke
+   canvas/palette/property-panel/tab-bar surfaces that have no shared-component equivalent. */
+
+.rbn-root {
+  --rbn-accent: #4c63e6;
+  --rbn-accent-dark: #1b2e5e;
+  --rbn-accent-soft: rgba(76, 99, 230, 0.1);
+  --rbn-border: #e3e7f0;
+  --rbn-bg-soft: #f4f6fb;
+  --rbn-text: #20242b;
+  --rbn-text-dim: #6b7280;
+  --rbn-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  background: var(--rbn-bg-soft);
+  color: var(--rbn-text);
+}
+
+/* The Fullscreen API makes this element cover the entire screen regardless of the
+   surrounding app chrome (header/sidebar) — it no longer needs to reserve space for
+   that chrome, so give it the full viewport height instead of `calc(100vh - 60px)`. */
+.rbn-root:fullscreen {
+  height: 100vh;
+  background: #fff;
+}
+
+/* ---------- Top bar ---------- */
+.rbn-topbar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--rbn-border);
+  flex-wrap: wrap;
+}
+
+.rbn-topbar-title {
+  display: flex;
+  flex-direction: column;
+  margin-right: 6px;
+}
+
+.rbn-topbar-brand {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--rbn-accent-dark);
+  letter-spacing: -0.2px;
+}
+
+.rbn-topbar-sub {
+  font-size: 10.5px;
+  color: var(--rbn-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.rbn-topbar-name {
+  width: 260px;
+}
+
+.rbn-topbar-load {
+  width: 220px;
+}
+
+.rbn-topbar-name .form-control {
+  height: 34px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-color: var(--rbn-border) !important;
+}
+
+.rbn-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 4px 11px;
+  border: 1px solid #f0c766;
+  background: #fff8e8;
+  color: #8a6d1d;
+}
+
+.rbn-status-badge.published {
+  color: #15803d;
+  border-color: #bfe3cc;
+  background: #eefbf2;
+}
+
+.rbn-info-badge {
+  color: #1d4e8a !important;
+  border-color: #b8d3f0 !important;
+  background: #eef4fd !important;
+}
+
+.rbn-topbar-actions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.rbn-topbar-actions .btn {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.rbn-toast {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rbn-accent-dark);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: 0 10px 28px rgba(27, 46, 94, 0.35);
+  z-index: 2000;
+}
+
+/* ---------- Unified tab bar (tabs + inline designer controls) ---------- */
+.rbn-tabsbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--rbn-border);
+  flex-wrap: wrap;
+}
+
+.rbn-tabsbar-tabs {
+  display: flex;
+  gap: 17px;
+  flex-wrap: wrap;
+  align-self: stretch;
+}
+
+.rbn-tab-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 2px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  border-bottom: 2.5px solid transparent !important;
+  background: transparent !important;
+  color: #4a5063 !important;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.rbn-tab-pill:hover {
+  color: var(--rbn-accent-dark) !important;
+}
+
+.rbn-tab-pill.active {
+  border-bottom-color: var(--rbn-accent) !important;
+  color: var(--rbn-accent) !important;
+}
+
+.rbn-tabsbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.rbn-tabsbar-controls .btn {
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.rbn-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50% !important;
+  border: 1px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-text-dim) !important;
+  cursor: pointer;
+}
+
+.rbn-icon-btn:hover:not(:disabled) {
+  color: var(--rbn-accent) !important;
+  border-color: var(--rbn-accent) !important;
+}
+
+.rbn-icon-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.rbn-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--rbn-border);
+  margin: 0 2px;
+}
+
+.rbn-zoom-label {
+  font-size: 11.5px;
+  color: var(--rbn-text-dim);
+  width: 38px;
+  text-align: center;
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+}
+
+/* ---------- Tab content area ---------- */
+.rbn-tab-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rbn-tab-content>* {
+  flex: 1;
+  min-height: 0;
+}
+
+.rbn-page-branding,
+.rbn-body-table-tab,
+.rbn-settlement-tab {
+  overflow-y: auto;
+  padding: 14px 18px;
+  max-width: 960px;
+}
+
+/* ---------- Designer 3-column layout ---------- */
+.rbn-designer {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ---------- Palette ---------- */
+.rbn-palette {
+  width: 226px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid var(--rbn-border);
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.rbn-panel-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--rbn-text-dim);
+  margin: 11px 0 6px;
+}
+
+.rbn-panel-title:first-child {
+  margin-top: 2px;
+}
+
+.rbn-panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.rbn-title-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50% !important;
+  border: 1px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-text-dim) !important;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.rbn-title-search-btn:hover {
+  color: var(--rbn-accent) !important;
+  border-color: var(--rbn-accent) !important;
+}
+
+.rbn-token-search {
+  width: 100%;
+  border: 1.5px solid var(--rbn-accent) !important;
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.rbn-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.rbn-palette-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 4px;
+  border-radius: 10px !important;
+  border: 1.5px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-accent) !important;
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+/* Outline-only, per feedback: no background fill on hover — just a stronger border. */
+.rbn-palette-chip:hover:not(:disabled) {
+  border-color: var(--rbn-accent) !important;
+}
+
+.rbn-palette-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: var(--rbn-text-dim) !important;
+}
+
+.rbn-token-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.rbn-token-row {
+  text-align: left;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px !important;
+  border: 1.5px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-accent) !important;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.rbn-token-row:hover {
+  border-color: var(--rbn-accent) !important;
+}
+
+/* ---------- Canvas ---------- */
+.rbn-canvas-scroll {
+  flex: 1;
+  overflow: auto;
+  background: #dde1e8;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.rbn-canvas-outer {
+  position: relative;
+}
+
+.rbn-canvas-page {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.rbn-section-guide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed rgba(76, 99, 230, 0.35);
+  pointer-events: none;
+}
+
+.rbn-section-guide span {
+  position: absolute;
+  right: 4px;
+  top: 1px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #7b84a8;
+}
+
+/* ---------- Letterhead (Page & Branding config, rendered at the top of the page) ---------- */
+.rbn-letterhead-block {
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.rbn-letterhead-block p {
+  margin: 0 0 2px !important;
+}
+
+.rbn-letterhead-block h1,
+.rbn-letterhead-block h2,
+.rbn-letterhead-block h3 {
+  margin: 0 0 4px !important;
+  font-weight: bold !important;
+}
+
+.rbn-letterhead-block h1 {
+  font-size: 2em !important;
+}
+
+.rbn-letterhead-block h2 {
+  font-size: 1.5em !important;
+}
+
+.rbn-letterhead-block h3 {
+  font-size: 1.17em !important;
+}
+
+.rbn-letterhead-block p:last-child,
+.rbn-letterhead-block h1:last-child,
+.rbn-letterhead-block h2:last-child,
+.rbn-letterhead-block h3:last-child {
+  margin-bottom: 0 !important;
+}
+
+.rbn-letterhead-placeholder {
+  font-size: 9px;
+  color: var(--rbn-accent);
+  font-style: italic;
+}
+
+/* Canvas-only, interactive version of the "image_static" placeholder (LetterheadImageSkeleton.jsx)
+   — position:relative so its resize handle (.rbn-resize-handle, shared with regular
+   elements) anchors to this box's own corner rather than the page. */
+.rbn-letterhead-skeleton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed rgba(76, 99, 230, 0.5);
+  border-radius: 6px;
+  background: var(--rbn-accent-soft);
+  box-sizing: border-box;
+  cursor: move;
+  user-select: none;
+}
+
+/* ---------- Elements on canvas ---------- */
+.rbn-element-box {
+  position: absolute;
+  cursor: move;
+  outline: 1px solid transparent;
+  outline-offset: 1px;
+  user-select: none;
+}
+
+.rbn-element-box.selected {
+  outline: 1.5px solid var(--rbn-accent);
+}
+
+.rbn-resize-handle {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--rbn-accent);
+  border: 1.5px solid #fff;
+  border-radius: 3px;
+  cursor: nwse-resize;
+}
+
+/* .rbn-element-box itself carries the rotation transform (see ElementBox.jsx) — box,
+   content, and its own handles all rotate together as one rigid unit, pivoting around the
+   box's own center (the CSS default transform-origin: 50% 50%). */
+
+/* Positioned relative to the (rotating) box — since it's a child of .rbn-element-box, it
+   rotates along with it, ending up in the same place relative to the shape's own top edge
+   at any angle, same as most design tools. */
+.rbn-rotate-handle-line {
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  width: 1px;
+  height: 18px;
+  background: var(--rbn-accent);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.rbn-rotate-handle {
+  position: absolute;
+  left: 50%;
+  top: -24px;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  background: var(--rbn-accent);
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.rbn-rotate-handle:active {
+  cursor: grabbing;
+}
+
+.rbn-token-chip {
+  background: var(--rbn-accent-soft);
+  border: 1px dashed rgba(76, 99, 230, 0.55);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 8px;
+  color: #3b4fbf;
+}
+
+.rbn-placeholder-box,
+.rbn-anchor-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 9px;
+  color: var(--rbn-accent);
+  border: 1.5px dashed rgba(76, 99, 230, 0.5);
+  border-radius: 6px;
+  background: var(--rbn-accent-soft);
+  padding: 0 8px;
+}
+
+/* Live preview of the actual configured Body/Settlement/Totals table, shown directly on
+   the anchor box while editing (same columns/visibility as the Body Table / Settlement &
+   Totals tabs) instead of a generic placeholder — still bounded/scrollable within the
+   designed box so an oversized live table doesn't break the canvas layout. */
+.rbn-canvas-table-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 1px dashed rgba(76, 99, 230, 0.45);
+  border-radius: 6px;
+  background: #fff;
+  padding: 2px;
+}
+
+.rbn-barcode-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid #1a1d22;
+}
+
+.rbn-barcode-bars {
+  flex: 1;
+  width: 100%;
+  background: repeating-linear-gradient(90deg,
+      #1a1d22 0 2px,
+      transparent 2px 4px,
+      #1a1d22 4px 7px,
+      transparent 7px 9px);
+}
+
+.rbn-barcode-placeholder span {
+  font-size: 6.5px;
+  letter-spacing: 1px;
+  font-family: ui-monospace, monospace;
+}
+
+.rbn-stamp-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #b04a4a;
+  border-radius: 6px;
+  color: #b04a4a;
+  font-size: 9px;
+  transform: rotate(-6deg);
+}
+
+/* ---------- Property panel ---------- */
+.rbn-property-panel {
+  width: 280px;
+  flex-shrink: 0;
+  background: #fff;
+  border-left: 1px solid var(--rbn-border);
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.rbn-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 10px;
+}
+
+.rbn-field-grid .custominputbox .form-control {
+  height: 32px !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+}
+
+.rbn-inline-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.rbn-toggle-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--rbn-border);
+  margin: 0 2px;
+}
+
+.rbn-toggle-caption {
+  font-size: 12px;
+  color: var(--rbn-text-dim);
+  margin-right: 4px;
+}
+
+.rbn-opacity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--rbn-text-dim);
+}
+
+.rbn-opacity-row input[type="range"] {
+  flex: 1;
+}
+
+.rbn-textarea {
+  width: 100%;
+  border: 1.5px solid var(--rbn-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: ui-monospace, monospace;
+  resize: vertical;
+}
+
+.rbn-color-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.rbn-color-label input[type="color"] {
+  width: 40px;
+  height: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.rbn-arrange-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.rbn-arrange-row .btn {
+  border-radius: 8px;
+}
+
+.rbn-hint-text {
+  font-size: 10.5px;
+  color: var(--rbn-text-dim);
+  line-height: 1.4;
+}
+
+/* Actionable warning variant (e.g. "this border may not print") — needs to stand out from
+   the neutral grey of a plain explainer hint, since it's flagging something that could
+   silently look wrong on paper despite looking fine on screen. */
+.rbn-hint-warn {
+  color: #b45309 !important;
+  font-weight: 500;
+}
+
+.rbn-empty-text {
+  font-size: 11px;
+  color: var(--rbn-text-dim);
+  padding: 6px 2px;
+  font-style: italic;
+}
+
+/* ---------- Section (category separator — not boxed, not collapsible) ---------- */
+.rbn-section {
+  padding-bottom: 13px;
+  margin-bottom: 13px;
+  border-bottom: 1px solid var(--rbn-border);
+}
+
+.rbn-section.rbn-section-last {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.rbn-section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--rbn-text-dim);
+  margin-bottom: 8px;
+}
+
+.rbn-info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border: none !important;
+  background: none !important;
+  color: var(--rbn-text-dim) !important;
+  cursor: help;
+  padding: 0 !important;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.rbn-info-btn:hover {
+  color: var(--rbn-accent) !important;
+}
+
+/* PrimeReact's own Tooltip has no default width cap — a long single-paragraph string (or
+   even our own <br/>-separated lines) rendered as one unconstrained-width bar, reading as
+   an ugly full-width strip instead of a normal short tooltip. Capping the width forces real
+   wrapping, and .rbn-info-tooltip scopes this to just our own info-icon tooltips rather
+   than every PrimeReact Tooltip in the app (they portal to document.body, well outside this
+   stylesheet's normal component boundary). */
+.rbn-info-tooltip .p-tooltip-text {
+  max-width: 280px;
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+/* ---------- Layers list ---------- */
+.rbn-layers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rbn-layer-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  cursor: pointer;
+  border: 1.5px solid var(--rbn-border);
+  background: #fff;
+}
+
+.rbn-layer-row:hover {
+  border-color: var(--rbn-accent);
+}
+
+.rbn-layer-row.selected {
+  background: var(--rbn-accent-soft);
+  border-color: var(--rbn-accent);
+}
+
+.rbn-layer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--rbn-accent);
+}
+
+.rbn-layer-type {
+  font-family: ui-monospace, monospace;
+  color: var(--rbn-accent);
+  text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rbn-layer-label {
+  color: var(--rbn-text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rbn-empty-hint {
+  font-size: 11.5px;
+  color: var(--rbn-text-dim);
+  padding: 16px 10px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- Page & Branding / shared form bits ---------- */
+.rbn-radio-group,
+.rbn-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rbn-radio-option,
+.rbn-checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: #343a40;
+}
+
+.rbn-color-field {
+  display: flex;
+  align-items: center;
+}
+
+.rbn-image-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rbn-image-preview img {
+  max-width: 220px;
+  max-height: 90px;
+  border: 1px solid var(--rbn-border);
+  border-radius: 8px;
+  object-fit: contain;
+  background: var(--rbn-bg-soft);
+}
+
+.rbn-image-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.rbn-uploaded-preview {
+  max-width: 320px;
+  margin-bottom: 10px;
+  border: 1.5px solid var(--rbn-border);
+  border-radius: 8px;
+  padding: 6px;
+  background: #fff;
+}
+
+.rbn-uploaded-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rbn-html-editor .ql-container {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  /* Must match .rbn-letterhead-block's own font-size exactly (ReportBuilderNew.css, near
+     .rbn-letterhead-block) — that's what reproduces this editor's h1/h2/h3 em-based sizes
+     once the same HTML renders outside it (Canvas.jsx/PreviewPrintTab.jsx), so a heading
+     looks identical size in both places. Previously 12.5px, which made even a Heading 2
+     company-name line look unremarkable rather than like a proper prominent heading —
+     bumped up for that reason, not just picked arbitrarily; keep the two values in sync if
+     either changes. */
+  font-size: 15px;
+}
+
+.rbn-html-editor .ql-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.rbn-html-editor .ql-editor {
+  min-height: 110px;
+}
+
+/* Bolding text inside a Heading 2/3 line was visibly shrinking it back to normal-paragraph
+   size — some unscoped app-wide rule (this codebase has many, see CLAUDE.md's PrimeReact/
+   legacy-CSS-collision notes) sets an explicit font-size on <strong>/<b> that out-specifies
+   the inherited heading size, since the bold tag nests inside the heading. Forcing these to
+   inherit their size/line-height keeps a bolded word the same size as the rest of its
+   heading line, regardless of which global rule was clobbering it. */
+.rbn-html-editor .ql-editor strong,
+.rbn-html-editor .ql-editor b {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: bold !important;
+}
+
+.rbn-html-editor-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.rbn-source-toggle-btn {
+  border: 1px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-text-dim) !important;
+  border-radius: 5px !important;
+  padding: 3px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.rbn-source-toggle-btn:hover:not(.active) {
+  border-color: var(--rbn-accent) !important;
+  color: var(--rbn-accent) !important;
+}
+
+.rbn-source-toggle-btn.active {
+  border-color: var(--rbn-accent-dark) !important;
+  background: var(--rbn-accent-dark) !important;
+  color: #fff !important;
+}
+
+.rbn-html-editor-source {
+  width: 100%;
+  min-height: 160px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 11.5px;
+  padding: 8px;
+  border: 1px solid var(--rbn-border);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+/* ---------- Column config tables (Body Table / Settlement / Totals) ---------- */
+.rbn-column-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rbn-border);
+  border-radius: 10px;
+}
+
+.rbn-column-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.rbn-column-table th {
+  text-align: left;
+  padding: 7px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--rbn-bg-soft);
+  color: var(--rbn-text-dim);
+  white-space: nowrap;
+}
+
+.rbn-column-table td {
+  padding: 5px 7px;
+  border-top: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.rbn-column-table tr.rbn-row-dim {
+  opacity: 0.45;
+}
+
+.rbn-mono {
+  font-family: ui-monospace, monospace;
+  color: var(--rbn-accent);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.rbn-order-btn {
+  border: none !important;
+  background: none !important;
+  color: var(--rbn-text-dim) !important;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.rbn-order-btn:hover:not(:disabled) {
+  color: var(--rbn-accent) !important;
+}
+
+.rbn-order-btn:disabled {
+  color: var(--rbn-border) !important;
+  cursor: not-allowed;
+}
+
+/* Plain scoped buttons (not CustomButton's Bootstrap primary/outline variants) for the
+   Align L/C/R toggle in ColumnConfigTable — the app's active colour theme re-tints
+   .btn-primary/.btn-outline-primary toward its own palette (frequently a shade of orange,
+   see CLAUDE.md's PrimeReact/theme collision notes), which left almost no visible contrast
+   between selected and unselected. Hardcoded, `!important`-guarded colors here are immune
+   to that, same fix pattern as .rbn-order-btn above. */
+.rbn-align-btn {
+  border: 1px solid var(--rbn-border) !important;
+  background: #fff !important;
+  color: var(--rbn-text-dim) !important;
+  border-radius: 4px !important;
+  width: 22px;
+  height: 22px;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  padding: 0 !important;
+}
+
+.rbn-align-btn:hover:not(.active) {
+  border-color: var(--rbn-accent) !important;
+  color: var(--rbn-accent) !important;
+}
+
+.rbn-align-btn.active {
+  border-color: var(--rbn-accent-dark) !important;
+  background: var(--rbn-accent-dark) !important;
+  color: #fff !important;
+}
+
+/* ---------- Preview & Print ---------- */
+.rbn-preview-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.rbn-preview-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 13px;
+  background: #fff;
+  border-bottom: 1px solid var(--rbn-border);
+}
+
+.rbn-preview-toolbar>div {
+  width: 180px;
+}
+
+.rbn-preview-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #dde1e8;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.rbn-print-area {
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.rbn-print-inner {
+  position: relative;
+  transform-origin: top left;
+}
+
+.rbn-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.rbn-watermark::before {
+  content: "DUPLICATE";
+  font-size: 70px;
+  font-weight: 800;
+  color: var(--rbn-accent-dark);
+  opacity: 0.08;
+  transform: rotate(-28deg);
+}
+
+.rbn-preview-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #c9d2df;
+  border-top: 2px solid var(--rbn-accent-dark);
+  color: #20242b;
+}
+
+.rbn-preview-thead th {
+  background: var(--rbn-accent-dark);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 2px solid var(--rbn-accent-dark);
+}
+
+.rbn-preview-table td {
+  border-bottom: 1px solid #edf0f4;
+}
+
+.rbn-preview-row-alt {
+  background: #f7f9fc;
+}
+
+.rbn-incl-text {
+  color: #5a6472;
+  font-size: 7px;
+}
+
+.rbn-incl-subrow {
+  color: #5a6472;
+  padding-left: 10px;
+}
+
+.rbn-preview-section-title {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: var(--rbn-accent-dark);
+  letter-spacing: 0.6px;
+  margin-bottom: 2px;
+}
+
+.rbn-totals-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #c9d2df;
+}
+
+.rbn-totals-table td {
+  padding: 4px 10px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.rbn-totals-table .rbn-total-label {
+  color: #41506b;
+  font-size: 8px;
+}
+
+.rbn-totals-table .rbn-total-value {
+  text-align: right;
+  font-size: 8.5px;
+}
+
+.rbn-totals-table .rbn-total-net {
+  background: #edf1f7;
+}
+
+/* ---------- LayoutJson modal ---------- */
+.rbn-json-view {
+  max-height: 60vh;
+  overflow: auto;
+  background: #14171c;
+  color: #e7eaf0;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+/* Fixed at exactly the page's own size (Canvas.jsx/PreviewPrintTab.jsx set width/height
+   inline) — margin/border draw as an absolutely-positioned overlay child INSET from these
+   edges (pageFrame.js), never grow this box itself. position:relative so that overlay
+   positions against this element rather than the page. */
+.rbn-page-frame {
+  position: relative;
+}
+
+/* ---------- Print isolation ---------- */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* .rbn-page-frame is the outermost element containing both the real page content and
+     the margin/border overlay — it has to be the element made visible + repositioned here,
+     not .rbn-print-area, or the border overlay would stay invisible in the actual print
+     output. */
+  .rbn-page-frame,
+  .rbn-page-frame * {
+    visibility: visible !important;
+  }
+
+  .rbn-page-frame {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+  }
+
+  .rbn-print-area {
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .rbn-print-inner {
+    transform: none !important;
+  }
+}

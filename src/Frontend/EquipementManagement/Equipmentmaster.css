@@ -1,0 +1,223 @@
+.plus .plusicon {
+    font-size: 20px !important;
+    color: #bc3c8b;
+}
+
+.delete .deleteicon {
+    font-size: 23px !important;
+    color: #bc3c8b;
+}
+
+.actionedit {
+    font-size: 24px !important;
+    color: #4549af;
+}
+
+.actiondelete {
+    font-size: 24px !important;
+    color: #d82121;
+}
+
+.excelicon {
+    font-size: 24px !important;
+    color: #1a620d;
+}
+
+.text_black a {
+    color: #222020;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.transferbtn {
+    padding: 3px 12px;
+    border: none;
+    border-radius: 6px !important;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px !important;
+    transition: all 0.3s ease;
+    background-color: white !important;
+    gap: 4px;
+
+}
+
+.action-buttons .transferbtn .icon {
+    font-size: 18px !important;
+}
+
+.action-buttons .transferbtn .text {
+    font-size: 15px !important;
+}
+
+.action-buttons .accept {
+    border: 1px solid #4caf50 !important;
+    background-color: white !;
+    color: #4caf50;
+}
+
+.action-buttons .reject {
+    border: 1px solid #f44336 !important;
+    background-color: white !;
+    color: #f44336;
+}
+
+.action-buttons .received {
+    border: 1px solid #008080 !important;
+    background-color: white !;
+    color: #008080;
+}
+.action-buttons .reminder {
+    border: 1px solid 	#FFD700 !important;
+    background-color: white !;
+    color: 	#FFD700;
+}
+
+/* ==========================================================================
+   BEAUTIFIED EQUIPMENT HUB STYLES (PREMIUM UI)
+   ========================================================================== */
+
+.eq-hub-wrapper {
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+
+/* KPI Summary Cards */
+.eq-hub-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.eq-kpi-card {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.eq-kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--card-accent, #6366f1);
+    transition: width 0.3s ease;
+}
+
+.eq-kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.1), 0 4px 6px -2px rgba(99, 102, 241, 0.05);
+}
+
+.eq-kpi-card:hover::before {
+    width: 6px;
+}
+
+.eq-kpi-info {
+    z-index: 1;
+}
+
+.eq-kpi-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.eq-kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.eq-kpi-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--icon-bg, #e0e7ff);
+    color: var(--card-accent, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.eq-kpi-card:hover .eq-kpi-icon-wrapper {
+    transform: rotate(8deg) scale(1.1);
+}
+
+/* Premium Tab Navigation */
+.eq-hub-tabs-container {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 14px;
+    padding: 6px;
+    display: inline-flex;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.eq-hub-tab-btn {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #475569;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eq-hub-tab-btn:hover {
+    color: #0f172a;
+    background: rgba(241, 245, 249, 0.8);
+}
+
+.eq-hub-tab-btn.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+/* Tab Content Transitions */
+.eq-tab-content-active {
+    animation: fadeInSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

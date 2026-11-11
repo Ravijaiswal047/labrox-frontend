@@ -1,0 +1,159 @@
+.ng-select {
+  font-size: 12.5px;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+/* Used via the `formatOptionLabel` prop for options that pair a swatch/flag
+   icon with their label (e.g. Theme, Language). */
+.ng-option-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ng-option-with-icon__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.ng-option-with-icon__flag {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Flat by design (no gradient/blur "glass") — matches NextGenInput's plain
+   1px-border look instead of the earlier heavier glass treatment. */
+.ng-rs__control {
+  position: relative;
+  min-height: 30px !important;
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  background: var(--ng-surface);
+  border: 1px solid var(--ng-border);
+  border-radius: var(--ng-radius-sm, 6px) !important;
+  padding: 0 6px !important;
+  font-weight: 400;
+  transition: border-color var(--ng-transition, 160ms ease);
+}
+
+/* react-select's built-in chevron/clear icons are plain SVGs with their own
+   hardcoded ~20px dimensions — `unstyled` mode only clears the CSS-in-JS
+   color/spacing, not the SVG's own width/height, so without this the
+   control's flex row was taller than the fixed height above and got
+   clipped by `overflow: hidden` instead of actually matching NextGenInput. */
+.ng-rs__indicators svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ng-rs__control.is-focused {
+  border-color: var(--ng-primary-500, #3b82f6);
+}
+
+.ng-rs__control.is-disabled {
+  opacity: 0.5;
+}
+
+.ng-rs__value-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 2px !important;
+}
+
+.ng-rs__placeholder {
+  color: var(--ng-text-muted, #8b96ad);
+  font-weight: 400 !important;
+}
+
+.ng-rs__input input {
+  color: var(--ng-text, #e8ecf5) !important;
+}
+
+.ng-rs__indicators {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ng-rs__dropdown-indicator,
+.ng-rs__clear-indicator {
+  color: var(--ng-text-muted, #8b96ad);
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 11px;
+  transition: color var(--ng-transition, 160ms ease), transform var(--ng-transition, 160ms ease);
+}
+
+.ng-rs__dropdown-indicator:hover,
+.ng-rs__clear-indicator:hover {
+  color: var(--ng-primary-500, #3b82f6);
+}
+
+.ng-rs__control.is-focused .ng-rs__dropdown-indicator {
+  transform: rotate(180deg);
+}
+
+.ng-rs__menu {
+  margin-top: 6px;
+  background: color-mix(in srgb, var(--ng-surface) 85%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ng-border);
+  border-radius: var(--ng-radius-md, 10px);
+  box-shadow: var(--ng-shadow-lg);
+  overflow: hidden;
+  z-index: 1200;
+}
+
+.ng-rs__menu-list {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.ng-rs__option {
+  padding: 6px 8px;
+  font-size: 12.5px;
+  border-radius: var(--ng-radius-sm, 6px);
+  cursor: pointer;
+  color: var(--ng-text, #e8ecf5);
+  transition: background var(--ng-transition, 160ms ease);
+}
+
+.ng-rs__option.is-focused {
+  background: var(--ng-primary-soft, rgba(59, 130, 246, 0.16));
+}
+
+.ng-rs__option.is-selected {
+  background: var(--ng-primary, #2563eb);
+  color: #fff;
+}
+
+.ng-rs__multi-value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--ng-radius-sm, 6px);
+  padding: 2px 6px;
+  font-size: var(--ng-font-sm, 12.5px);
+}
+
+.ng-rs__multi-value-remove {
+  cursor: pointer;
+}
+.ng-rs__multi-value-remove:hover {
+  color: var(--ng-danger, #f87171);
+}

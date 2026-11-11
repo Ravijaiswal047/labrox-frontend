@@ -1,0 +1,29 @@
+.sidebar-layout{
+    padding: 10px 20px;
+    height: 100%;
+}
+
+table thead th{
+    color:darkred
+}
+
+.dashboard-heading {
+  font-size: 18px !important;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #8b2424; /* blue underline */
+  color: #8b2424;
+}
+
+.dashboard-sub-heading {
+  font-size: 20px !important;
+  font-weight: 600;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  color: #8b2424;
+}
+
+.content-wrapper{
+  background-color: white;
+}

@@ -1,0 +1,23 @@
+@media (max-width: 767px) {
+  .cma-search-heading .card-title {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cma-search-heading .color-code-search-resp {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+
+  .cma-search-heading .color-code-search-resp > div {
+    gap: 4px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .cma-search-heading .color-code-search-resp label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}

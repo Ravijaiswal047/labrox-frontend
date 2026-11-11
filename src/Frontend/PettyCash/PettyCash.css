@@ -1,0 +1,162 @@
+/* ══════════════════════════════════════════════════════════
+   Petty Cash Module — Custom Styles
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Status badges ────────────────────────────────────────── */
+.pc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.pc-approved  { background: #E8F5E9; color: #2E7D32; }
+.pc-pending   { background: #FFF3E0; color: #E65100; }
+.pc-rejected  { background: #FFEBEE; color: #C62828; }
+.pc-active    { background: #E3F2FD; color: #1565C0; }
+.pc-inactive  { background: #F5F5F5; color: #616161; border: 1px solid #e0e0e0; }
+
+/* ── Code / ID chip ───────────────────────────────────────── */
+.pc-code-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #f0f5fb;
+  border: 1px solid #c8d6e8;
+  border-radius: 5px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3d5a8a;
+  white-space: nowrap;
+}
+
+/* ── Balance stat cards ───────────────────────────────────── */
+.pc-bal-card {
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: default;
+}
+.pc-bal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.09);
+}
+.pc-bal-value {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+}
+.pc-bal-label {
+  font-size: 9.5px;
+  font-weight: 500;
+  opacity: 0.72;
+  margin-top: 2px;
+}
+
+/* ── Amount cells ─────────────────────────────────────────── */
+.pc-amount        { font-weight: 700; color: #1e293b; }
+.pc-amount-credit { color: #15803d; font-weight: 700; }
+.pc-amount-debit  { color: #dc2626; font-weight: 700; }
+
+/* ── Checkbox column ──────────────────────────────────────── */
+.pc-check-col { width: 36px; text-align: center; vertical-align: middle !important; }
+.pc-checkbox {
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: #4a6fa5;
+}
+
+/* ── Receipt button ───────────────────────────────────────── */
+.pc-receipt-btn {
+  background: none;
+  border: 1px solid #c8d6e8;
+  border-radius: 5px;
+  padding: 1px 7px;
+  font-size: 11px;
+  color: #2563eb;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.pc-receipt-btn:hover { background: #eff6ff; }
+
+/* ── Type badge variants ──────────────────────────────────── */
+.pc-type-transfer   { background: #eff6ff; color: #1d4ed8; }
+.pc-type-adjustment { background: #f5f3ff; color: #5b21b6; }
+.pc-type-expense    { background: #fff7ed; color: #c2410c; }
+
+/* ── Inline edit input ────────────────────────────────────── */
+.pc-inline-input {
+  border: 1px solid #c8d6e8;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+}
+.pc-inline-input:focus { border-color: #2563eb; }
+
+/* ── Inline select ────────────────────────────────────────── */
+.pc-inline-select {
+  border: 1px solid #c8d6e8;
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ── Pagination strip ─────────────────────────────────────── */
+.pc-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px 2px;
+  font-size: 11.5px;
+  color: #4a5f75;
+}
+
+/* ── Progress bar (balance) ───────────────────────────────── */
+.pc-progress { height: 5px; border-radius: 999px; background: #e9ecef; overflow: hidden; margin-top: 6px; }
+.pc-progress-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
+
+/* ── Ledger row coloring ──────────────────────────────────── */
+.pc-txn-transfer { background: #f0f9ff !important; border-left: 3px solid #2563eb; }
+.pc-txn-expense  { background: #fff9f5 !important; border-left: 3px solid #f59e0b; }
+
+/* ── Alert strip ──────────────────────────────────────────── */
+.pc-alert { border-radius: 8px; padding: 8px 14px; font-size: 12.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.pc-alert-success { background: #f0fdf4; border-left: 4px solid #22c55e; color: #14532d; }
+.pc-alert-warning { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+.pc-alert-error   { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+
+/* ── Mobile Page Total styling ────────────────────────────── */
+@media (max-width: 800px) {
+  /* Page Total label: full-width header, no left padding shift */
+  #no-more-tables td.pc-page-total-label {
+    padding-left: 12px !important;
+    text-align: left !important;
+    background: #e2e8f0 !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    color: #1e293b !important;
+    border-top: 2px solid #94a3b8 !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+  }
+  /* Hide the ::before pseudo-element (empty data-title) for the label cell */
+  #no-more-tables td.pc-page-total-label::before {
+    display: none !important;
+  }
+
+  /* Hide empty balance cell in page total row on mobile */
+  #no-more-tables td.pc-page-total-hide {
+    display: none !important;
+  }
+}

@@ -1,0 +1,126 @@
+.vip-font-size{
+    font-size: 15px !important ;
+}
+
+/* Result Entry card view (mobile only): S.No + Visit No sit together on
+   one row, left-aligned, S.No first — instead of the card's own separate
+   top-right slot for S.No. */
+.rr-card__visitno-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.rr-card__sno-inline {
+  font-weight: 400;
+  color: var(--ng-muted, #6b7280);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Result Entry card view (mobile only): S.CollectionDate / Reg Date /
+   Dep. Receive Time sit together in one 3-column row instead of each
+   taking its own full-width row. This container deliberately does NOT
+   carry the ".rr-card__body" class — ReceiptReprintTable.css's shared
+   ".rr-card__body:not(.rr-card__body--amounts) .rr-card__field" rule
+   (grid-column:1/-1, one field per row) has the same specificity as a
+   same-named modifier class and that file loads after this one, so it
+   would win the tie. Using an unrelated class name here sidesteps that
+   fight entirely instead of trying to out-specificity it. */
+@media (max-width: 767px) {
+  .rr-card__dates-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .rr-card__dates-row .rr-card__field {
+    grid-column: auto !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left;
+  }
+
+  .rr-card__dates-row .rr-card__field-label {
+    font-size: 9.5px !important;
+  }
+
+  .rr-card__dates-row .rr-card__field-value {
+    font-size: 11px !important;
+  }
+}
+
+/* .round p {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+} */
+
+@media (min-width: 801px) {
+  .dispatch-test-col {
+    width: 400px;
+    min-width: 400px;
+    max-width: 500px;
+  }
+
+  .dispatchTestCell {
+    width: 300px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .dispatch-test-col {
+    width: auto;
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  .dispatchTestCell {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+/* Text wrapping */
+.dispatchTestCell {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Card view (RETable's viewMode === "card") reuses renderTestLine() as-is —
+   same function the table uses — so its caret (expand-inline-below) icon
+   comes along for free. Card view intentionally doesn't wire up the
+   expand-in-place anchor at all (only the table does), so the caret has
+   nothing to open there; hiding it keeps the card's own edit-pencil icon
+   (already wired to the existing popup/modal editor, unchanged) as the one
+   obvious way to edit a test from a card. */
+.rr-card__test-line .bi-caret-down-fill,
+.rr-card__test-line .bi-caret-up-fill {
+  display: none;
+}
+
+/* renderTestLine()'s own status pill already has its own background/padding
+   — card view no longer wraps it in a second bordered box (that "box inside
+   a box" was most of why cards looked oversized), just a thin divider
+   between entries in the scroll list. */
+.rr-card__test-line + .rr-card__test-line {
+  border-top: 1px dashed var(--ng-border, #e5e7eb);
+  padding-top: 6px;
+}
+
+.rr-card__footer img,
+.rr-card__footer i,
+.rr-card__footer svg {
+  font-size: 15px;
+  opacity: 0.9;
+  transition: opacity 0.15s ease;
+}
+
+.rr-card__footer > *:hover img,
+.rr-card__footer > *:hover i,
+.rr-card__footer > *:hover svg {
+  opacity: 1;
+}
+

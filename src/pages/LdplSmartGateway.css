@@ -1,0 +1,156 @@
+/* Wrapper with the light teal gradient background */
+.ldpl-gateway-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #bee3fc 0%, #75e4fa 50%, #c3ebf0 100%);
+  padding: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Centered Card */
+.ldpl-gateway-card {
+  background: #f7f3f3;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+/* Logo Styling */
+.ldpl-logo-wrap {
+  margin-bottom: 15px;
+}
+
+.ldpl-company-logo {
+  max-height: 70px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Title and Subtitle */
+.ldpl-company-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.ldpl-subtitle {
+  font-size: 1.2rem;
+  color: #2f3942;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.ldpl-otp-title {
+  font-size: 1.3rem;
+  color: #252525;
+  font-weight: 620;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.ldpl-form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.ldpl-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.ldpl-input {
+  border: 1px solid #ced4da !important;
+  border-radius: 6px !important;
+  padding: 15px 16px !important;
+  font-size: 1rem !important;
+  text-align: left !important;
+  direction: ltr;            
+}
+
+.ldpl-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.1) !important;
+  border-color: #007bff !important;
+}
+
+/* Buttons */
+.ldpl-btn-primary {
+  width: 100%;
+  background-color: #175ca5;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 15px;
+}
+
+.ldpl-btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.ldpl-btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Powered By Section */
+.ldpl-powered-wrap {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ldpl-powered-wrap::before {
+  content: "Powered By";
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #666;
+}
+
+.ldpl-hdfc-logo {
+  height: 40px;
+  width: auto;
+}
+
+
+.ldpl-action-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.ldpl-btn-resend, .ldpl-btn-reset {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ldpl-btn-resend:disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+.ldpl-timer-text {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+
+
