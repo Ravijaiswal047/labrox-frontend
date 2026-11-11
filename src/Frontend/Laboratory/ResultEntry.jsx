@@ -31,7 +31,6 @@ import { sanitizeLabReportHtml } from "../../utils/sanitizeLabReportHtml";
 import "../../utils/sanitizeLabReportHtml.css";
 import {
   parseMappedSignature,
-  pickDefaultApprovedBy,
   resolveApprovalDoctor,
   stampApprovedBy,
   withMappedDoctorOption,
@@ -107,6 +106,29 @@ import { RemarkTooltip } from "../utils/RemarkTooltip";
 import DispatchPatientDetailModal from "../utils/DispatchPatientDetailModal";
 import { CustomButton, SearchButton } from "../../components/UI/CustomButton";
 import LabIssueModal from "../utils/LabIssueModal";
+const safeParseRemarks = (val) => {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  if (typeof val === "string") {
+    try {
+      const parsed = JSON.parse(val);
+      return Array.isArray(parsed) ? parsed : [val];
+    } catch {
+      return [val];
+    }
+  }
+  return [String(val)];
+};
+
+const formatActionableError = (err, fallback = "Operation could not be completed") => {
+  const cid = "ERR-RE-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  const serverMsg = err?.response?.data?.message || err?.response?.data?.error || err?.message;
+  if (serverMsg && typeof serverMsg === "string" && !serverMsg.toLowerCase().includes("something went wrong")) {
+    return `${serverMsg} (Ref: ${cid})`;
+  }
+  return `${fallback}. Please retry or report Ref: ${cid} to support.`;
+};
+
 const ResultEntry = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -160,6 +182,7 @@ const ResultEntry = () => {
   const [TestSuggestion, setTestSuggestion] = useState([]);
   const [CentreData, setCentreData] = useState([]);
   const [doctorAdmin, setDoctorAdmin] = useState([]);
+  const [doctorError, setDoctorError] = useState("");
   const [RateTypes, setRateTypes] = useState([]);
   const [transferCentres, setTransferCentres] = useState([]);
   const [DepartmentData, setDepartmentData] = useState([]);
@@ -1052,13 +1075,31 @@ const ResultEntry = () => {
       const { controllersData } =
         await getSearchController("1081");
 
-      const sortedButtons = [...controllersData].sort(
-        (a, b) => a.DisplayOrder - b.DisplayOrder
-      );
-
-      setControllerButtonDynamicList(sortedButtons);
+      if (Array.isArray(controllersData) && controllersData.length > 0) {
+        const sortedButtons = [...controllersData].sort(
+          (a, b) => a.DisplayOrder - b.DisplayOrder
+        );
+        setControllerButtonDynamicList(sortedButtons);
+      } else {
+        setControllerButtonDynamicList([
+          { ControlDisplayID: "Doctor", IsShow: 1, DisplayOrder: 1 },
+          { ControlDisplayID: "Save", IsShow: 1, DisplayOrder: 2 },
+          { ControlDisplayID: "Approve", IsShow: 1, DisplayOrder: 3 },
+          { ControlDisplayID: "Machine Group", IsShow: 1, DisplayOrder: 4 },
+          { ControlDisplayID: "Preview", IsShow: 1, DisplayOrder: 5 },
+          { ControlDisplayID: "Main List", IsShow: 1, DisplayOrder: 6 },
+        ]);
+      }
     } catch (error) {
       console.error("error in controllerButtonDynamic:", error);
+      setControllerButtonDynamicList([
+        { ControlDisplayID: "Doctor", IsShow: 1, DisplayOrder: 1 },
+        { ControlDisplayID: "Save", IsShow: 1, DisplayOrder: 2 },
+        { ControlDisplayID: "Approve", IsShow: 1, DisplayOrder: 3 },
+        { ControlDisplayID: "Machine Group", IsShow: 1, DisplayOrder: 4 },
+        { ControlDisplayID: "Preview", IsShow: 1, DisplayOrder: 5 },
+        { ControlDisplayID: "Main List", IsShow: 1, DisplayOrder: 6 },
+      ]);
     }
   };
 
@@ -1208,34 +1249,28 @@ const ResultEntry = () => {
         );
 
       case "Doctor": {
-        const defaultDoc = pickDefaultApprovedBy(doctorAdmin);
         const currentApprovedBy =
           ResultTestData[0]?.ApprovedBy && String(ResultTestData[0]?.ApprovedBy) !== "0"
             ? String(ResultTestData[0]?.ApprovedBy)
-            : defaultDoc;
-        const rosterDoctor = resolveApprovalDoctor({
-          defaultSignatureID: ResultTestData[0]?.DefaultSignatureID,
-          currentApprovedBy: currentApprovedBy,
-          doctorAdmin,
-        });
-        const selectedDoctor =
-          rosterDoctor.approvedBy && String(rosterDoctor.approvedBy) !== "0"
-            ? String(rosterDoctor.approvedBy)
-            : currentApprovedBy;
+            : "";
         return (
           <div className="col-sm-2" key={index}>
             <SelectBox
               options={[
-                { label: "Select Doctor", value: "0" },
-                ...withMappedDoctorOption(doctorAdmin, rosterDoctor.mapped),
+                { label: "Select Doctor", value: "" },
+                ...(doctorAdmin || []).filter((d) => d?.value && String(d?.value) !== "0"),
               ]}
-              selectedValue={selectedDoctor}
+              selectedValue={currentApprovedBy}
               id="ApprovedBy"
-              lable="Doctor"
+              lable="Doctor *"
               name="ApprovedBy"
               onChange={handleDoctorName}
-              isDisabled={rosterDoctor.locked}
             />
+            {doctorError && (
+              <span className="text-danger font-weight-bold" style={{ fontSize: "11px", display: "block", marginTop: "2px" }}>
+                {doctorError}
+              </span>
+            )}
           </div>
         );
       }
@@ -2706,7 +2741,7 @@ const ResultEntry = () => {
           LedgertransactionIDHash: nextPatient?.LedgertransactionIDHash,
           isOutSource: nextPatient?.isOutSource,
           index: nextPatient?.index,
-          ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+          ApprovedBy: "",
           SelectedDepartmentId: selectedDepartment || [0],
           from: isSingleTestMode ? "testClick" : "resultClick",
           isEyeModal: eyeModalConfig.show && !eyeModalConfig.isModal,
@@ -2799,7 +2834,7 @@ const ResultEntry = () => {
           LedgertransactionIDHash: prevPatient?.LedgertransactionIDHash,
           isOutSource: prevPatient?.isOutSource,
           index: prevPatient?.index,
-          ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+          ApprovedBy: "",
           SelectedDepartmentId: selectedDepartment || [0],
           from: isSingleTestMode ? "testClick" : "resultClick",
           isEyeModal: eyeModalConfig.show && !eyeModalConfig.isModal,
@@ -2980,9 +3015,7 @@ const ResultEntry = () => {
     for (const item of sortedDataArray) {
       const key = getKey(item);
       const checkboxHTML = `<p class="round Status-${item.Status}">${createCheckbox(item)}${item.TestName}</p>`;
-      const remarksList = typeof item?.RemarksList === "string"
-        ? JSON.parse(item.RemarksList)
-        : item?.RemarksList || [];
+      const remarksList = safeParseRemarks(item?.RemarksList);
       const issueRemarkList = parseIssueRemarkList(item.IssueRemarkList);
       const itemStatus = Number(item?.Status);
 
@@ -3162,6 +3195,7 @@ const ResultEntry = () => {
             ApprovedBy: rosterDoctor.approvedBy,
             IsDutyRosterLocked: rosterDoctor.locked,
             LedgertransactionIDHash: payload?.LedgertransactionIDHash,
+            Status: Number(ele?.Status || 3),
             TotalAgeInDays: ele?.TotalAgeInDays,
             VisitNo: payload?.VisitNo,
             isOutSource: payload?.isOutSource,
@@ -3317,7 +3351,7 @@ const ResultEntry = () => {
         LedgertransactionIDHash: Number(copyPayload?.LedgertransactionIDHash) ?? 0,
         isOutSource: copyPayload?.isOutSource ?? "",
         index: index,
-        ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+        ApprovedBy: "",
         SelectedDepartmentId: selectedDepartment || [0],
         isEyeModal: eyeModalConfig.show && !eyeModalConfig.isModal,
         isEditModal: eyeModalConfig.show && eyeModalConfig.isModal,
@@ -4225,12 +4259,11 @@ const ResultEntry = () => {
   };
 
   const resolveSaveApprovedBy = (item) => {
-    const stamped = stampApprovedBy(item, doctorAdmin);
-    if (stamped && stamped !== "0") return stamped;
-    if (EmployeeID != null && String(EmployeeID) !== "" && String(EmployeeID) !== "0") {
-      return String(EmployeeID);
+    const doc = ResultTestData[0]?.ApprovedBy || item?.ApprovedBy || "";
+    if (doc && String(doc) !== "0" && String(doc).trim() !== "") {
+      return String(doc).trim();
     }
-    return stamped || "0";
+    return "";
   };
 
   const withApprovalDoctor = (rows = []) =>
@@ -4531,8 +4564,11 @@ const ResultEntry = () => {
         });
     } else {
       // console.log("other than approved");
+      const chosenDoctor = resolveSaveApprovedBy(result1?.[0]);
       axiosInstance
         .post("RE/SaveResultEntry", {
+          doctorId: chosenDoctor,
+          ApprovedBy: chosenDoctor,
           data: (result2 || []).map((ele) => {
             const obj = {
               ...ele,
@@ -4541,7 +4577,7 @@ const ResultEntry = () => {
                 (data) => data.value == ele.Dignomasterid,
               )?.label,
               Value: ele?.Value?.toString(),
-              ApprovedBy: resolveSaveApprovedBy(ele),
+              ApprovedBy: chosenDoctor,
               CommentID: ele?.CommentID?.toString(),
               HelpMenuBold: ele?.HelpMenuBold ?? 0,
               Flag: ele?.IsHelpMenu && ele?.HelpMenuBold ? "High" : ele?.Flag,
@@ -4556,7 +4592,7 @@ const ResultEntry = () => {
           HeaderInfo: result1?.map((item, _) => ({
             ...item,
             isNablInvestigation: result2?.[0]?.IsNablInvestigation,
-            ApprovedBy: resolveSaveApprovedBy(item),
+            ApprovedBy: chosenDoctor,
             MacID: item?.MachineId || item?.MacID || 0,
             isPartialResult: getIsPartialResult(item?.TestID, payload),
           })),
@@ -4641,10 +4677,8 @@ const ResultEntry = () => {
         })
         .catch((err) => {
           setLoading(false);
-          notify(
-            err?.response?.data?.message || "Something went wrong",
-            "error",
-          );
+          const errMessage = formatActionableError(err, "Failed to save diagnostic results");
+          notify(errMessage, "error");
         });
     }
     } catch (err) {
@@ -4707,6 +4741,16 @@ const ResultEntry = () => {
           (item.Value === "" || item.Value == null)
       );
 
+      // Doctor selection is mandatory for both Save and Approve
+      const effectiveDoctor = ResultTestData[0]?.ApprovedBy || headerData?.[0]?.ApprovedBy || payload?.[0]?.ApprovedBy;
+      if (!effectiveDoctor || String(effectiveDoctor) === "0" || String(effectiveDoctor).trim() === "") {
+        setDoctorError("Doctor selection is mandatory. Please select a Doctor before saving.");
+        toast.error("Doctor selection is mandatory. Please select a Doctor before saving.");
+        return;
+      } else {
+        setDoctorError("");
+      }
+
       if ((field === "Save" || field === "Dual Authentication") && !isOutSource) {
         if (mandatoryRows.length > 0) {
           toast.error(`Value is mandatory for: ${mandatoryRows.map(r => r.TestName).join(", ")}`);
@@ -4720,12 +4764,6 @@ const ResultEntry = () => {
         );
         if (emptyRows.length > 0) {
           toast.error("Please enter result values before approving the report");
-          return;
-        }
-
-        const effectiveDoctor = ResultTestData[0]?.ApprovedBy || headerData?.[0]?.ApprovedBy || payload?.[0]?.ApprovedBy;
-        if (!effectiveDoctor || String(effectiveDoctor) === "0" || String(effectiveDoctor).trim() === "") {
-          toast.error("Please select an approving doctor before approving the report");
           return;
         }
       }
@@ -4902,16 +4940,24 @@ const ResultEntry = () => {
 
       validateData("Approved", data, errorToast, val);
     } else if (field === "Save") {
-      const data = ResultData.filter(
+      const isRowChecked = (ele) => ele?.isChecked === true || ele?.isChecked === 1 || ele?.isChecked === "1";
+      const hasAnyChecked = (ResultData || []).some(isRowChecked);
+      const data = (ResultData || []).filter(
         (ele) =>
-          [3, 10, 14, 13, 20, 25].includes(Number(ele?.Status)) &&
-          ele?.isChecked === true,
+          [3, 10, 14, 13, 20, 25].includes(Number(ele?.Status || 3)) &&
+          (hasAnyChecked ? isRowChecked(ele) : true),
       );
-      const val = ResultTestData.filter(
+      const hasAnyTestChecked = (ResultTestData || []).some(isRowChecked);
+      const val = (ResultTestData || []).filter(
         (ele) =>
-          [3, 10, 14, 13, 20, 25].includes(Number(ele?.Status)) &&
-          ele?.isChecked === true,
+          [3, 10, 14, 13, 20, 25].includes(Number(ele?.Status || 3)) &&
+          (hasAnyTestChecked ? isRowChecked(ele) : true),
       );
+
+      if (data.length === 0) {
+        toast.error("Please enter observation values before saving results.");
+        return;
+      }
 
       if (!Number(HideOmitOptionatResultEntry)) {
         const omitted = data.filter(
@@ -5298,11 +5344,8 @@ const ResultEntry = () => {
         console.log("res.data.message", res.data.message);
       })
       .catch((err) => {
-        toast.error(
-          err?.response?.data?.message
-            ? err?.response?.data?.message
-            : t("Something Went Wrong"),
-        );
+        const msg = formatActionableError(err, "Failed to load employee access privileges");
+        toast.error(msg);
       });
   };
 
@@ -5371,8 +5414,7 @@ const ResultEntry = () => {
               LedgertransactionIDHash: id?.LedgertransactionIDHash,
               isOutSource: id?.isOutSource,
               index: id?.index,
-              ApprovedBy:
-                id?.ApprovedBy || pickDefaultApprovedBy(doctorData),
+              ApprovedBy: id?.ApprovedBy || "",
               SelectedDepartmentId: selectedDepartment || [0],
               TestCentreIDManual: id?.TestCentreID || [0],
             },
@@ -5460,12 +5502,9 @@ const ResultEntry = () => {
         // setDlcCheckChecked(true);
       })
       .catch((err) => {
-        if (err.response.status === 504) {
-          toast.error(t("Something Went Wrong"));
-        }
-        toast.error(err.response.data.message);
         setLoading(false);
-        // setResultData([]);
+        const actionMsg = formatActionableError(err, "Failed to update test result");
+        toast.error(actionMsg);
       });
   };
 
@@ -7641,7 +7680,7 @@ const ResultEntry = () => {
                           LedgertransactionIDHash: data?.LedgertransactionIDHash,
                           isOutSource: data?.isOutSource,
                           index: globalIndex,
-                          ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+                          ApprovedBy: "",
                           from: "testClick",
                           SelectedDepartmentId: selectedDepartment || [0],
                           isEditModal: true,
@@ -8319,9 +8358,7 @@ const ResultEntry = () => {
                   {ResultTestData?.map((Hdata, Hindex) => {
 
                     const commentsForRow = allComments[Hdata?.InvestigationID] || [];
-                    const remarksList = typeof Hdata?.RemarksList === "string"
-                      ? JSON.parse(Hdata.RemarksList)
-                      : Hdata?.RemarksList || [];
+                    const remarksList = safeParseRemarks(Hdata?.RemarksList);
                     return (
                       <>
                         <tr key={Hindex} style={{ backgroundColor: "lightgrey" }}>
@@ -11089,10 +11126,7 @@ const ResultEntry = () => {
                   <tbody>
                     {ResultTestData?.map((Hdata, Hindex) => {
                       const commentsForRow = allComments[Hdata?.InvestigationID] || [];
-                      const remarksList =
-                        typeof Hdata?.RemarksList === "string"
-                          ? JSON.parse(Hdata.RemarksList)
-                          : Hdata?.RemarksList || [];
+                      const remarksList = safeParseRemarks(Hdata?.RemarksList);
                       return (
                         <>
                           <tr key={Hindex} style={{ backgroundColor: "lightgrey" }}>

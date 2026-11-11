@@ -12,67 +12,37 @@ export function isSystemAdminApprover(doctor) {
   return label === "admin";
 }
 
-export function pickDefaultApprovedBy(doctorAdmin = [], emptyValue = "0") {
-  const real = (doctorAdmin || []).filter(
-    (d) => !isSystemAdminApprover(d) && String(d?.value) !== "0" && String(d?.value) !== ""
-  );
-  if (real.length === 0) {
-    const anyDoc = (doctorAdmin || []).filter(
-      (d) => String(d?.value) !== "0" && String(d?.value) !== ""
-    );
-    return anyDoc.length ? String(anyDoc[0].value) : emptyValue;
-  }
-  const def = real.find((d) => Number(d.IsDefault) === 1);
-  if (def) return String(def.value);
-  return String(real[0].value);
+export function pickDefaultApprovedBy(doctorAdmin = [], emptyValue = "") {
+  // Production Rule (D2.1 / D2.3): Doctor selection MUST BE EMPTY by default.
+  // Never auto-select the first doctor, admin, or roster doctor.
+  return "";
 }
 
 export function resolveApprovalDoctor({
   defaultSignatureID,
   currentApprovedBy,
   doctorAdmin = [],
-  emptyValue = "0",
+  emptyValue = "",
 } = {}) {
   const list = doctorAdmin || [];
-  const mapped = parseMappedSignature(defaultSignatureID);
-  if (mapped.id && !isSystemAdminApprover({ label: mapped.name, value: mapped.id })) {
-    return {
-      approvedBy: mapped.id,
-      approvalName: mapped.name,
-      locked: true,
-      mapped,
-    };
-  }
-
   const current =
-    currentApprovedBy != null && currentApprovedBy !== ""
+    currentApprovedBy != null && currentApprovedBy !== "" && currentApprovedBy !== "0"
       ? String(currentApprovedBy)
       : "";
-  if (current && current !== "0") {
-    const match = list.find((d) => String(d.value) === current);
-    if (!isSystemAdminApprover(match || { label: "", value: current })) {
-      return {
-        approvedBy: current,
-        approvalName: match?.label || "",
-        locked: false,
-        mapped: { id: "", name: "" },
-      };
-    }
-  }
 
-  const picked = pickDefaultApprovedBy(list, emptyValue);
-  if (picked && picked !== emptyValue) {
-    const match = list.find((d) => String(d.value) === String(picked));
+  if (current) {
+    const match = list.find((d) => String(d.value) === current);
     return {
-      approvedBy: String(picked),
+      approvedBy: current,
       approvalName: match?.label || "",
       locked: false,
       mapped: { id: "", name: "" },
     };
   }
 
+  // Doctor selection is EMPTY by default until user explicitly selects
   return {
-    approvedBy: emptyValue,
+    approvedBy: "",
     approvalName: "",
     locked: false,
     mapped: { id: "", name: "" },
@@ -90,11 +60,9 @@ export function withMappedDoctorOption(doctorAdmin, mapped) {
   ];
 }
 
-export function stampApprovedBy(item, doctorAdmin, emptyValue = "0") {
-  return resolveApprovalDoctor({
-    defaultSignatureID: item?.DefaultSignatureID,
-    currentApprovedBy: item?.ApprovedBy,
-    doctorAdmin,
-    emptyValue,
-  }).approvedBy;
+export function stampApprovedBy(item, doctorAdmin, emptyValue = "") {
+  const val = item?.ApprovedBy != null && String(item?.ApprovedBy).trim() !== "0"
+    ? String(item?.ApprovedBy).trim()
+    : "";
+  return val;
 }

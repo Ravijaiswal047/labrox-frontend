@@ -37,7 +37,7 @@ import PdfPreviewModal from "../utils/PdfPreviewModal";
 import "./ResultEntryTable.css";
 import "./ReceiptReprintTable.css";
 import { useLocalStorage } from "../../utils/hooks/useLocalStorage";
-import { pickDefaultApprovedBy } from "../../utils/dutyRosterApprovalDoctor";
+// default doctor removed
 import UploadFile from "../utils/UploadFileModal/UploadFile";
 import DispatchPatientDetailModal from "../utils/DispatchPatientDetailModal";
 import DateTimeCell from "../../utils/DateTimeCell";
@@ -468,7 +468,7 @@ function RETable({
         LedgertransactionIDHash: data?.LedgertransactionIDHash,
         isOutSource: data?.isOutSource,
         index: index,
-        ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+        ApprovedBy: "",
         from: "resultClick",
         SelectedDepartmentId: selectedDepartment || [0],
         isEyeModal: true,
@@ -498,7 +498,7 @@ function RETable({
         LedgertransactionIDHash: data?.LedgertransactionIDHash,
         isOutSource: data?.isOutSource,
         index: index,
-        ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+        ApprovedBy: "",
         from: "resultClick",
         SelectedDepartmentId: selectedDepartment || [0],
       },
@@ -517,7 +517,7 @@ function RETable({
       LedgertransactionIDHash: data?.LedgertransactionIDHash,
       isOutSource: data?.isOutSource,
       index: index,
-      ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+      ApprovedBy: "",
       MacID: data?.MacID || machine[0]?.value || "",
     };
     const encrypted = CryptoJS.AES.encrypt(
@@ -567,7 +567,7 @@ function RETable({
         LedgertransactionIDHash: data?.LedgertransactionIDHash,
         isOutSource: data?.isOutSource,
         index: index,
-        ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+        ApprovedBy: "",
         from: "testClick",
         SelectedDepartmentId: selectedDepartment || [0],
       },
@@ -607,7 +607,7 @@ function RETable({
                 LedgertransactionIDHash: data?.LedgertransactionIDHash,
                 isOutSource: data?.isOutSource,
                 index: index,
-                ApprovedBy: pickDefaultApprovedBy(doctorAdmin),
+                ApprovedBy: "",
                 from: "testClick",
                 SelectedDepartmentId: selectedDepartment || [0],
                 isEyeModal: true,
