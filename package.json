@@ -145,7 +145,7 @@
     "eslint-plugin-react": "7.37.4",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-unused-imports": "4.1.4",
-    "fs-extra": "^11.3.2",
+    "fs-extra": "^11.4.1",
     "husky": "9.1.7",
     "i18next-scanner": "^4.6.0",
     "lint-staged": "15.4.3",
